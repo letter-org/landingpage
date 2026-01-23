@@ -2,7 +2,14 @@ import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import * as z from "zod"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy initialization of Resend to avoid build errors when API key is missing
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    return null
+  }
+  return new Resend(apiKey)
+}
 
 const leadSchema = z.object({
   segment: z.enum(["pme", "regulated", "public"]),
@@ -142,6 +149,16 @@ ${validatedData.description ? `- Description: ${validatedData.description}` : ""
     `
 
     // Send email
+    const resend = getResend()
+    if (!resend) {
+      console.warn("RESEND_API_KEY not configured, skipping email send")
+      // Return success even without email for development/staging
+      return NextResponse.json(
+        { success: true, message: "Email service not configured" },
+        { status: 200 }
+      )
+    }
+
     const fromEmail = process.env.RESEND_FROM_EMAIL || process.env.FROM_EMAIL || "onboarding@resend.dev"
     const toEmail = "info@nextletter.ch"
 
