@@ -1,8 +1,10 @@
 "use client"
 
-import { ArrowRight, Eye, Shield, Clock, Users, Sparkles } from "lucide-react"
+import { ArrowRight, Eye, Shield, Clock, Users, Sparkles, Lock, CheckCircle2, Award } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect, useRef } from "react"
+import { appUrls, addUtmParams } from "@/lib/app-urls"
+import { BackgroundMountains } from "./background-mountains"
 
 // Mouse follower glow for hero
 function HeroMouseGlow() {
@@ -55,14 +57,14 @@ function HeroMouseGlow() {
   )
 }
 
-// Animated particles
+// Animated particles - static values to avoid hydration issues
 const particles = Array.from({ length: 30 }, (_, i) => ({
   id: i,
-  size: Math.random() * 4 + 1,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  duration: Math.random() * 20 + 10,
-  delay: Math.random() * 5,
+  size: ((i * 7) % 4) + 1, // Deterministic size
+  x: ((i * 13) % 100), // Deterministic x
+  y: ((i * 17) % 100), // Deterministic y
+  duration: ((i * 11) % 20) + 10, // Deterministic duration
+  delay: ((i * 3) % 5), // Deterministic delay
 }))
 
 export function Hero() {
@@ -73,13 +75,18 @@ export function Hero() {
 
   return (
     <section id="hero-section" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-secondary via-background to-background">
+      {/* Background mountains - more visible */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+        <BackgroundMountains />
+      </div>
+      
       {/* Interactive mouse glow */}
       <HeroMouseGlow />
       
-      {/* Animated grid background */}
+      {/* Animated grid background - more subtle */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div 
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.01]"
           style={{
             backgroundImage: `
               linear-gradient(rgba(59,130,246,0.3) 1px, transparent 1px),
@@ -118,56 +125,59 @@ export function Hero() {
       {/* Top shimmer line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent animate-shimmer" />
 
-      <div ref={heroRef} className="relative max-w-7xl mx-auto">
+      <div ref={heroRef} className="relative max-w-7xl mx-auto z-10">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Badge with premium animation */}
+          {/* Badge with premium animation - simplified */}
           <div 
             className={`inline-flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm border border-border rounded-full mb-8 shadow-lg transition-all duration-700 hover:shadow-xl hover:border-brand/30 cursor-default ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
             }`}
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-            </span>
-            <span className="text-sm text-muted-foreground">100% Conforme GDPR</span>
+            <div className="w-2 h-2 rounded-full bg-green-500" />
+            <span className="text-sm font-medium text-foreground">100% Conforme GDPR</span>
             <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
-            <span className="text-sm text-muted-foreground">Application 100% Suisse</span>
+            <span className="text-sm font-medium text-foreground">Swiss Made</span>
+            {/* Swiss flag icon - small square red with white cross */}
+            <div className="relative w-3.5 h-3.5 bg-red-600 rounded-sm flex items-center justify-center">
+              <div className="absolute w-2 h-0.5 bg-white rounded-sm" />
+              <div className="absolute h-2 w-0.5 bg-white rounded-sm" />
+            </div>
           </div>
 
-          {/* Main headline with enhanced gradient */}
+          {/* Main headline - more human and concrete */}
           <h1 
             className={`text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight text-balance transition-all duration-700 delay-100 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Envoyez vos lettres recommandees{" "}
-            <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 animate-gradient bg-[length:200%_auto]">
-                sans vous deplacer.
-              </span>
-              {/* Underline glow effect */}
-              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/50 via-blue-500/50 to-cyan-400/50 blur-sm" />
+            Envoyez vos lettres recommandées{" "}
+            <span className="text-brand">sans vous déplacer.</span>
+            <br />
+            <span className="text-muted-foreground font-normal text-3xl sm:text-4xl lg:text-5xl">
+              Depuis votre bureau. Ou votre canapé.
             </span>
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - short and clear */}
           <p 
-            className={`text-lg sm:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed text-pretty transition-all duration-700 delay-200 ${
+            className={`text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Le courrier Suisse digitalise, simplifie et securise. Redigez, envoyez, suivez et archivez vos courriers officiels en quelques clics.
+            Une solution pour particuliers et entreprises.
           </p>
 
-          {/* CTAs with premium hover effects */}
+          {/* CTAs with premium hover effects - single clear CTA */}
           <div 
-            className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 transition-all duration-700 delay-300 ${
+            className={`flex flex-col items-center justify-center gap-3 mb-6 transition-all duration-700 delay-300 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <button 
-              className="group relative w-full sm:w-auto px-8 py-4 bg-foreground text-background rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2 font-semibold overflow-hidden"
+            <a
+              href={addUtmParams(appUrls.base, 'landing', 'cta', 'nextletter')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative w-full sm:w-auto px-10 py-4 bg-foreground text-background rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2 font-semibold overflow-hidden"
               onMouseEnter={() => setHoveredButton('primary')}
               onMouseLeave={() => setHoveredButton(null)}
             >
@@ -180,30 +190,13 @@ export function Hero() {
                   background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
                 }}
               />
-              <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="relative">Creer un compte gratuit</span>
+              <span className="relative">Envoyer une lettre maintenant</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-            <button 
-              className="group relative w-full sm:w-auto px-8 py-4 bg-card text-foreground border-2 border-border rounded-xl transition-all duration-300 flex items-center justify-center gap-2 font-semibold overflow-hidden hover:border-brand/50 hover:shadow-lg hover:-translate-y-0.5"
-              onMouseEnter={() => setHoveredButton('secondary')}
-              onMouseLeave={() => setHoveredButton(null)}
-            >
-              {/* Gradient border on hover */}
-              <div 
-                className={`absolute inset-0 rounded-xl transition-opacity duration-300 ${
-                  hoveredButton === 'secondary' ? 'opacity-100' : 'opacity-0'
-                }`}
-                style={{
-                  background: 'linear-gradient(135deg, rgba(59,130,246,0.1) 0%, transparent 50%, rgba(6,182,212,0.1) 100%)',
-                }}
-              />
-              <Eye className="w-5 h-5 group-hover:scale-110 transition-transform duration-300 relative" />
-              <span className="relative">Voir le dashboard</span>
-            </button>
+            </a>
+            <p className="text-sm text-muted-foreground">En 2 minutes • Essai gratuit • Simple et sécurisé</p>
           </div>
 
-          {/* Trust indicators with hover effects */}
+          {/* Trust indicators - simplified and professional */}
           <div 
             ref={trustRef}
             className={`flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground transition-all duration-700 delay-400 ${
@@ -211,9 +204,9 @@ export function Hero() {
             }`}
           >
             {[
-              { icon: Shield, color: 'text-green-500', bg: 'bg-green-500/10', label: 'Aucune carte requise' },
-              { icon: Clock, color: 'text-blue-500', bg: 'bg-blue-500/10', label: 'Essai gratuit' },
-              { icon: Users, color: 'text-purple-500', bg: 'bg-purple-500/10', label: '+500 clients suisses' },
+                  { icon: Shield, color: 'text-green-500', bg: 'bg-green-500/10', label: 'Essai gratuit' },
+              { icon: Users, color: 'text-blue-500', bg: 'bg-blue-500/10', label: '+ de 100k utilisateurs en suisse' },
+              { icon: CheckCircle2, color: 'text-emerald-500', bg: 'bg-emerald-500/10', label: 'Conforme aux réglementations' },
             ].map((item, index) => (
               <div 
                 key={index}

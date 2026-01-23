@@ -2,7 +2,8 @@
 
 import { Logo } from "@/components/logo"
 import { useState, useEffect } from "react"
-import { Menu, X, Sparkles, ArrowRight } from "lucide-react"
+import { Menu, X, Sparkles, ArrowRight, ExternalLink } from "lucide-react"
+import { appUrls, addUtmParams } from "@/lib/app-urls"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -20,14 +21,14 @@ export function Header() {
   }, [])
 
   const navLinks = [
-    { label: 'Fonctionnalites', href: '#features' },
-    { label: 'Tarifs', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Fonctionnalites', href: '#features-section' },
+    { label: 'Tarifs', href: '#pricing-section' },
+    { label: 'FAQ', href: '#faq-section' },
   ]
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 overflow-hidden ${
         scrolled 
           ? 'bg-card/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-black/5' 
           : 'bg-transparent border-b border-transparent'
@@ -70,7 +71,10 @@ export function Header() {
             
             <div className="w-px h-6 bg-border mx-2" />
             
-            <button 
+            <a 
+              href={appUrls.login}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`relative px-4 py-2 text-muted-foreground hover:text-foreground rounded-lg transition-all duration-300 group ${
                 mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
               }`}
@@ -78,9 +82,12 @@ export function Header() {
             >
               <span className="absolute inset-0 rounded-lg bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative">Se connecter</span>
-            </button>
+            </a>
             
-            <button 
+            <a
+              href={addUtmParams(appUrls.base, 'landing', 'header', 'nextletter')}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`group relative px-5 py-2.5 bg-foreground text-background rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-foreground/10 hover:-translate-y-0.5 ${
                 mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
               }`}
@@ -92,7 +99,22 @@ export function Header() {
                 <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
                 Creer un compte
               </span>
-            </button>
+            </a>
+            
+            <a
+              href={appUrls.dashboard}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group relative px-4 py-2.5 bg-card text-foreground border border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-brand/50 hover:shadow-lg hover:-translate-y-0.5 ${
+                mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+              }`}
+              style={{ transitionDelay: mounted ? '450ms' : '0ms' }}
+            >
+              <span className="relative flex items-center gap-2 text-sm font-medium">
+                Accéder à l'app
+                <ExternalLink className="w-3.5 h-3.5" />
+              </span>
+            </a>
           </nav>
 
           {/* Mobile menu button */}
@@ -134,24 +156,32 @@ export function Header() {
               
               <div className="h-px bg-border my-2" />
               
-              <button 
+              <a 
+                href={appUrls.login}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-3 text-muted-foreground hover:text-foreground rounded-xl transition-all duration-300 hover:bg-secondary/50 text-left"
                 style={{ 
                   transitionDelay: mobileMenuOpen ? '150ms' : '0ms',
                   transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-20px)',
                   opacity: mobileMenuOpen ? 1 : 0,
                 }}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Se connecter
-              </button>
+              </a>
               
-              <button 
+              <a
+                href={addUtmParams(appUrls.base, 'landing', 'header-mobile', 'nextletter')}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative mx-4 mt-2 px-5 py-3 bg-foreground text-background rounded-xl overflow-hidden transition-all duration-300"
                 style={{ 
                   transitionDelay: mobileMenuOpen ? '200ms' : '0ms',
                   transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(10px)',
                   opacity: mobileMenuOpen ? 1 : 0,
                 }}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 <span className="relative flex items-center justify-center gap-2">
@@ -159,7 +189,25 @@ export function Header() {
                   Creer un compte
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
-              </button>
+              </a>
+              
+              <a
+                href={appUrls.dashboard}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative mx-4 mt-2 px-5 py-3 bg-card text-foreground border border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-brand/50"
+                style={{ 
+                  transitionDelay: mobileMenuOpen ? '250ms' : '0ms',
+                  transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(10px)',
+                  opacity: mobileMenuOpen ? 1 : 0,
+                }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="relative flex items-center justify-center gap-2 text-sm font-medium">
+                  Accéder à l'app
+                  <ExternalLink className="w-4 h-4" />
+                </span>
+              </a>
             </nav>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Check, Clock, Zap } from "lucide-react"
 import { Logo } from "./logo"
+import { BackgroundMountains } from "./background-mountains"
 
 const traditionalSteps = [
   "Imprimer les documents",
@@ -26,10 +27,13 @@ export function ComparisonSection() {
           setIsVisible(true)
           // Trigger time animation after other animations
           setTimeout(() => setShowTimeAnimation(true), 2000)
-          observer.disconnect()
+        } else {
+          // Reset animations when section is not visible
+          setIsVisible(false)
+          setShowTimeAnimation(false)
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.1 },
     )
 
     if (sectionRef.current) {
@@ -40,8 +44,12 @@ export function ComparisonSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
-      <div className="max-w-6xl mx-auto">
+    <section ref={sectionRef} className="relative py-24 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
+      {/* Background mountains */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+        <BackgroundMountains />
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Main comparison container */}
         <div className="bg-card rounded-3xl shadow-2xl border border-border overflow-hidden relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
@@ -56,12 +64,15 @@ export function ComparisonSection() {
               </h3>
 
               <div className="relative flex-1">
-                {/* Vertical dotted line */}
+                {/* Vertical dotted line - animated */}
                 <div
                   className={`absolute left-3 top-2 bottom-20 border-l-2 border-dashed border-muted-foreground/30 transition-all duration-1000 ${
-                    isVisible ? "opacity-100" : "opacity-0"
+                    isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
                   }`}
-                  style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}
+                  style={{ 
+                    transitionDelay: isVisible ? "300ms" : "0ms",
+                    transformOrigin: "top",
+                  }}
                 />
 
                 <div className="space-y-8">
@@ -72,16 +83,16 @@ export function ComparisonSection() {
                         isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                       }`}
                       style={{
-                        transitionDelay: isVisible ? `${400 + index * 300}ms` : "0ms",
+                        transitionDelay: isVisible ? `${400 + index * 200}ms` : "0ms",
                       }}
                     >
-                      {/* Circle marker */}
+                      {/* Circle marker - animated */}
                       <div
                         className={`w-6 h-6 rounded-full border-2 border-muted-foreground/40 bg-card flex items-center justify-center shrink-0 transition-all duration-500 ${
-                          isVisible ? "scale-100" : "scale-0"
+                          isVisible ? "scale-100 rotate-0" : "scale-0 rotate-180"
                         }`}
                         style={{
-                          transitionDelay: isVisible ? `${450 + index * 300}ms` : "0ms",
+                          transitionDelay: isVisible ? `${450 + index * 200}ms` : "0ms",
                         }}
                       >
                         <div className="w-2 h-2 rounded-full bg-muted-foreground/40" />
@@ -98,13 +109,15 @@ export function ComparisonSection() {
                   className={`mt-10 flex items-center gap-3 transition-all duration-700 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
-                  style={{ transitionDelay: isVisible ? "1900ms" : "0ms" }}
+                  style={{ transitionDelay: isVisible ? "1600ms" : "0ms" }}
                 >
-                  <Clock className="w-5 h-5 text-muted-foreground" />
+                  <Clock className={`w-5 h-5 text-muted-foreground transition-all duration-500 ${
+                    showTimeAnimation ? "animate-pulse" : ""
+                  }`} />
                   <span className="text-muted-foreground text-sm">Temps moyen pour 100 lettres :</span>
                   <span
                     className={`text-2xl lg:text-3xl font-bold text-foreground transition-all duration-1000 ${
-                      showTimeAnimation ? "scale-90" : "scale-100"
+                      showTimeAnimation ? "scale-110" : "scale-100"
                     }`}
                   >
                     2 à 3 heures
@@ -149,12 +162,15 @@ export function ComparisonSection() {
               </div>
 
               <div className="relative flex-1">
-                {/* Vertical solid blue line */}
+                {/* Vertical solid blue line - animated */}
                 <div
-                  className={`absolute left-3 top-2 h-32 w-0.5 bg-gradient-to-b from-brand to-brand/50 transition-all duration-700 origin-top ${
+                  className={`absolute left-3 top-2 bottom-20 w-0.5 bg-gradient-to-b from-brand via-brand to-brand/50 transition-all duration-1000 ease-out origin-top ${
                     isVisible ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
                   }`}
-                  style={{ transitionDelay: isVisible ? "700ms" : "0ms" }}
+                  style={{ 
+                    transitionDelay: isVisible ? "700ms" : "0ms",
+                    transformOrigin: "top",
+                  }}
                 />
 
                 <div className="space-y-10">
@@ -165,16 +181,16 @@ export function ComparisonSection() {
                         isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
                       }`}
                       style={{
-                        transitionDelay: isVisible ? `${800 + index * 150}ms` : "0ms",
+                        transitionDelay: isVisible ? `${800 + index * 200}ms` : "0ms",
                       }}
                     >
-                      {/* Check circle marker */}
+                      {/* Check circle marker - animated */}
                       <div
                         className={`w-6 h-6 rounded-full bg-brand flex items-center justify-center shrink-0 transition-all duration-500 ${
                           isVisible ? "scale-100 rotate-0" : "scale-0 rotate-180"
                         }`}
                         style={{
-                          transitionDelay: isVisible ? `${850 + index * 150}ms` : "0ms",
+                          transitionDelay: isVisible ? `${850 + index * 200}ms` : "0ms",
                         }}
                       >
                         <Check className="w-3.5 h-3.5 text-brand-foreground" strokeWidth={3} />
@@ -191,9 +207,11 @@ export function ComparisonSection() {
                   className={`mt-12 flex items-center gap-3 transition-all duration-700 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
-                  style={{ transitionDelay: isVisible ? "1300ms" : "0ms" }}
+                  style={{ transitionDelay: isVisible ? "1400ms" : "0ms" }}
                 >
-                  <Zap className="w-5 h-5 text-brand" />
+                  <Zap className={`w-5 h-5 text-brand transition-all duration-500 ${
+                    showTimeAnimation ? "animate-pulse" : ""
+                  }`} />
                   <span className="text-foreground text-sm">Temps nécessaire pour 100 lettres :</span>
                   <span
                     className={`text-2xl lg:text-4xl font-bold text-brand transition-all duration-1000 ${
@@ -215,9 +233,8 @@ export function ComparisonSection() {
           style={{ transitionDelay: isVisible ? "2200ms" : "0ms" }}
         >
           <p className="text-xl lg:text-2xl font-semibold text-foreground">
-            Gain de temps. <span className="text-brand">Pas de déplacements.</span>
+            Gain de temps, moins d'erreurs, pas de déplacement
           </p>
-          <p className="mt-3 text-muted-foreground">Moins d'effort. Moins d'erreurs. Plus de contrôle.</p>
         </div>
       </div>
     </section>

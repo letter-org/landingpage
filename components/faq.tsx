@@ -7,34 +7,49 @@ import { HelpCircle, MessageCircle, ArrowRight, Sparkles } from "lucide-react"
 
 const faqs = [
   {
-    question: "Comment fonctionne NextLetter ?",
+    question: "Est-ce légal d'envoyer une lettre recommandée en ligne ?",
     answer:
-      "NextLetter vous permet d'envoyer des lettres recommandees depuis votre ordinateur ou smartphone. Vous redigez votre courrier ou telecharger votre lettre, nous l'imprimons et l'envoyons via La Poste Suisse. Vous recevez ensuite une preuve d'envoi et pouvez suivre l'acheminement en temps reel.",
+      "Oui, les lettres recommandées envoyées via NextLetter sont parfaitement légales. Les preuves d'envoi fournies sont équivalentes à celles obtenues au guichet postal et ont une valeur juridique probante.",
   },
   {
-    question: "Quels types de courriers puis-je envoyer ?",
+    question: "Quelle est la différence entre NextLetter et La Poste ?",
     answer:
-      "Vous pouvez envoyer des lettres simples, Courrier A, Courrier B, ainsi que des lettres recommandees. Nous prenons en charge tous les formats A4 standard.",
+      "NextLetter permet d'envoyer des lettres recommandées en ligne sans se déplacer. Nous utilisons La Poste pour l'acheminement physique.",
+  },
+  {
+    question: "Peut-on envoyer une lettre de résiliation en ligne ?",
+    answer:
+      "Oui, vous pouvez envoyer vos lettres de résiliation via NextLetter. Les preuves d'envoi sont valables juridiquement.",
+  },
+  {
+    question: "Est-ce valable pour les entreprises ?",
+    answer:
+      "Oui, NextLetter est adapté aux entreprises, PME, professions réglementées et institutions.",
   },
   {
     question: "Combien de temps prend l'envoi ?",
     answer:
-      "Les courriers envoyes avant 14h sont imprimes et remis a La Poste Suisse le jour meme. Le delai d'acheminement est ensuite celui de La Poste Suisse, generalement 1 a 2 jours ouvres en Suisse.",
+      "Les courriers envoyés avant 14h sont imprimés et remis à La Poste le jour même. Délai d'acheminement : 1 à 2 jours ouvrés.",
+  },
+  {
+    question: "Comment fonctionne NextLetter ?",
+    answer:
+      "Vous rédigez ou téléchargez votre lettre, nous l'imprimons et l'envoyons via La Poste. Vous recevez une preuve d'envoi et suivez l'acheminement en temps réel.",
   },
   {
     question: "Les preuves d'envoi sont-elles valables juridiquement ?",
     answer:
-      "Oui, les preuves d'envoi fournies par NextLetter sont equivalentes a celles obtenues au guichet postal. Elles sont horodatees et signees numeriquement, ce qui leur confere une valeur juridique probante.",
+      "Oui, les preuves d'envoi sont équivalentes à celles obtenues au guichet postal. Elles sont horodatées et signées numériquement.",
   },
   {
-    question: "Comment fonctionne le systeme de credits ?",
+    question: "Comment fonctionne le système de crédits ?",
     answer:
-      "Chaque credit correspond a l'envoi d'une lettre. Le cout en credits varie selon le type d'envoi (simple, recommande, etc.). Vos credits n'expirent jamais et sont utilisables a tout moment.",
+      "Chaque crédit correspond à l'envoi d'une lettre. Le coût en crédits varie selon le type d'envoi (simple, recommandé, etc.). Vos crédits n'expirent jamais et sont utilisables à tout moment.",
   },
   {
     question: "Puis-je annuler un envoi ?",
     answer:
-      "Vous pouvez annuler un envoi tant qu'il n'a pas ete imprime et remis a La Poste. Une fois le courrier transmis, l'annulation n'est plus possible.",
+      "Vous pouvez annuler un envoi tant qu'il n'a pas été imprimé et remis à La Poste. Une fois le courrier transmis, l'annulation n'est plus possible.",
   },
 ]
 
@@ -96,7 +111,7 @@ export function FAQ() {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
 
   return (
-    <section id="faq-section" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/50 relative overflow-hidden">
+    <section id="faq-section" className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/50 relative overflow-hidden">
       {/* Mouse glow */}
       <FAQMouseGlow />
 
@@ -119,7 +134,7 @@ export function FAQ() {
         {/* Section header */}
         <div 
           ref={headerRef}
-          className={`text-center mb-16 transition-all duration-700 ${
+          className={`text-center mb-8 transition-all duration-700 ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -127,13 +142,12 @@ export function FAQ() {
             <HelpCircle className="w-4 h-4 text-brand" />
             <span className="text-sm text-brand font-semibold">Support</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Questions frequentes</h2>
-          <p className="text-lg text-muted-foreground">Tout ce que vous devez savoir sur NextLetter.</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Questions frequentes</h2>
         </div>
 
         {/* FAQ Accordion */}
         <div ref={faqRef}>
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}

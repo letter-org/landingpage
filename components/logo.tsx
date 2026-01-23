@@ -7,7 +7,8 @@ interface LogoProps {
 
 // Icon SVG component (envelope with N arrow)
 function LogoIcon({ className, isWhite }: { className?: string; isWhite?: boolean }) {
-  const gradientId = `logo-gradient-${Math.random().toString(36).substr(2, 9)}`
+  // Use a stable ID instead of Math.random() to avoid hydration mismatch
+  const gradientId = `logo-gradient-${isWhite ? 'white' : 'dark'}`
   
   return (
     <svg
@@ -37,8 +38,9 @@ function LogoIcon({ className, isWhite }: { className?: string; isWhite?: boolea
 
 // Full logo SVG with text
 function LogoFull({ className, isWhite }: { className?: string; isWhite?: boolean }) {
-  const gradientId1 = `logo-full-gradient-1-${Math.random().toString(36).substr(2, 9)}`
-  const gradientId2 = `logo-full-gradient-2-${Math.random().toString(36).substr(2, 9)}`
+  // Use stable IDs instead of Math.random() to avoid hydration mismatch
+  const gradientId1 = `logo-full-gradient-1-${isWhite ? 'white' : 'dark'}`
+  const gradientId2 = `logo-full-gradient-2-${isWhite ? 'white' : 'dark'}`
   
   // Colors from official logo: envelope=blue, text=#2323b5, N-arrow gradient=blue to #00f0ff
   const envelopeColor = isWhite ? "white" : "blue"

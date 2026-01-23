@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
 import { HowItWorks } from "@/components/how-it-works"
 import { ComparisonSection } from "@/components/comparison-section"
+import { SwissAdvantage } from "@/components/swiss-advantage"
 import { TargetAudience } from "@/components/target-audience"
 import { ImpactSection } from "@/components/impact-section"
 import { Security } from "@/components/security"
@@ -10,12 +11,18 @@ import { Pricing } from "@/components/pricing"
 import { FAQ } from "@/components/faq"
 import { Footer } from "@/components/footer"
 import { Chatbot } from "@/components/chatbot"
+import { isChatbotEnabled } from "@/lib/app-urls"
+import { BackgroundMountains } from "@/components/background-mountains"
+import { CookieBanner } from "@/components/cookie-banner"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Global background mountains */}
+      <BackgroundMountains />
+      
       <Header />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Features />
         <HowItWorks />
@@ -27,7 +34,8 @@ export default function Home() {
         <FAQ />
       </main>
       <Footer />
-      <Chatbot />
+      {isChatbotEnabled() && <Chatbot />}
+      <CookieBanner />
     </div>
   )
 }

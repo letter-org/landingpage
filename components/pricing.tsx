@@ -3,35 +3,36 @@
 import { Check, CreditCard, Smartphone, Sparkles, Zap, Crown, Star } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect } from "react"
+import { appUrls, addUtmParams } from "@/lib/app-urls"
 
 const plans = [
   {
-    credits: 3,
-    price: "9.90",
+    credits: 5,
+    price: "5",
     popular: false,
     icon: Zap,
     label: "Starter",
   },
   {
     credits: 10,
-    price: "29.90",
-    popular: true,
-    icon: Crown,
-    label: "Business",
+    price: "10",
+    popular: false,
+    icon: Sparkles,
+    label: "Basic",
   },
   {
-    credits: 25,
-    price: "69.90",
-    popular: false,
-    icon: Star,
-    label: "Pro",
+    credits: 20,
+    price: "20",
+    popular: true,
+    icon: Crown,
+    label: "Popular",
   },
   {
     credits: 50,
-    price: "119.90",
+    price: "50",
     popular: false,
-    icon: Sparkles,
-    label: "Enterprise",
+    icon: Star,
+    label: "Ultimate",
   },
 ]
 
@@ -39,7 +40,6 @@ const features = [
   "Lettres simples & recommandees",
   "Suivi en temps reel",
   "Archivage securise",
-  "Support prioritaire",
   "Preuves de depot",
   "Export PDF",
 ]
@@ -209,15 +209,18 @@ export function Pricing() {
                     </div>
                   </div>
 
-                  <button
-                    className={`relative w-full py-3 rounded-xl font-semibold transition-all duration-300 overflow-hidden ${
+                  <a
+                    href={addUtmParams(appUrls.base, 'landing', 'pricing', 'nextletter')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative w-full py-3 rounded-xl font-semibold transition-all duration-300 overflow-hidden flex items-center justify-center ${
                       plan.popular
                         ? "bg-gradient-to-r from-brand to-cyan-500 text-white hover:shadow-lg hover:shadow-brand/30"
                         : `${isHovered ? 'bg-foreground text-background' : 'bg-secondary text-foreground hover:bg-secondary/80'}`
                     }`}
                   >
                     <span className="relative z-10">Acheter</span>
-                  </button>
+                  </a>
                 </div>
 
                 {/* Corner accent */}

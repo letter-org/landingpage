@@ -5,14 +5,14 @@ import { Mail, MapPin, Phone, ArrowUpRight, Sparkles } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect } from "react"
 
-// Particles for footer
+// Particles for footer - static values to avoid hydration issues
 const particles = Array.from({ length: 15 }, (_, i) => ({
   id: i,
-  size: Math.random() * 3 + 1,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  duration: Math.random() * 15 + 10,
-  delay: Math.random() * 5,
+  size: ((i * 5) % 3) + 1, // Deterministic size
+  x: ((i * 19) % 100), // Deterministic x
+  y: ((i * 23) % 100), // Deterministic y
+  duration: ((i * 7) % 15) + 10, // Deterministic duration
+  delay: ((i * 11) % 5), // Deterministic delay
 }))
 
 export function Footer() {
@@ -58,8 +58,7 @@ export function Footer() {
           >
             <Logo variant="white" size="sm" className="mb-4" />
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-              Le courrier suisse, simplifie, securise et responsable. Envoyez vos lettres officielles en quelques clics
-              depuis n'importe ou.
+              NextLetter – Solution d'envoi de lettres recommandées en ligne pour particuliers, entreprises et institutions. Envoyez vos lettres officielles en ligne depuis n'importe où.
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default group">
               <span className="relative flex h-2 w-2">
@@ -82,9 +81,9 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
-                { label: 'Fonctionnalites', href: '#features' },
-                { label: 'Tarifs', href: '#pricing' },
-                { label: 'FAQ', href: '#faq' },
+                { label: 'Fonctionnalites', href: '#features-section' },
+                { label: 'Tarifs', href: '#pricing-section' },
+                { label: 'FAQ', href: '#faq-section' },
                 { label: 'Blog', href: '#' },
               ].map((item) => (
                 <li key={item.label}>
@@ -119,24 +118,25 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
-                'Conditions generales',
-                'Politique de confidentialite',
-                'Mentions legales',
-                'Contact',
+                { label: 'Confidentialité', href: '/politique-confidentialite' },
+                { label: "Conditions d'utilisation", href: '/cgu' },
+                { label: 'Cookies', href: '/cookies' },
+                { label: 'Informations légales', href: '/mentions-legales' },
+                { label: 'Contact', href: 'mailto:info@nextletter.ch' },
               ].map((item) => (
-                <li key={item}>
+                <li key={item.label}>
                   <a 
-                    href="#" 
+                    href={item.href}
                     className="group flex items-center gap-2 text-gray-400 hover:text-white transition-all duration-300 py-1"
-                    onMouseEnter={() => setHoveredLink(item)}
+                    onMouseEnter={() => setHoveredLink(item.label)}
                     onMouseLeave={() => setHoveredLink(null)}
                   >
                     <span className={`w-0 h-0.5 bg-blue-400 rounded-full transition-all duration-300 ${
-                      hoveredLink === item ? 'w-3' : ''
+                      hoveredLink === item.label ? 'w-3' : ''
                     }`} />
-                    {item}
+                    {item.label}
                     <ArrowUpRight className={`w-3 h-3 transition-all duration-300 ${
-                      hoveredLink === item ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
+                      hoveredLink === item.label ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
                     }`} />
                   </a>
                 </li>
@@ -152,9 +152,9 @@ export function Footer() {
           }`}
         >
           {[
-            { icon: Mail, label: 'Email', value: 'contact@nextletter.ch', href: 'mailto:contact@nextletter.ch' },
-            { icon: Phone, label: 'Telephone', value: '+41 (0) 00 000 00 00', href: 'tel:+41000000000' },
-            { icon: MapPin, label: 'Adresse', value: 'Rue de la Poste 1, 1000 Lausanne', href: null },
+            { icon: Mail, label: 'Email', value: 'info@nextletter.ch', href: 'mailto:info@nextletter.ch' },
+            { icon: Phone, label: 'Telephone', value: '+41 79 908 61 52', href: 'tel:+41799086152' },
+            { icon: MapPin, label: 'Adresse', value: 'Chemin de la Crésentine 57, 1023 Crissier', href: null },
           ].map((contact, index) => (
             <div 
               key={contact.label}
@@ -179,7 +179,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-400">{new Date().getFullYear()} NextLetter. Tous droits reserves.</p>
+          <p className="text-sm text-gray-400">2026 NextLetter. Tous droits reserves.</p>
           <div className="flex items-center gap-3">
             {[
               { name: 'Facebook', path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },

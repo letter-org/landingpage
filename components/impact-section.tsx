@@ -51,36 +51,36 @@ const stats = [
 
 const benefits = [
   {
-    title: "Reduction des dechets",
-    description: "Zero papier, zero enveloppe, zero dechet physique. Vos courriers sont 100% numeriques.",
-    stat: "0g",
-    statLabel: "de dechets par envoi",
+    title: "Moins de trajets",
+    description: "Fini les allers-retours a la poste. Envoyez vos lettres depuis votre bureau ou votre domicile.",
+    stat: "",
+    statLabel: "",
     gradient: "from-green-500 to-emerald-500",
   },
   {
-    title: "Empreinte carbone reduite",
-    description: "Pas d'impression, pas de transport postal, pas de tri manuel.",
-    stat: "-97%",
-    statLabel: "d'emissions CO2",
+    title: "Moins d'impression a domicile",
+    description: "Plus besoin d'imprimer vos documents. Redigez, envoyez et archivez tout en ligne.",
+    stat: "",
+    statLabel: "",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Preservation des forets",
-    description: "En digitalisant vos envois, vous contribuez a la preservation des ressources.",
-    stat: "17",
-    statLabel: "arbres sauves/an*",
+    title: "Process plus digital, moins de papier",
+    description: "Vos courriers sont numeriques de bout en bout. Moins de papier, moins de dechets.",
+    stat: "",
+    statLabel: "",
     gradient: "from-teal-500 to-green-500",
   },
 ]
 
-// Floating leaves particles
+// Floating leaves particles - static values to avoid hydration issues
 const leaves = Array.from({ length: 15 }, (_, i) => ({
   id: i,
-  size: Math.random() * 12 + 8,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  duration: Math.random() * 15 + 10,
-  delay: Math.random() * 5,
+  size: ((i * 3) % 12) + 8, // Deterministic size
+  x: ((i * 7) % 100), // Deterministic x
+  y: ((i * 11) % 100), // Deterministic y
+  duration: ((i * 13) % 15) + 10, // Deterministic duration
+  delay: ((i * 17) % 5), // Deterministic delay
 }))
 
 // Mouse glow component
@@ -196,9 +196,11 @@ export function ImpactSection() {
             <span className="text-sm text-green-700 font-semibold">RSE - Impact environnemental</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Chaque lettre numerique compte</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            En choisissant NextLetter, vous contribuez activement a la reduction de l'empreinte carbone. 
-            Une lettre classique emet en moyenne <strong className="text-green-600">29g de CO2</strong>.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
+            Chaque recommande envoye en ligne evite un deplacement en voiture et limite l'impression a domicile (papier, encre, energie).
+          </p>
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+            Exemple : si vous evitez 2 allers-retours a la poste par mois (5 km), vous reduisez des kilometres inutiles — et donc des emissions — tout en gagnant du temps.
           </p>
         </div>
 
@@ -291,13 +293,7 @@ export function ImpactSection() {
 
                 <div className="relative z-10">
                   <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{benefit.description}</p>
-                  <div className="flex items-baseline gap-1">
-                    <span className={`text-3xl font-bold bg-gradient-to-r ${benefit.gradient} bg-clip-text text-transparent transition-transform duration-300 ${
-                      isHovered ? 'scale-110' : ''
-                    }`}>{benefit.stat}</span>
-                    <span className="text-xs text-muted-foreground">{benefit.statLabel}</span>
-                  </div>
+                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
                 </div>
 
                 {/* Bottom accent */}

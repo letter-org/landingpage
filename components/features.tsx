@@ -3,6 +3,7 @@
 import { FileText, Zap, Clock, Shield, Archive, BarChart3, Sparkles } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect } from "react"
+import { BackgroundMountains } from "./background-mountains"
 
 const features = [
   {
@@ -15,7 +16,7 @@ const features = [
   {
     icon: Zap,
     title: "Envoi instantane",
-    description: "Vos lettres sont imprimees et envoyees le jour meme via La Poste Suisse.",
+    description: "Envoyez vos lettres recommandées en ligne. Vos lettres sont imprimées et envoyées le jour même. Plus besoin d'aller à la poste.",
     gradient: "from-yellow-500 to-orange-500",
     glowColor: "yellow",
   },
@@ -29,7 +30,7 @@ const features = [
   {
     icon: Shield,
     title: "Securite maximale",
-    description: "Chiffrement de bout en bout et hebergement en Suisse et Europe, conforme GDPR.",
+    description: "Chiffrement de bout en bout et hébergement conforme aux standards européens, conforme GDPR et LPD.",
     gradient: "from-green-500 to-emerald-500",
     glowColor: "green",
   },
@@ -107,6 +108,10 @@ export function Features() {
 
   return (
     <section id="features-section" className="py-24 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
+      {/* Background mountains */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+        <BackgroundMountains />
+      </div>
       {/* Mouse glow effect */}
       <FeaturesMouseGlow />
       
@@ -128,7 +133,7 @@ export function Features() {
       <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section header */}
         <div 
           ref={headerRef}
@@ -140,10 +145,7 @@ export function Features() {
             <Sparkles className="w-4 h-4 text-brand" />
             <span className="text-sm text-brand font-semibold">Fonctionnalites</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Tout ce dont vous avez besoin</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Une plateforme complete pour gerer vos courriers officiels de A a Z.
-          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Fonctionnalités</h2>
         </div>
 
         {/* Features grid */}

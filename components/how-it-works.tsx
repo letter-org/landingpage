@@ -13,7 +13,7 @@ const steps = [
     icon: Printer,
     title: "NextLetter gère l'impression et l'envoi",
     description:
-      "Notre plateforme transforme vos documents numériques en courriers physiques de haute qualité et assure une livraison fiable, via La Poste Suisse.",
+      "Nous transformons vos documents numériques en courriers physiques. Impression et envoi le jour même.",
   },
   {
     number: "03",
@@ -26,14 +26,11 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-secondary to-background">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-secondary to-background overflow-hidden">
+      <div className="max-w-7xl mx-auto relative">
         {/* Section header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Comment ça marche en 3 étapes</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Un processus simple et rapide pour envoyer vos courriers officiels en toute simplicité.
-          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Comment ça marche</h2>
         </div>
 
         {/* Steps */}
