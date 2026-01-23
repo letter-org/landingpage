@@ -5,7 +5,6 @@ import { createClient } from "@/lib/supabase/client"
 import { Plus, Trash2, Edit2, Save, X, MessageSquare, BarChart3, Search, AlertCircle, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { Suspense } from "react"
 
 interface ChatbotResponse {
   id: string
@@ -22,10 +21,6 @@ interface Conversation {
   user_message: string
   bot_response: string
   created_at: string
-}
-
-function Loading() {
-  return null
 }
 
 export default function AdminChatbotPage() {
@@ -447,11 +442,3 @@ export default function AdminChatbotPage() {
 }
 
 export const dynamic = "force-dynamic"
-
-export default function AdminChatbotPageWrapper() {
-  return (
-    <Suspense fallback={<Loading />}>
-      <AdminChatbotPage />
-    </Suspense>
-  )
-}
