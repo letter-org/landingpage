@@ -9,8 +9,6 @@ import { Security } from "@/components/security"
 import { Pricing } from "@/components/pricing"
 import { FAQ } from "@/components/faq"
 import { Footer } from "@/components/footer"
-import { Chatbot } from "@/components/chatbot"
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
@@ -27,7 +25,6 @@ export default function Home() {
         <FAQ />
       </main>
       <Footer />
-      <Chatbot />
     </div>
   )
 }
