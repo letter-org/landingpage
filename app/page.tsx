@@ -10,8 +10,6 @@ import { Security } from "@/components/security"
 import { Pricing } from "@/components/pricing"
 import { FAQ } from "@/components/faq"
 import { Footer } from "@/components/footer"
-import { Chatbot } from "@/components/chatbot"
-import { isChatbotEnabled } from "@/lib/app-urls"
 import { BackgroundMountains } from "@/components/background-mountains"
 import { CookieBanner } from "@/components/cookie-banner"
 
@@ -34,7 +32,6 @@ export default function Home() {
         <FAQ />
       </main>
       <Footer />
-      {isChatbotEnabled() && <Chatbot />}
       <CookieBanner />
     </div>
   )

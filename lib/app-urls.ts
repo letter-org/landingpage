@@ -20,12 +20,3 @@ export const addUtmParams = (url: string, source: string = 'landing', medium: st
   return `${url}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
 }
 
-/**
- * Check if chatbot is enabled via environment variable
- * Defaults to disabled (false) for better performance
- */
-export const isChatbotEnabled = () => {
-  const enabled = process.env.NEXT_PUBLIC_CHATBOT_ENABLED
-  return enabled === 'true' // Only enabled if explicitly set to 'true'
-}
-
