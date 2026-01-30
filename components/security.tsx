@@ -7,30 +7,31 @@ import { useState, useEffect, useRef } from "react"
 const securityFeatures = [
   {
     icon: Shield,
-    title: "Hebergement securise",
-    description: "Infrastructure securisee en Europe, avec options Europe/Suisse.",
+    title: "Infrastructure sécurisée",
+    description: "Données hébergées en Europe/Suisse conformes RGPD.",
   },
   {
     icon: Lock,
-    title: "Acces protege",
-    description: "Acces controle, protections standards et surveillance.",
-  },
-  {
-    icon: Database,
-    title: "Archivage securise",
-    description: "Vos envois et documents restent accessibles et proteges.",
+    title: "Accès protégé",
+    description: "Accès contrôlé, protections standards et surveillance.",
   },
   {
     icon: FileCheck,
-    title: "Tracabilite",
+    title: "Historique & traçabilité",
     description: "Historique des envois et statut de suivi en un coup d'œil.",
+  },
+  {
+    icon: Database,
+    title: "Archivage sécurisé",
+    description: "Vos envois et documents restent accessibles et protégés.",
   },
 ]
 
 const certifications = [
-  { label: "Hebergement securise", delay: 0 },
-  { label: "Acces controle", delay: 100 },
-  { label: "Suivi & historique", delay: 200 },
+  { label: "Infrastructure sécurisée EU/CH", delay: 0 },
+  { label: "RGPD", delay: 100 },
+  { label: "Accès protégé", delay: 200 },
+  { label: "Historique & traçabilité", delay: 300 },
 ]
 
 // Floating particles for premium effect - static values to avoid hydration issues
@@ -198,7 +199,7 @@ export function Security() {
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">Vos donnees sont en securite</h2>
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              NextLetter protege vos informations avec des mesures de securite solides. Infrastructure securisee en Europe, avec options Europe/Suisse. Acces controle et protections standards.
+              NextLetter protège vos informations avec des mesures de sécurité solides. Infrastructure sécurisée Europe/Suisse. Accès contrôlé et protections standards.
             </p>
             <div className="flex flex-wrap gap-3">
               {certifications.map((cert, index) => (

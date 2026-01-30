@@ -39,9 +39,8 @@ const plans = [
 const features = [
   "Lettres simples & recommandees",
   "Suivi en temps reel",
-  "Archivage securise",
-  "Preuves de depot",
-  "Export PDF",
+  "Aperçu PDF et Archivage",
+  "Preuve de réception",
 ]
 
 // Mouse glow component
@@ -148,9 +147,7 @@ export function Pricing() {
               <div
                 key={index}
                 className={`relative p-8 bg-card rounded-2xl border-2 transition-all duration-500 cursor-default overflow-hidden ${
-                  plan.popular 
-                    ? "border-brand shadow-xl shadow-brand/10 scale-105 z-10" 
-                    : `border-border ${isHovered ? 'border-brand/50 shadow-xl -translate-y-2' : ''}`
+                  isHovered ? 'border-brand/50 shadow-xl -translate-y-2' : 'border-border'
                 } ${
                   gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
@@ -161,7 +158,7 @@ export function Pricing() {
                 {/* Gradient overlay on hover */}
                 <div 
                   className={`absolute inset-0 bg-gradient-to-br from-brand/5 via-transparent to-cyan-500/5 transition-opacity duration-500 ${
-                    isHovered || plan.popular ? 'opacity-100' : 'opacity-0'
+                    isHovered ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
 
@@ -175,24 +172,14 @@ export function Pricing() {
                   }}
                 />
 
-                {/* Popular badge */}
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-brand to-cyan-500 text-white text-sm font-semibold rounded-full shadow-lg">
-                    <span className="flex items-center gap-1">
-                      <Crown className="w-3 h-3" />
-                      Populaire
-                    </span>
-                  </div>
-                )}
-
                 <div className="relative z-10">
                   {/* Plan label with icon */}
                   <div className="flex items-center gap-2 mb-4">
                     <div className={`p-2 rounded-lg transition-all duration-300 ${
-                      isHovered || plan.popular ? 'bg-brand/20' : 'bg-secondary'
+                      isHovered ? 'bg-brand/20' : 'bg-secondary'
                     }`}>
                       <Icon className={`w-4 h-4 transition-colors duration-300 ${
-                        isHovered || plan.popular ? 'text-brand' : 'text-muted-foreground'
+                        isHovered ? 'text-brand' : 'text-muted-foreground'
                       }`} />
                     </div>
                     <span className="text-sm font-medium text-muted-foreground">{plan.label}</span>
@@ -226,7 +213,7 @@ export function Pricing() {
                 {/* Corner accent */}
                 <div 
                   className={`absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br from-brand/20 to-cyan-500/20 rounded-full blur-2xl transition-opacity duration-500 ${
-                    isHovered || plan.popular ? 'opacity-100' : 'opacity-0'
+                    isHovered ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
               </div>
@@ -242,11 +229,38 @@ export function Pricing() {
           }`}
         >
           <div className="relative bg-card rounded-2xl border border-border p-8 overflow-hidden group hover:shadow-xl hover:border-brand/20 transition-all duration-500">
+            {/* Animated border drawing effect - more subtle and flowing */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible rounded-2xl">
+              <defs>
+                <linearGradient id="pricingBorderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="#06B6D4" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.3" />
+                </linearGradient>
+              </defs>
+              <rect
+                x="2"
+                y="2"
+                width="calc(100% - 4px)"
+                height="calc(100% - 4px)"
+                fill="none"
+                stroke="url(#pricingBorderGradient)"
+                strokeWidth="1.5"
+                strokeDasharray="600"
+                strokeDashoffset="600"
+                rx="14"
+                className="group-hover:opacity-100 opacity-0 transition-opacity duration-500 animate-draw-border"
+                style={{
+                  strokeLinecap: 'round',
+                }}
+              />
+            </svg>
+            
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand/[0.02] via-transparent to-cyan-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <h3 className="text-xl font-semibold text-foreground mb-6 text-center relative">Tous les packs incluent :</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
+            <h3 className="text-xl font-semibold text-foreground mb-6 text-center relative z-10">Tous les packs incluent :</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
               {features.map((feature, index) => (
                 <div 
                   key={index} 

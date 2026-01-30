@@ -7,9 +7,9 @@ import { HelpCircle, MessageCircle, ArrowRight, Sparkles } from "lucide-react"
 
 const faqs = [
   {
-    question: "Est-ce légal d'envoyer une lettre recommandée en ligne ?",
+    question: "Pourquoi utiliser NextLetter pour envoyer une lettre recommandée ?",
     answer:
-      "Oui, les lettres recommandées envoyées via NextLetter sont parfaitement légales. Les preuves d'envoi fournies sont équivalentes à celles obtenues au guichet postal et ont une valeur juridique probante.",
+      "NextLetter simplifie l'envoi de lettres recommandées en ligne en s'appuyant sur des services postaux partenaires, avec suivi et justificatif d'expédition, le tout sans déplacement.",
   },
   {
     question: "Quelle est la différence entre NextLetter et La Poste ?",
@@ -17,39 +17,14 @@ const faqs = [
       "NextLetter permet d'envoyer des lettres recommandées en ligne sans se déplacer. Nous utilisons La Poste pour l'acheminement physique.",
   },
   {
-    question: "Peut-on envoyer une lettre de résiliation en ligne ?",
-    answer:
-      "Oui, vous pouvez envoyer vos lettres de résiliation via NextLetter. Les preuves d'envoi sont valables juridiquement.",
-  },
-  {
-    question: "Est-ce valable pour les entreprises ?",
-    answer:
-      "Oui, NextLetter est adapté aux entreprises, PME, professions réglementées et institutions.",
-  },
-  {
     question: "Combien de temps prend l'envoi ?",
     answer:
-      "Les courriers envoyés avant 14h sont imprimés et remis à La Poste le jour même. Délai d'acheminement : 1 à 2 jours ouvrés.",
+      "En général les courriers envoyés avant 14h sont pris en charge par nos imprimeries professionnelles et remises pour acheminement à la poste. Délai d'acheminement : 1 à 2 jours ouvrés. NextLetter n'est pas responsable des retards de livraisons.",
   },
   {
     question: "Comment fonctionne NextLetter ?",
     answer:
-      "Vous rédigez ou téléchargez votre lettre, nous l'imprimons et l'envoyons via La Poste. Vous recevez une preuve d'envoi et suivez l'acheminement en temps réel.",
-  },
-  {
-    question: "Les preuves d'envoi sont-elles valables juridiquement ?",
-    answer:
-      "Oui, les preuves d'envoi sont équivalentes à celles obtenues au guichet postal. Elles sont horodatées et signées numériquement.",
-  },
-  {
-    question: "Comment fonctionne le système de crédits ?",
-    answer:
-      "Chaque crédit correspond à l'envoi d'une lettre. Le coût en crédits varie selon le type d'envoi (simple, recommandé, etc.). Vos crédits n'expirent jamais et sont utilisables à tout moment.",
-  },
-  {
-    question: "Puis-je annuler un envoi ?",
-    answer:
-      "Vous pouvez annuler un envoi tant qu'il n'a pas été imprimé et remis à La Poste. Une fois le courrier transmis, l'annulation n'est plus possible.",
+      "Vous rédigez ou téléchargez votre lettre, et NextLetter veille à ce que vos lettres soient imprimées dans des imprimeries professionnelles et livrées par la poste. Vous suivez l'acheminement en temps réel et recevez une preuve de distribution.",
   },
 ]
 

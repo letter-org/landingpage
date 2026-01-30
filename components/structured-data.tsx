@@ -24,8 +24,8 @@ export function StructuredData() {
       "Envoi de lettres recommandées en ligne",
       "Suivi en temps réel",
       "Archivage sécurisé",
-      "Conforme aux normes suisses",
-      "Alternative à La Poste",
+      "Preuve d'envoi",
+      "Alternative au guichet postal",
     ],
   }
 
@@ -51,16 +51,32 @@ export function StructuredData() {
     ],
   }
 
+  const webSite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NextLetter",
+    "url": baseUrl,
+    "description": "Solution d'envoi de lettres recommandées en ligne. Envoyez vos courriers officiels sans vous déplacer, avec suivi en temps réel et preuve d'envoi.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+
   const faqPage = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Est-ce légal d'envoyer une lettre recommandée en ligne ?",
+        "name": "Pourquoi utiliser NextLetter pour envoyer une lettre recommandée ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, les lettres recommandées envoyées via NextLetter sont parfaitement légales. Les preuves d'envoi fournies sont équivalentes à celles obtenues au guichet postal et ont une valeur juridique probante. La lettre recommandée électronique est conforme aux normes en vigueur.",
+          "text": "NextLetter simplifie l'envoi de lettres recommandées en ligne en s'appuyant sur des services postaux partenaires, avec suivi et justificatif d'expédition, le tout sans déplacement.",
         },
       },
       {
@@ -68,31 +84,23 @@ export function StructuredData() {
         "name": "Quelle est la différence entre NextLetter et La Poste ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "NextLetter est une alternative poste recommandée qui permet d'envoyer des lettres recommandées en ligne sans se déplacer à la poste. Nous utilisons La Poste pour l'acheminement physique, mais vous gérez tout depuis votre ordinateur ou smartphone. C'est l'alternative moderne à la poste recommandée traditionnelle.",
+          "text": "NextLetter permet d'envoyer des lettres recommandées en ligne sans se déplacer. Nous utilisons La Poste pour l'acheminement physique.",
         },
       },
       {
         "@type": "Question",
-        "name": "Peut-on envoyer une lettre de résiliation en ligne ?",
+        "name": "Combien de temps prend l'envoi ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, vous pouvez envoyer vos lettres de résiliation (assurance, bail, abonnement) via NextLetter. Les preuves d'envoi sont valables juridiquement. C'est une solution pratique pour les résiliations de contrat sans vous déplacer.",
+          "text": "En général les courriers envoyés avant 14h sont pris en charge par nos imprimeries professionnelles et remises pour acheminement à la poste. Délai d'acheminement : 1 à 2 jours ouvrés. NextLetter n'est pas responsable des retards de livraisons.",
         },
       },
       {
         "@type": "Question",
-        "name": "Est-ce valable pour les entreprises ?",
+        "name": "Comment fonctionne NextLetter ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, NextLetter est adapté aux entreprises, PME, professions réglementées et institutions. Nous proposons des solutions personnalisées avec CRM, multi-comptes et reporting. Parfait pour l'envoi de courrier administratif en ligne.",
-        },
-      },
-      {
-        "@type": "Question",
-        "name": "Combien de temps prend l'envoi d'une lettre recommandée ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Les courriers envoyés avant 14h sont imprimés et remis à La Poste le jour même. Le délai d'acheminement est ensuite celui de La Poste, généralement 1 à 2 jours ouvrés. Vous suivez chaque étape en temps réel.",
+          "text": "Vous rédigez ou téléchargez votre lettre, et NextLetter veille à ce que vos lettres soient imprimées dans des imprimeries professionnelles et livrées par la poste. Vous suivez l'acheminement en temps réel et recevez une preuve de distribution.",
         },
       },
     ],
@@ -102,11 +110,15 @@ export function StructuredData() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplication) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSite) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplication) }}
       />
       <script
         type="application/ld+json"

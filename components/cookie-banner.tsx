@@ -27,7 +27,9 @@ export function CookieBanner() {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false)
 
   useEffect(() => {
-    // Check if consent was already given
+    // Check if consent was already given (only on client side)
+    if (typeof window === "undefined") return
+    
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY)
     if (!consent) {
       // Show banner after a short delay for better UX
@@ -37,7 +39,7 @@ export function CookieBanner() {
         const parsed: CookieConsent = JSON.parse(consent)
         setAnalyticsEnabled(parsed.analytics)
         // Initialize analytics if enabled
-        if (parsed.analytics && typeof window !== "undefined") {
+        if (parsed.analytics) {
           // Analytics initialization would go here
           // Example: gtag('consent', 'update', { analytics_storage: 'granted' })
         }
@@ -49,6 +51,9 @@ export function CookieBanner() {
   }, [])
 
   const saveConsent = (analytics: boolean) => {
+    // Only save if localStorage is available (client side)
+    if (typeof window === "undefined") return
+    
     const consent: CookieConsent = {
       essential: true, // Always true
       analytics,
@@ -58,7 +63,7 @@ export function CookieBanner() {
     setAnalyticsEnabled(analytics)
     
     // Initialize analytics if enabled
-    if (analytics && typeof window !== "undefined") {
+    if (analytics) {
       // Analytics initialization would go here
       // Example: gtag('consent', 'update', { analytics_storage: 'granted' })
     }

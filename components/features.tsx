@@ -1,6 +1,6 @@
 "use client"
 
-import { FileText, Zap, Clock, Shield, Archive, BarChart3, Sparkles } from "lucide-react"
+import { FileText, Zap, Clock, Archive, BarChart3, Sparkles, Ban } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect } from "react"
 import { BackgroundMountains } from "./background-mountains"
@@ -28,25 +28,25 @@ const features = [
     glowColor: "blue",
   },
   {
-    icon: Shield,
-    title: "Securite maximale",
-    description: "Chiffrement de bout en bout et hébergement conforme aux standards européens, conforme GDPR et LPD.",
-    gradient: "from-green-500 to-emerald-500",
-    glowColor: "green",
-  },
-  {
     icon: Archive,
-    title: "Archivage illimite",
-    description: "Conservez tous vos courriers et preuves d'envoi dans votre espace securise.",
+    title: "Archivage",
+    description: "Retrouvez vos courriers et preuves d'envoi quand vous en avez besoin.",
     gradient: "from-pink-500 to-rose-500",
     glowColor: "pink",
   },
   {
     icon: BarChart3,
-    title: "Tableau de bord complet",
-    description: "Gerez tous vos contacts et consultez votre historique en un clin d'oeil.",
+    title: "Tableau de bord",
+    description: "Contacts, historique, export: une vue claire, même pour un volume important.",
     gradient: "from-indigo-500 to-blue-500",
     glowColor: "indigo",
+  },
+  {
+    icon: Ban,
+    title: "Zéro déplacement",
+    description: "Fini les trajets au guichet. Tout se fait en ligne, depuis votre bureau ou votre mobile.",
+    gradient: "from-green-500 to-emerald-500",
+    glowColor: "green",
   },
 ]
 

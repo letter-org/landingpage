@@ -173,6 +173,15 @@
   }
 }
 
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
@@ -232,6 +241,11 @@
 
 .animate-gradient {
   animation: gradient 3s ease infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 3s ease infinite;
 }
 
 .animate-shimmer {
@@ -354,6 +368,19 @@ html {
 
 .animate-rotate-slow {
   animation: rotate-slow 20s linear infinite;
+}
+
+@keyframes drawBorder {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-border {
+  animation: drawBorder 2s linear infinite;
 }
 
 /* Card hover states */

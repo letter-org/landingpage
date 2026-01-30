@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, Eye, Shield, Clock, Users, Sparkles, Lock, CheckCircle2, Award } from "lucide-react"
+import { ArrowRight, Shield, Clock, Users } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect, useRef } from "react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
@@ -134,14 +134,11 @@ export function Hero() {
             }`}
           >
             <div className="w-2 h-2 rounded-full bg-green-500" />
-            <span className="text-sm font-medium text-foreground">100% Conforme GDPR</span>
+            <span className="text-sm font-medium text-foreground">Conforme LPD & RGPD</span>
             <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
-            <span className="text-sm font-medium text-foreground">Swiss Made</span>
-            {/* Swiss flag icon - small square red with white cross */}
-            <div className="relative w-3.5 h-3.5 bg-red-600 rounded-sm flex items-center justify-center">
-              <div className="absolute w-2 h-0.5 bg-white rounded-sm" />
-              <div className="absolute h-2 w-0.5 bg-white rounded-sm" />
-            </div>
+            <span className="text-sm font-medium text-foreground">Infrastructure sécurisée</span>
+            <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
+            <span className="text-sm font-medium text-foreground">Disponible 24/7</span>
           </div>
 
           {/* Main headline - more human and concrete */}
@@ -150,11 +147,15 @@ export function Hero() {
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Envoyez vos lettres recommandées{" "}
-            <span className="text-brand">sans vous déplacer.</span>
-            <br />
-            <span className="text-muted-foreground font-normal text-3xl sm:text-4xl lg:text-5xl">
-              Depuis votre bureau. Ou votre canapé.
+            Envoyez vos lettres recommandées,{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent animate-gradient-x">
+                sans vous déplacer.
+              </span>
+              {/* Glow effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent blur-sm opacity-50 animate-pulse" aria-hidden="true">
+                sans vous déplacer.
+              </span>
             </span>
           </h1>
 
@@ -164,7 +165,7 @@ export function Hero() {
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Une solution pour particuliers et entreprises.
+            Depuis votre bureau. Ou votre canapé.
           </p>
 
           {/* CTAs with premium hover effects - single clear CTA */}
@@ -193,7 +194,7 @@ export function Hero() {
               <span className="relative">Envoyer une lettre maintenant</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
-            <p className="text-sm text-muted-foreground">En 2 minutes • Essai gratuit • Simple et sécurisé</p>
+            <p className="text-sm text-muted-foreground">En 2 minutes • Sans installation • Suivi inclus</p>
           </div>
 
           {/* Trust indicators - simplified and professional */}
@@ -204,9 +205,7 @@ export function Hero() {
             }`}
           >
             {[
-                  { icon: Shield, color: 'text-green-500', bg: 'bg-green-500/10', label: 'Essai gratuit' },
-              { icon: Users, color: 'text-blue-500', bg: 'bg-blue-500/10', label: '+ de 100k utilisateurs en suisse' },
-              { icon: CheckCircle2, color: 'text-emerald-500', bg: 'bg-emerald-500/10', label: 'Conforme aux réglementations' },
+              { icon: Users, color: 'text-blue-500', bg: 'bg-blue-500/10', label: 'Déjà utilisé par des particuliers et des entreprises' },
             ].map((item, index) => (
               <div 
                 key={index}

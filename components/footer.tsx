@@ -56,7 +56,9 @@ export function Footer() {
               footerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <Logo variant="white" size="sm" className="mb-4" />
+            <a href="/" className="inline-block hover:opacity-80 transition-opacity duration-300">
+              <Logo variant="white" size="sm" className="mb-4" />
+            </a>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
               NextLetter – Solution d'envoi de lettres recommandées en ligne pour particuliers, entreprises et institutions. Envoyez vos lettres officielles en ligne depuis n'importe où.
             </p>

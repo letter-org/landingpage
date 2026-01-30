@@ -1,39 +1,58 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Check, Clock, Zap } from "lucide-react"
-import { Logo } from "./logo"
+import { Clock, Zap, ArrowRight } from "lucide-react"
 import { BackgroundMountains } from "./background-mountains"
-
-const traditionalSteps = [
-  "Imprimer les documents",
-  "Préparer les enveloppes",
-  "Affranchir les lettres",
-  "Se rendre à la poste",
-  "Suivi manuel",
-]
-
-const nextletterSteps = ["Télécharger les documents", "Cliquer sur « Envoyer »", "Suivi en ligne"]
+import { appUrls, addUtmParams } from "@/lib/app-urls"
 
 export function ComparisonSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [showTimeAnimation, setShowTimeAnimation] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
+  const [timeValue, setTimeValue] = useState(0)
+
+  useEffect(() => {
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    setReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
+    mediaQuery.addEventListener("change", handleChange)
+    
+    return () => mediaQuery.removeEventListener("change", handleChange)
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
-          // Trigger time animation after other animations
-          setTimeout(() => setShowTimeAnimation(true), 2000)
-        } else {
-          // Reset animations when section is not visible
-          setIsVisible(false)
-          setShowTimeAnimation(false)
+          // Animate time value from 0 to 5-10
+          if (!reducedMotion) {
+            let current = 0
+            const target = 5
+            const duration = 1500
+            const startTime = Date.now()
+            
+            const animate = () => {
+              const elapsed = Date.now() - startTime
+              const progress = Math.min(elapsed / duration, 1)
+              current = Math.floor(progress * target)
+              setTimeValue(current)
+              
+              if (progress < 1) {
+                requestAnimationFrame(animate)
+              } else {
+                setTimeValue(5) // Final value
+              }
+            }
+            requestAnimationFrame(animate)
+          } else {
+            setTimeValue(5)
+          }
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.2 }
     )
 
     if (sectionRef.current) {
@@ -41,200 +60,224 @@ export function ComparisonSection() {
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [reducedMotion])
+
+  const beforeSteps = ["Imprimer", "Mettre sous-plis", "Affranchir", "Se déplacer"]
+  const afterSteps = ["Importer", "Envoyer", "Suivre"]
+
+  const benefits = [
+    "Zéro déplacement",
+    "Suivi centralisé",
+    "Preuves archivées"
+  ]
 
   return (
-    <section ref={sectionRef} className="relative py-24 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
-      {/* Background mountains */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+    <section
+      ref={sectionRef}
+      className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden"
+      aria-labelledby="comparison-title"
+    >
+      {/* Background mountains - très subtil */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
         <BackgroundMountains />
       </div>
+
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Main comparison container */}
-        <div className="bg-card rounded-3xl shadow-2xl border border-border overflow-hidden relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-            {/* Traditional method - Left side */}
-            <div className="p-8 lg:p-12 bg-secondary/30 relative flex flex-col">
-              <h3
-                className={`text-xl lg:text-2xl font-bold text-muted-foreground mb-10 transition-all duration-700 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                {"Distribution traditionnelle"} 
-              </h3>
+        {/* Header */}
+        <div
+          className={`text-center mb-12 transition-all duration-700 ${
+            isVisible || reducedMotion
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+        >
+          <h2
+            id="comparison-title"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 relative inline-block"
+          >
+            {/* Effet whaou - glow pulse */}
+            <span 
+              className={`absolute inset-0 text-3xl sm:text-4xl lg:text-5xl font-bold text-brand blur-xl opacity-50 animate-pulse ${
+                isVisible ? "block" : "hidden"
+              }`}
+              aria-hidden="true"
+            >
+              Avec / Sans NextLetter
+            </span>
+            {/* Effet shimmer */}
+            <span 
+              className={`absolute inset-0 bg-gradient-to-r from-transparent via-brand/30 to-transparent -translate-x-full animate-shimmer ${
+                isVisible ? "block" : "hidden"
+              }`}
+              style={{ animationDuration: '3s' }}
+              aria-hidden="true"
+            />
+            {/* Texte principal */}
+            <span className="relative z-10 bg-gradient-to-r from-foreground via-brand to-foreground bg-clip-text text-transparent animate-text-shimmer bg-[length:200%_auto]">
+              Avec / Sans NextLetter
+            </span>
+          </h2>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+            Envoyez vos lettres recommandées en série en quelques minutes.
+          </p>
+        </div>
 
-              <div className="relative flex-1">
-                {/* Vertical dotted line - animated */}
+        {/* Comparison Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* Avant Card */}
+          <div
+            className={`bg-card rounded-2xl border border-border p-8 sm:p-10 shadow-sm transition-all duration-700 ${
+              isVisible || reducedMotion
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+            style={{
+              transitionDelay: isVisible && !reducedMotion ? "200ms" : "0ms",
+            }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
+                <Clock className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold text-muted-foreground">Distribution traditionnelle</h3>
+            </div>
+
+            {/* Time Display */}
+            <div className="mb-8">
+              <div className="text-5xl sm:text-6xl font-bold text-muted-foreground mb-2">
+                2–3h
+              </div>
+              <p className="text-sm text-muted-foreground/70">
+                / 100 courriers
+              </p>
+            </div>
+
+            {/* Steps */}
+            <div className="space-y-3">
+              {beforeSteps.map((step, index) => (
                 <div
-                  className={`absolute left-3 top-2 bottom-20 border-l-2 border-dashed border-muted-foreground/30 transition-all duration-1000 ${
-                    isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
+                  key={step}
+                  className={`flex items-center gap-3 transition-all duration-500 ${
+                    isVisible || reducedMotion
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 -translate-x-4"
                   }`}
-                  style={{ 
-                    transitionDelay: isVisible ? "300ms" : "0ms",
-                    transformOrigin: "top",
+                  style={{
+                    transitionDelay: isVisible && !reducedMotion ? `${400 + index * 100}ms` : "0ms",
                   }}
-                />
-
-                <div className="space-y-8">
-                  {traditionalSteps.map((step, index) => (
-                    <div
-                      key={index}
-                      className={`relative flex items-start gap-4 transition-all duration-700 ease-out ${
-                        isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-                      }`}
-                      style={{
-                        transitionDelay: isVisible ? `${400 + index * 200}ms` : "0ms",
-                      }}
-                    >
-                      {/* Circle marker - animated */}
-                      <div
-                        className={`w-6 h-6 rounded-full border-2 border-muted-foreground/40 bg-card flex items-center justify-center shrink-0 transition-all duration-500 ${
-                          isVisible ? "scale-100 rotate-0" : "scale-0 rotate-180"
-                        }`}
-                        style={{
-                          transitionDelay: isVisible ? `${450 + index * 200}ms` : "0ms",
-                        }}
-                      >
-                        <div className="w-2 h-2 rounded-full bg-muted-foreground/40" />
-                      </div>
-
-                      {/* Step text */}
-                      <span className="text-muted-foreground text-base lg:text-lg pt-0.5">{step}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Time indicator */}
-                <div
-                  className={`mt-10 flex items-center gap-3 transition-all duration-700 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  }`}
-                  style={{ transitionDelay: isVisible ? "1600ms" : "0ms" }}
                 >
-                  <Clock className={`w-5 h-5 text-muted-foreground transition-all duration-500 ${
-                    showTimeAnimation ? "animate-pulse" : ""
-                  }`} />
-                  <span className="text-muted-foreground text-sm">Temps moyen pour 100 lettres :</span>
-                  <span
-                    className={`text-2xl lg:text-3xl font-bold text-foreground transition-all duration-1000 ${
-                      showTimeAnimation ? "scale-110" : "scale-100"
-                    }`}
-                  >
-                    2 à 3 heures
-                  </span>
+                  <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                  <span className="text-base text-muted-foreground">{step}</span>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Avec NextLetter Card */}
+          <div
+            className={`bg-gradient-to-br from-brand/5 via-card to-card rounded-2xl border-2 border-brand/20 p-8 sm:p-10 shadow-lg transition-all duration-700 ${
+              isVisible || reducedMotion
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+            style={{
+              transitionDelay: isVisible && !reducedMotion ? "400ms" : "0ms",
+            }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-brand flex items-center justify-center shadow-lg shadow-brand/20">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex items-center gap-2">
+                <img 
+                  src="/brand/nextletter-wordmark.svg" 
+                  alt="NextLetter" 
+                  className="h-6 w-auto"
+                />
+                <span className="text-2xl font-bold text-foreground">Avec</span>
               </div>
             </div>
 
-            {/* VS Badge - Centered */}
-            <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div
-                className={`w-16 h-16 bg-card rounded-full shadow-xl flex items-center justify-center border-2 border-border transition-all duration-700 ${
-                  isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
-                }`}
-                style={{ transitionDelay: isVisible ? "1000ms" : "0ms" }}
-              >
-                <span className="text-lg font-bold text-muted-foreground">VS</span>
+            {/* Time Display - avec animation */}
+            <div className="mb-8">
+              <div className="text-5xl sm:text-6xl font-bold text-brand mb-2">
+                {reducedMotion ? "5–10" : `${timeValue > 0 ? timeValue : "5"}–10`} min
               </div>
+              <p className="text-sm text-muted-foreground">
+                / 100 courriers
+              </p>
             </div>
 
-            {/* NextLetter method - Right side */}
-            <div className="p-8 lg:p-12 border-t lg:border-t-0 lg:border-l border-border relative flex flex-col bg-gradient-to-br from-brand/5 to-transparent">
-              {/* Mobile VS badge */}
-              <div className="lg:hidden flex justify-center -mt-12 mb-6">
+            {/* Steps */}
+            <div className="space-y-3">
+              {afterSteps.map((step, index) => (
                 <div
-                  className={`w-12 h-12 bg-card rounded-full shadow-lg flex items-center justify-center border border-border transition-all duration-700 ${
-                    isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
+                  key={step}
+                  className={`flex items-center gap-3 transition-all duration-500 ${
+                    isVisible || reducedMotion
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 -translate-x-4"
                   }`}
-                  style={{ transitionDelay: isVisible ? "600ms" : "0ms" }}
-                >
-                  <span className="text-sm font-bold text-muted-foreground">VS</span>
-                </div>
-              </div>
-
-              <div
-                className={`mb-10 transition-all duration-700 ${
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-                }`}
-                style={{ transitionDelay: isVisible ? "500ms" : "0ms" }}
-              >
-                <Logo variant="dark" size="md" />
-              </div>
-
-              <div className="relative flex-1">
-                {/* Vertical solid blue line - animated */}
-                <div
-                  className={`absolute left-3 top-2 bottom-20 w-0.5 bg-gradient-to-b from-brand via-brand to-brand/50 transition-all duration-1000 ease-out origin-top ${
-                    isVisible ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-                  }`}
-                  style={{ 
-                    transitionDelay: isVisible ? "700ms" : "0ms",
-                    transformOrigin: "top",
+                  style={{
+                    transitionDelay: isVisible && !reducedMotion ? `${600 + index * 100}ms` : "0ms",
                   }}
-                />
-
-                <div className="space-y-10">
-                  {nextletterSteps.map((step, index) => (
-                    <div
-                      key={index}
-                      className={`relative flex items-start gap-4 transition-all duration-500 ease-out ${
-                        isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
-                      }`}
-                      style={{
-                        transitionDelay: isVisible ? `${800 + index * 200}ms` : "0ms",
-                      }}
-                    >
-                      {/* Check circle marker - animated */}
-                      <div
-                        className={`w-6 h-6 rounded-full bg-brand flex items-center justify-center shrink-0 transition-all duration-500 ${
-                          isVisible ? "scale-100 rotate-0" : "scale-0 rotate-180"
-                        }`}
-                        style={{
-                          transitionDelay: isVisible ? `${850 + index * 200}ms` : "0ms",
-                        }}
-                      >
-                        <Check className="w-3.5 h-3.5 text-brand-foreground" strokeWidth={3} />
-                      </div>
-
-                      {/* Step text */}
-                      <span className="text-foreground text-base lg:text-lg font-medium pt-0.5">{step}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Time indicator */}
-                <div
-                  className={`mt-12 flex items-center gap-3 transition-all duration-700 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  }`}
-                  style={{ transitionDelay: isVisible ? "1400ms" : "0ms" }}
                 >
-                  <Zap className={`w-5 h-5 text-brand transition-all duration-500 ${
-                    showTimeAnimation ? "animate-pulse" : ""
-                  }`} />
-                  <span className="text-foreground text-sm">Temps nécessaire pour 100 lettres :</span>
-                  <span
-                    className={`text-2xl lg:text-4xl font-bold text-brand transition-all duration-1000 ${
-                      showTimeAnimation ? "scale-110" : "scale-100"
-                    }`}
-                  >
-                    {"< 5 minutes"}
-                  </span>
+                  <div className="w-2 h-2 rounded-full bg-brand" />
+                  <span className="text-base font-medium text-foreground">{step}</span>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
+        {/* Benefits Chips */}
         <div
-          className={`mt-12 text-center transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`flex flex-wrap items-center justify-center gap-3 mb-8 transition-all duration-700 ${
+            isVisible || reducedMotion
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
           }`}
-          style={{ transitionDelay: isVisible ? "2200ms" : "0ms" }}
+          style={{
+            transitionDelay: isVisible && !reducedMotion ? "1000ms" : "0ms",
+          }}
         >
-          <p className="text-xl lg:text-2xl font-semibold text-foreground">
-            Gain de temps, moins d'erreurs, pas de déplacement
-          </p>
+          {benefits.map((benefit, index) => (
+            <div
+              key={benefit}
+              className={`px-4 py-2 bg-secondary rounded-full text-sm font-medium text-foreground transition-all duration-500 ${
+                isVisible || reducedMotion
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-95"
+              }`}
+              style={{
+                transitionDelay: isVisible && !reducedMotion ? `${1100 + index * 100}ms` : "0ms",
+              }}
+            >
+              {benefit}
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div
+          className={`text-center transition-all duration-700 ${
+            isVisible || reducedMotion
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+          style={{
+            transitionDelay: isVisible && !reducedMotion ? "1400ms" : "0ms",
+          }}
+        >
+          <a
+            href={addUtmParams(appUrls.base, 'landing', 'comparison-cta', 'nextletter')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-opacity duration-300 shadow-lg hover:shadow-xl"
+          >
+            Tester un envoi
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </section>
