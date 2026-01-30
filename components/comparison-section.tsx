@@ -102,7 +102,7 @@ export function ComparisonSection() {
               }`}
               aria-hidden="true"
             >
-              Avec / Sans NextLetter
+              Courrier standard vs NextLetter
             </span>
             {/* Effet shimmer */}
             <span 
@@ -114,11 +114,11 @@ export function ComparisonSection() {
             />
             {/* Texte principal */}
             <span className="relative z-10 bg-gradient-to-r from-foreground via-brand to-foreground bg-clip-text text-transparent animate-text-shimmer bg-[length:200%_auto]">
-              Avec / Sans NextLetter
+              Courrier standard vs NextLetter
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Envoyez vos lettres recommandées en série en quelques minutes.
+            Envoyez vos lettres recommandées en ligne en série en quelques minutes.
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export function ComparisonSection() {
               <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
                 <Clock className="w-6 h-6 text-muted-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-muted-foreground">Distribution traditionnelle</h3>
+              <h3 className="text-2xl font-bold text-muted-foreground">Courrier standard</h3>
             </div>
 
             {/* Time Display */}
@@ -194,7 +194,6 @@ export function ComparisonSection() {
                   alt="NextLetter" 
                   className="h-6 w-auto"
                 />
-                <span className="text-2xl font-bold text-foreground">Avec</span>
               </div>
             </div>
 

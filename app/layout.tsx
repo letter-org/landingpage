@@ -11,18 +11,19 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nextletter.ch"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "NextLetter - Envoyer lettre recommandée en ligne | Alternative au guichet postal",
+  title: "NextLetter - Lettre recommandée en ligne en Suisse | Alternative La Poste",
   description:
-    "Envoyez vos lettres recommandées en ligne sans vous déplacer. Solution simple pour envoi courrier officiel avec suivi en temps réel et preuve d'envoi. Alternative moderne au guichet postal.",
+    "Envoyer des lettres recommandées en ligne en Suisse sans vous déplacer. Solution simple pour envoi courrier officiel avec suivi en temps réel et preuve d'envoi. Alternative moderne à La Poste suisse.",
   keywords: [
-    "envoyer lettre recommandée en ligne",
+    "lettre recommandée en ligne en Suisse",
+    "envoyer lettre recommandée en ligne Suisse",
     "lettre recommandée en ligne",
-    "alternative poste recommandée",
-    "envoi courrier officiel en ligne",
-    "lettre recommandée électronique",
+    "alternative La Poste Suisse",
+    "envoi courrier officiel en ligne Suisse",
+    "lettre recommandée électronique Suisse",
     "envoyer lettre recommandée sans aller à la poste",
-    "recommandé électronique",
-    "alternative la poste",
+    "recommandé électronique Suisse",
+    "alternative la poste suisse",
     "envoi lettre officielle en ligne",
     "preuve d'envoi",
     "suivi lettre recommandée",
@@ -42,9 +43,9 @@ export const metadata: Metadata = {
     locale: "fr_CH",
     url: siteUrl,
     siteName: "NextLetter",
-    title: "NextLetter - Envoyer lettre recommandée en ligne | Alternative au guichet",
+    title: "NextLetter - Lettre recommandée en ligne en Suisse | Alternative La Poste",
     description:
-      "Envoyez vos lettres recommandées en ligne sans vous déplacer. Solution simple avec suivi en temps réel et preuve d'envoi. Alternative moderne au guichet postal.",
+      "Envoyer des lettres recommandées en ligne en Suisse sans vous déplacer. Solution simple avec suivi en temps réel et preuve d'envoi. Alternative moderne à La Poste suisse.",
     images: [
       {
         url: `${siteUrl}/images/og-image.png`,
@@ -56,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NextLetter - Envoyer lettre recommandée en ligne",
+    title: "NextLetter - Lettre recommandée en ligne en Suisse",
     description:
-      "Envoyez vos lettres recommandées en ligne sans vous déplacer. Suivi en temps réel et preuve d'envoi.",
+      "Envoyer des lettres recommandées en ligne en Suisse sans vous déplacer. Suivi en temps réel et preuve d'envoi.",
     images: [`${siteUrl}/images/og-image.png`],
   },
   robots: {

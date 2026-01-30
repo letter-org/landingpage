@@ -17,15 +17,15 @@ export function StructuredData() {
       "ratingValue": "4.8",
       "ratingCount": "500",
     },
-    "description": "Solution d'envoi de lettres recommandées en ligne pour particuliers, entreprises et institutions. Envoi courrier officiel en ligne avec suivi en temps réel.",
+    "description": "Solution d'envoi de lettres recommandées en ligne en Suisse pour particuliers, entreprises et institutions. Envoi courrier officiel en ligne avec suivi en temps réel.",
     "url": baseUrl,
     "screenshot": `${baseUrl}/images/image.png`,
     "featureList": [
-      "Envoi de lettres recommandées en ligne",
+      "Envoi de lettres recommandées en ligne en Suisse",
       "Suivi en temps réel",
       "Archivage sécurisé",
       "Preuve d'envoi",
-      "Alternative au guichet postal",
+      "Alternative à La Poste suisse",
     ],
   }
 
@@ -35,7 +35,7 @@ export function StructuredData() {
     "name": "NextLetter",
     "url": baseUrl,
     "logo": `${baseUrl}/icon.svg`,
-    "description": "NextLetter est une solution permettant d'envoyer des lettres recommandées en ligne pour l'envoi de courrier officiel en ligne.",
+    "description": "NextLetter est une solution permettant d'envoyer des lettres recommandées en ligne en Suisse pour l'envoi de courrier officiel en ligne.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "CH",
@@ -56,7 +56,7 @@ export function StructuredData() {
     "@type": "WebSite",
     "name": "NextLetter",
     "url": baseUrl,
-    "description": "Solution d'envoi de lettres recommandées en ligne. Envoyez vos courriers officiels sans vous déplacer, avec suivi en temps réel et preuve d'envoi.",
+    "description": "Solution d'envoi de lettres recommandées en ligne en Suisse. Envoyez vos courriers officiels sans vous déplacer, avec suivi en temps réel et preuve d'envoi.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {

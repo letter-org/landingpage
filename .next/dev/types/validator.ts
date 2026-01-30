@@ -47,15 +47,6 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 }
 
 
-// Validate ../../../app/admin/chatbot/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/admin/chatbot">> = Specific
-  const handler = {} as typeof import("../../../app/admin/chatbot/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
 // Validate ../../../app/cgu/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/cgu">> = Specific

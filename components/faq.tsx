@@ -7,9 +7,9 @@ import { HelpCircle, MessageCircle, ArrowRight, Sparkles } from "lucide-react"
 
 const faqs = [
   {
-    question: "Pourquoi utiliser NextLetter pour envoyer une lettre recommandée ?",
+    question: "Pourquoi utiliser NextLetter pour envoyer une lettre recommandée en ligne en Suisse ?",
     answer:
-      "NextLetter simplifie l'envoi de lettres recommandées en ligne en s'appuyant sur des services postaux partenaires, avec suivi et justificatif d'expédition, le tout sans déplacement.",
+      "NextLetter simplifie l'envoi de lettres recommandées en ligne en Suisse en s'appuyant sur des services postaux partenaires, avec suivi et justificatif d'expédition, le tout sans déplacement.",
   },
   {
     question: "Quelle est la différence entre NextLetter et La Poste ?",

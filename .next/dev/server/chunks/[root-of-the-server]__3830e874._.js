@@ -48,13 +48,13 @@ __turbopack_context__.s([
     "updateSession",
     ()=>updateSession
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f2e$pnpm$2f40$supabase$2b$ssr$40$0$2e$8$2e$0_$40$supabase$2b$supabase$2d$js$40$2$2e$91$2e$0$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/NextLetter/LandingPage/landingpage/node_modules/.pnpm/@supabase+ssr@0.8.0_@supabase+supabase-js@2.91.0/node_modules/@supabase/ssr/dist/module/index.js [middleware] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f2e$pnpm$2f40$supabase$2b$ssr$40$0$2e$8$2e$0_$40$supabase$2b$supabase$2d$js$40$2$2e$91$2e$0$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/NextLetter/LandingPage/landingpage/node_modules/.pnpm/@supabase+ssr@0.8.0_@supabase+supabase-js@2.91.0/node_modules/@supabase/ssr/dist/module/createServerClient.js [middleware] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/NextLetter/LandingPage/landingpage/node_modules/.pnpm/next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/server.js [middleware] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/NextLetter/LandingPage/landingpage/node_modules/@supabase/ssr/dist/module/index.js [middleware] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/NextLetter/LandingPage/landingpage/node_modules/@supabase/ssr/dist/module/createServerClient.js [middleware] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/NextLetter/LandingPage/landingpage/node_modules/next/server.js [middleware] (ecmascript)");
 ;
 ;
 async function updateSession(request) {
-    const supabaseResponse = __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next({
+    const supabaseResponse = __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next({
         request
     });
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -64,14 +64,14 @@ async function updateSession(request) {
         return supabaseResponse;
     }
     let response = supabaseResponse;
-    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f2e$pnpm$2f40$supabase$2b$ssr$40$0$2e$8$2e$0_$40$supabase$2b$supabase$2d$js$40$2$2e$91$2e$0$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["createServerClient"])(supabaseUrl, supabaseAnonKey, {
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["createServerClient"])(supabaseUrl, supabaseAnonKey, {
         cookies: {
             getAll () {
                 return request.cookies.getAll();
             },
             setAll (cookiesToSet) {
                 cookiesToSet.forEach(({ name, value })=>request.cookies.set(name, value));
-                response = __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next({
+                response = __TURBOPACK__imported__module__$5b$project$5d2f$NextLetter$2f$LandingPage$2f$landingpage$2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next({
                     request
                 });
                 cookiesToSet.forEach(({ name, value, options })=>response.cookies.set(name, value, options));

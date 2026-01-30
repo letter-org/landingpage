@@ -4,21 +4,21 @@ const steps = [
   {
     number: "01",
     icon: Edit3,
-    title: "Rédigez ou importez votre lettre",
+    title: "Rédigez ou importez vos lettres",
     description:
       "Créez votre courrier avec notre éditeur intuitif, utilisez l'IA pour vous assister, ou importez simplement vos documents PDF.",
   },
   {
     number: "02",
     icon: Printer,
-    title: "NextLetter gère l'impression et l'envoi",
+    title: "Envoyez.",
     description:
-      "Nous transformons vos documents numériques en courriers physiques. Impression et envoi le jour même.",
+      "NextLetter gère l'impression et l'envoi de vos courriers",
   },
   {
     number: "03",
     icon: CheckCircle,
-    title: "Suivi & preuve + historique",
+    title: "Suivez chaque étape",
     description:
       "Suivez chaque étape, consultez les preuves de dépôt et accédez à votre historique complet.",
   },
@@ -61,6 +61,31 @@ export function HowItWorks() {
                 </div>
               )
             })}
+          </div>
+        </div>
+
+        {/* SEO text block - notice style with whaou effect */}
+        <div className="mt-16 max-w-2xl mx-auto">
+          <div className="relative bg-card/40 border border-border/30 rounded-lg p-4 sm:p-5 backdrop-blur-sm group overflow-hidden transition-all duration-500 hover:border-blue-400/40">
+            {/* Animated border glow effect - whaou */}
+            <div className="absolute -inset-[1px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              {/* Outer glow */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-blue-500/30 blur-md animate-pulse" />
+              {/* Animated shimmer border */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-blue-400/40 to-transparent animate-shimmer" style={{ animationDuration: '3s' }} />
+              {/* Inner border glow */}
+              <div className="absolute inset-[1px] rounded-lg border border-blue-400/20" />
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed text-justify mb-2.5">
+                En Suisse, les lettres recommandées sont souvent nécessaires pour les démarches administratives : résiliations, courriers officiels, notifications légales. Avec NextLetter, vous envoyez vos lettres recommandées en ligne, sans vous rendre au guichet postal.
+              </p>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed text-justify">
+                Vous rédigez ou importez votre courrier. Nous l'imprimons dans des imprimeries professionnelles et le remettons à La Poste pour l'acheminement. Le suivi de l'expédition est disponible en temps réel. Vous recevez une preuve de distribution conforme aux exigences suisses. Vos données sont hébergées en Europe/Suisse, conformes LPD et RGPD, avec archivage sécurisé.
+              </p>
+            </div>
           </div>
         </div>
       </div>

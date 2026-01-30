@@ -60,7 +60,7 @@ export function Footer() {
               <Logo variant="white" size="sm" className="mb-4" />
             </a>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-              NextLetter – Solution d'envoi de lettres recommandées en ligne pour particuliers, entreprises et institutions. Envoyez vos lettres officielles en ligne depuis n'importe où.
+              Solution de rédaction et d'envoi en ligne de lettres recommandées en Suisse, pour particuliers et entreprises. Envoyez vos courriers et lettres officielles depuis n'importe où.
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default group">
               <span className="relative flex h-2 w-2">

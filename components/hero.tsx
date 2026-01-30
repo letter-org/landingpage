@@ -141,7 +141,7 @@ export function Hero() {
             <span className="text-sm font-medium text-foreground">Disponible 24/7</span>
           </div>
 
-          {/* Main headline - more human and concrete */}
+          {/* Main headline - simple and clear */}
           <h1 
             className={`text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight text-balance transition-all duration-700 delay-100 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -150,22 +150,22 @@ export function Hero() {
             Envoyez vos lettres recommandées,{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent animate-gradient-x">
-                sans vous déplacer.
+                sans vous déplacer
               </span>
               {/* Glow effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent blur-sm opacity-50 animate-pulse" aria-hidden="true">
-                sans vous déplacer.
+                sans vous déplacer
               </span>
             </span>
           </h1>
 
-          {/* Subtitle - short and clear */}
+          {/* Subtitle - human and clear */}
           <p 
             className={`text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Depuis votre bureau. Ou votre canapé.
+            Depuis votre bureau, ou votre canapé. L'envoi d'une lettre n'a jamais été aussi simple.
           </p>
 
           {/* CTAs with premium hover effects - single clear CTA */}
