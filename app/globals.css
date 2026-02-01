@@ -437,6 +437,15 @@ html {
 }
 
 /* Selection styling */
+@keyframes fadeInVideo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 ::selection {
   background: hsl(var(--brand) / 0.3);
   color: hsl(var(--foreground));

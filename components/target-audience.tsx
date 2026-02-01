@@ -62,6 +62,7 @@ export function TargetAudience() {
             className={`text-center mb-16 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
+            suppressHydrationWarning
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Pour qui ?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

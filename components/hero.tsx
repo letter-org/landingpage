@@ -5,6 +5,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect, useRef } from "react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import { BackgroundMountains } from "./background-mountains"
+import Link from "next/link"
 
 // Mouse follower glow for hero
 function HeroMouseGlow() {
@@ -72,6 +73,16 @@ export function Hero() {
   const { ref: mockupRef, isVisible: mockupVisible } = useScrollAnimation<HTMLDivElement>()
   const { ref: trustRef, isVisible: trustVisible } = useScrollAnimation<HTMLDivElement>()
   const [hoveredButton, setHoveredButton] = useState<string | null>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+
+  // Recharger la vidéo au montage du composant
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load()
+    }
+  }, [])
 
   return (
     <section id="hero-section" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-secondary via-background to-background">
@@ -227,14 +238,14 @@ export function Hero() {
             mockupVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          {/* Floating badges around mockup */}
-          <div className="absolute -top-4 -left-4 lg:-left-16 w-24 h-24 bg-gradient-to-br from-green-500/20 to-emerald-500/10 rounded-2xl border border-green-500/20 flex items-center justify-center animate-float backdrop-blur-sm z-10" style={{ animationDelay: '0s' }}>
+          {/* Floating badges around mockup - au-dessus de la vidéo */}
+          <div className="absolute -top-4 -left-4 lg:-left-16 w-24 h-24 bg-gradient-to-br from-green-500/20 to-emerald-500/10 rounded-2xl border border-green-500/20 flex items-center justify-center animate-float backdrop-blur-sm z-30" style={{ animationDelay: '0s' }}>
             <div className="text-center">
               <Shield className="w-8 h-8 text-green-500 mx-auto mb-1" />
               <span className="text-xs text-green-600 font-medium">Securise</span>
             </div>
           </div>
-          <div className="absolute -bottom-4 -right-4 lg:-right-16 w-24 h-24 bg-gradient-to-br from-blue-500/20 to-cyan-500/10 rounded-2xl border border-blue-500/20 flex items-center justify-center animate-float backdrop-blur-sm z-10" style={{ animationDelay: '1s' }}>
+          <div className="absolute -bottom-4 -right-4 lg:-right-16 w-24 h-24 bg-gradient-to-br from-blue-500/20 to-cyan-500/10 rounded-2xl border border-blue-500/20 flex items-center justify-center animate-float backdrop-blur-sm z-30" style={{ animationDelay: '1s' }}>
             <div className="text-center">
               <Clock className="w-8 h-8 text-blue-500 mx-auto mb-1" />
               <span className="text-xs text-blue-600 font-medium">Rapide</span>
@@ -267,17 +278,158 @@ export function Hero() {
                 {/* Shimmer overlay */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
                 
-                <div className="text-center">
+                <div className="text-center relative">
+                  {/* Container pour image et vidéo */}
+                  <div className="relative w-full overflow-hidden">
+                    {/* Image de fond pour le fondu - flou quand vidéo joue */}
                   <img
                     src="/images/image.png"
                     alt="Interface de redaction NextLetter"
-                    className="w-full h-auto"
-                  />
-                  <p className="text-muted-foreground py-4 bg-card/80 backdrop-blur-sm">Interface de redaction intuitive</p>
+                      className={`w-full h-auto relative z-0 transition-all duration-500 ${
+                        isVideoPlaying ? 'blur-sm opacity-50' : 'blur-0 opacity-100'
+                      }`}
+                    />
+                    {/* Vidéo avec fondu superposée - élargie pour cacher l'adresse en bas */}
+                    <video
+                      ref={videoRef}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-2000 z-10 ${
+                        isVideoPlaying && videoLoaded ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      style={{
+                        objectPosition: 'center 20%',
+                        transform: isVideoPlaying ? 'scale(1.1)' : 'scale(1)',
+                        transition: 'transform 0.5s ease-in-out',
+                      }}
+                      onLoadedData={() => {
+                        if (videoRef.current) {
+                          videoRef.current.playbackRate = 1.25 // Accélération de 25%
+                          // Délai pour le fondu après chargement
+                          setTimeout(() => {
+                            setVideoLoaded(true)
+                          }, 1000)
+                        }
+                      }}
+                      onPlay={() => {
+                        setIsVideoPlaying(true)
+                        setVideoLoaded(true)
+                      }}
+                      onPause={() => {
+                        setIsVideoPlaying(false)
+                      }}
+                      onEnded={() => {
+                        // Revenir à l'image statique à la fin de la vidéo
+                        setIsVideoPlaying(false)
+                        setVideoLoaded(false)
+                        if (videoRef.current) {
+                          videoRef.current.currentTime = 0 // Réinitialiser la vidéo
+                          videoRef.current.pause()
+                        }
+                      }}
+                      onError={(e) => {
+                        console.error('Erreur de chargement vidéo:', e)
+                        // Recharger la vidéo en cas d'erreur
+                        if (videoRef.current) {
+                          videoRef.current.load()
+                        }
+                      }}
+                    >
+                      <source src="/videos/dashboard_proof_nextletter.mp4" type="video/mp4" />
+                    </video>
+                    {/* Overlay avec contrôles au clic uniquement */}
+                    <div 
+                      className={`absolute inset-0 cursor-pointer flex items-center justify-center transition-opacity duration-300 bg-black/5 z-20 ${
+                        isVideoPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                      }`}
+                      onClick={async (e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        if (videoRef.current) {
+                          try {
+                            // S'assurer que la vidéo est chargée avant de jouer
+                            if (videoRef.current.readyState < 2) {
+                              videoRef.current.load()
+                              await new Promise((resolve) => {
+                                const handler = () => {
+                                  videoRef.current!.removeEventListener('loadeddata', handler)
+                                  resolve(undefined)
+                                }
+                                videoRef.current!.addEventListener('loadeddata', handler)
+                              })
+                            }
+                            // Configurer la vitesse et démarrer la vidéo
+                            videoRef.current.playbackRate = 1.25
+                            await videoRef.current.play()
+                            setIsVideoPlaying(true)
+                          } catch (error) {
+                            console.error('Erreur lors de la lecture de la vidéo:', error)
+                            // En cas d'erreur, essayer de charger la vidéo et réessayer
+                            if (videoRef.current.readyState === 0) {
+                              videoRef.current.load()
+                              videoRef.current.addEventListener('loadeddata', async () => {
+                                try {
+                                  videoRef.current!.playbackRate = 1.25
+                                  await videoRef.current!.play()
+                                  setIsVideoPlaying(true)
+                                } catch (err) {
+                                  console.error('Erreur lors de la deuxième tentative:', err)
+                                }
+                              }, { once: true })
+                            }
+                          }
+                        }
+                      }}
+                    >
+                      <div className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:scale-110 transition-transform duration-300">
+                        <svg className="w-6 h-6 text-foreground" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    {/* Bouton pause visible quand la vidéo joue */}
+                    <div 
+                      className={`absolute inset-0 cursor-pointer flex items-center justify-center transition-opacity duration-300 bg-black/5 z-20 ${
+                        isVideoPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-0 pointer-events-none'
+                      }`}
+                      onClick={async () => {
+                        if (videoRef.current) {
+                          videoRef.current.pause()
+                          setIsVideoPlaying(false)
+                        }
+                      }}
+                    >
+                      <div className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:scale-110 transition-transform duration-300">
+                        <svg className="w-6 h-6 text-foreground" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground py-4 bg-card/80 backdrop-blur-sm relative z-10">Interface de redaction intuitive</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Texte rassurant et CTA sous la vidéo */}
+        <div 
+          className={`mt-8 text-center transition-all duration-700 delay-600 ${
+            mockupVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <p className="text-sm text-muted-foreground mb-4 max-w-2xl mx-auto">
+            Vos preuves d'envoi restent accessibles dans votre dashboard sécurisé.
+          </p>
+          <Link
+            href="/resiliation-abonnements-suisse"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-opacity duration-300 shadow-lg hover:shadow-xl"
+          >
+            Résilier légalement maintenant
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
       

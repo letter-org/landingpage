@@ -8,8 +8,8 @@ import { BackgroundMountains } from "./background-mountains"
 const features = [
   {
     icon: FileText,
-    title: "Redaction assistee par IA",
-    description: "Notre IA vous aide a rediger des courriers professionnels en quelques secondes.",
+    title: "Modèles de lettres et rédaction assistée par IA",
+    description: "Choisissez votre modèle de lettres et notre IA vous aide à rédiger des courriers professionnels en quelques secondes.",
     gradient: "from-violet-500 to-purple-500",
     glowColor: "violet",
   },
@@ -140,6 +140,7 @@ export function Features() {
           className={`text-center mb-16 transition-all duration-700 ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
+          suppressHydrationWarning
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 border border-brand/20 rounded-full mb-4">
             <Sparkles className="w-4 h-4 text-brand" />
@@ -189,6 +190,7 @@ export function Features() {
                   className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${feature.gradient} rounded-full blur-3xl transition-opacity duration-500 ${
                     isHovered ? 'opacity-20' : 'opacity-0'
                   }`}
+                  suppressHydrationWarning
                 />
 
                 <div className="relative z-10">

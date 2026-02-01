@@ -29,7 +29,7 @@ export function HowItWorks() {
     <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-secondary to-background overflow-hidden">
       <div className="max-w-7xl mx-auto relative">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" suppressHydrationWarning>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Comment ça marche</h2>
         </div>
 

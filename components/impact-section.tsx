@@ -139,6 +139,7 @@ export function ImpactSection() {
           className={`text-center mb-16 transition-all duration-700 ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
+          suppressHydrationWarning
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 border border-green-200 rounded-full mb-4 backdrop-blur-sm">
             <Leaf className="w-4 h-4 text-green-700" />
