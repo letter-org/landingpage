@@ -175,3 +175,222 @@ Si applicable :
 - **Expérience utilisateur** : Le SEO ne doit pas nuire à l'UX
 - **Mise à jour régulière** : Google favorise les sites actifs
 - **Backlinks naturels** : Éviter les liens payants ou spam
+
+prompt pour modeles de lettres SEO : 
+
+Modifications appliquées sur toutes les pages
+H1 refondu avec effet whaou
+"Résiliation" en noir
+Reste de la phrase avec effet bleu (gradient + glow)
+Espacement ajouté (pt-24) pour éviter le collage avec la navigation
+Introduction
+Version courte et rassurante (2-3 lignes)
+Ton premium, moins commercial
+Section "Ce que contient votre lettre"
+Remplace l'aperçu copiable
+Liste des éléments inclus avec icônes
+Effet whaou (border glow au hover)
+Texte explicatif sur la génération dynamique
+CTA renforcé
+Effet whaou (glow au hover)
+Micro-copy ajoutée : "Envoi en quelques minutes – preuve conservée dans votre dashboard"
+Hover scale sur le bouton principal
+Meta titles mis à jour
+Format : "Lettre résiliation [TYPE] Suisse – modèle conforme & envoi recommandé"
+Optimisé pour le SEO
+Pages refondues (10/10)
+Bail locataire
+Bail bailleur
+Assurance maladie
+Assurance complémentaire
+Assurance auto
+Assurance ménage RC
+Abonnement mobile
+Internet TV
+Fitness
+Démission
+Vérifications
+Aucune section "Aperçu du modèle" restante
+Aucune introduction longue restante
+Tous les CTA ont la micro-copy
+Tous les meta titles sont mis à jour
+Aucune erreur de lint
+
+
+OBJECTIF
+Créer des pages SEO pour NextLetter.ch (Suisse – FR).
+Pages de modèles de lettres de résiliation et de démission.
+Ces pages doivent générer du trafic SEO et convertir vers la génération et l’envoi de lettres.
+
+CONTEXTE
+- Pays : Suisse
+- Langue : Français
+- Public : particuliers suisses
+- Aucune mention de partenariat avec La Poste ou d’autres prestataires.
+- Envoi effectué via des prestataires tiers d’acheminement postal.
+- Preuve d’envoi et suivi disponibles via le dashboard utilisateur.
+
+CONTRAINTES LÉGALES
+- Ne jamais dire “obligatoire” sauf mention “par écrit”.
+- Utiliser un wording prudent : “souvent recommandé”, “afin de disposer d’une preuve”.
+- Ajouter une phrase de non-responsabilité : pas un conseil juridique.
+
+STRUCTURE OBLIGATOIRE (NE PAS MODIFIER)
+1. H1 : “Lettre de résiliation [X] en Suisse – Modèle + envoi recommandé”
+2. Introduction courte (max 3 lignes)
+3. Section : “Ce qu’il faut savoir en Suisse”
+4. Étapes 1–2–3 (choisir, personnaliser, envoyer)
+5. Aperçu du modèle de lettre (extrait)
+6. Délais de résiliation (tableau simple)
+7. FAQ (5 à 8 questions)
+8. CTA : “Générer et envoyer ma lettre maintenant”
+9. Liens internes vers minimum 6 autres pages NextLetter
+
+SEO
+- Meta title optimisé (max 60 caractères)
+- Meta description optimisée (max 155 caractères)
+- FAQ Schema JSON-LD
+- Canonical URL
+- OpenGraph minimal
+
+TECHNIQUE
+- Next.js App Router
+- Une page par fichier
+- Aucun refactoring global
+- Ajouter la page au sitemap
+
+À CRÉER
+Créer les pages suivantes :
+🏠 Logement (TOP priorité)
+
+/modeles/lettre-resiliation-bail-locataire-suisse
+
+/modeles/lettre-resiliation-bail-bailleur-suisse
+
+🏥 Assurances
+
+/modeles/lettre-resiliation-assurance-maladie-suisse
+
+/modeles/lettre-resiliation-assurance-complementaire
+
+/modeles/lettre-resiliation-assurance-auto
+
+/modeles/lettre-resiliation-assurance-menage-rc
+
+📱 Télécom / abonnements
+
+/modeles/lettre-resiliation-abonnement-mobile
+
+/modeles/lettre-resiliation-internet-tv
+
+🏋️ Fitness / loisirs
+
+/modeles/lettre-resiliation-abonnement-fitness
+
+💼 Travail
+
+/modeles/lettre-demission-suisse
+
+INTERDICTIONS
+- Ne pas inventer de lois
+- Ne pas inventer de partenariats
+- Ne pas inventer de chiffres
+- Ne pas modifier le design global existant
+
+LIVRABLE
+- Code complet de chaque page
+- Aucun placeholder
+- Texte final prêt à être publié . 1️⃣ STRUCTURE STANDARD DES PAGES SEO NEXTLETTER (à copier partout)
+
+👉 Toutes les pages doivent suivre EXACTEMENT cette structure
+(c’est ce qui fait ranker + convertir)
+
+🧩 Structure type d’une page SEO “Lettre de résiliation X – Suisse”
+1. H1 (intention pure)
+
+Lettre de résiliation [SERVICE] en Suisse – Modèle + envoi recommandé
+
+2. Introduction (3 lignes max)
+
+Résiliation conforme au droit suisse
+
+Génération automatique de la lettre
+
+Envoi postal avec preuve d’envoi et suivi
+
+Sans déplacement, sans stress
+
+Exemple :
+“Résiliez votre abonnement [X] en Suisse simplement. Générez votre lettre en ligne, personnalisez-la et envoyez-la par courrier avec preuve d’envoi et suivi, directement depuis NextLetter.”
+
+3. Bloc “Ce qu’il faut savoir en Suisse” (clé SEO + confiance)
+
+👉 Toujours en wording prudent (safe légal)
+
+Inclure :
+
+Obligation par écrit (quand applicable)
+
+Délais usuels
+
+Recommandé = fortement conseillé pour preuve, sans dire “obligatoire” sauf cas clair
+
+4. Étapes (UX conversion)
+
+Étape 1 – Choisissez le modèle
+Étape 2 – Complétez vos informations
+Étape 3 – Envoyez par courrier avec preuve
+
+5. Aperçu du modèle de lettre
+
+Un extrait réaliste, pas toute la lettre
+
+Pas de données fictives sensibles
+
+Style clair, suisse, neutre
+
+6. Délais de résiliation (IMPORTANT POUR LA SUISSE)
+
+Tableau simple
+
+Exemples concrets
+
+Mention “selon contrat”
+
+7. FAQ (5 à 8 questions)
+
+Obligatoire pour Google
+
+Réponses claires, non juridiques
+
+Ajout du FAQ Schema JSON-LD
+
+8. CTA final
+
+👉 Bouton principal :
+
+Générer et envoyer ma lettre maintenant
+
+👉 Secondaire :
+
+Voir d’autres modèles de résiliation
+
+9. Liens internes
+
+Minimum 6 liens vers :
+
+autres résiliations
+
+démission
+
+assurances
+
+bail
+
+Les modifications appliquées incluent :
+H1 plus court avec effet "whaou" (glow + shimmer)
+Introduction courte et rassurante
+Section "Ce que contient votre lettre" (remplace l'aperçu copiable)
+CTA renforcé avec micro-copy
+Meta titles mis à jour avec "modèle conforme & envoi recommandé"
+Application de l'effet "whaou" (texte bleu avec glow) sur le H1 de toutes les pages de modèles, en remplaçant l'effet actuel.

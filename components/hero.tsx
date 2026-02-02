@@ -5,7 +5,6 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect, useRef } from "react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import { BackgroundMountains } from "./background-mountains"
-import Link from "next/link"
 
 // Mouse follower glow for hero
 function HeroMouseGlow() {
@@ -423,13 +422,15 @@ export function Hero() {
           <p className="text-sm text-muted-foreground mb-4 max-w-2xl mx-auto">
             Vos preuves d'envoi restent accessibles dans votre dashboard sécurisé.
           </p>
-          <Link
-            href="/resiliation-abonnements-suisse"
+          <a
+            href={addUtmParams(appUrls.base, 'landing', 'cta', 'resiliation')}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-opacity duration-300 shadow-lg hover:shadow-xl"
           >
             Résilier légalement maintenant
             <ArrowRight className="w-5 h-5" />
-          </Link>
+          </a>
         </div>
       </div>
       
