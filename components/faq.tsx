@@ -4,27 +4,33 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect } from "react"
 import { HelpCircle, MessageCircle, ArrowRight, Sparkles } from "lucide-react"
+import { FaqJsonLd } from "@/components/seo/faq-jsonld"
 
 const faqs = [
   {
     question: "Pourquoi utiliser NextLetter pour envoyer une lettre recommandée en ligne en Suisse ?",
     answer:
-      "NextLetter simplifie l'envoi de lettres recommandées en ligne en Suisse en s'appuyant sur des services postaux partenaires, avec suivi et justificatif d'expédition, le tout sans déplacement.",
-  },
-  {
-    question: "Quelle est la différence entre NextLetter et La Poste ?",
-    answer:
-      "NextLetter permet d'envoyer des lettres recommandées en ligne sans se déplacer. Nous utilisons La Poste pour l'acheminement physique.",
-  },
-  {
-    question: "Combien de temps prend l'envoi ?",
-    answer:
-      "En général les courriers envoyés avant 14h sont pris en charge par nos imprimeries professionnelles et remises pour acheminement à la poste. Délai d'acheminement : 1 à 2 jours ouvrés. NextLetter n'est pas responsable des retards de livraisons.",
+      "NextLetter simplifie l'envoi de lettres recommandées en ligne en Suisse en s'appuyant sur des services postaux partenaires, avec suivi et justificatif d'expédition, le tout sans déplacement. Vous gagnez du temps, évitez les trajets au guichet et disposez d'une preuve d'envoi conservée dans votre espace sécurisé.",
   },
   {
     question: "Comment fonctionne NextLetter ?",
     answer:
-      "Vous rédigez ou téléchargez votre lettre, et NextLetter veille à ce que vos lettres soient imprimées dans des imprimeries professionnelles et livrées par la poste. Vous suivez l'acheminement en temps réel et recevez une preuve de distribution.",
+      "Vous rédigez ou téléchargez votre lettre, et NextLetter veille à ce que vos lettres soient imprimées dans des imprimeries professionnelles et livrées par des services postaux partenaires. Vous suivez l'acheminement en temps réel et recevez une preuve de distribution. Tout se fait en ligne, depuis votre bureau ou votre mobile.",
+  },
+  {
+    question: "Combien de temps prend l'envoi d'une lettre recommandée ?",
+    answer:
+      "En général, les courriers envoyés avant 14h sont pris en charge par nos imprimeries professionnelles et remis pour acheminement aux services postaux. Délai d'acheminement : 1 à 2 jours ouvrés. NextLetter n'est pas responsable des retards de livraison imputables aux services postaux.",
+  },
+  {
+    question: "Dois-je envoyer ma lettre par courrier recommandé ?",
+    answer:
+      "L'envoi par courrier recommandé est fortement recommandé afin de disposer d'une preuve d'envoi et de réception. Cela vous protège en cas de litige concernant la date de réception de votre courrier. NextLetter gère l'envoi recommandé pour vous, avec suivi et preuve de distribution.",
+  },
+  {
+    question: "NextLetter fournit-il des conseils juridiques ?",
+    answer:
+      "Non, NextLetter est un service numérique d'assistance à la rédaction et à l'envoi de courriers. Nous ne fournissons aucun conseil juridique. Pour des questions spécifiques concernant votre situation, consultez un professionnel du droit.",
   },
 ]
 
@@ -87,6 +93,9 @@ export function FAQ() {
 
   return (
     <section id="faq-section" className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/50 relative overflow-hidden">
+      {/* JSON-LD FAQ Schema */}
+      <FaqJsonLd id="schema-faq-landing-page" data={faqs} />
+      
       {/* Mouse glow */}
       <FAQMouseGlow />
 

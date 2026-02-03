@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, FileText, CheckCircle, Clock } from "lucide-react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import Link from "next/link"
+import { FaqJsonLd } from "@/components/seo/faq-jsonld"
 
 export const metadata: Metadata = {
   title: "Lettre résiliation abonnement mobile Suisse – modèle conforme & envoi recommandé",
@@ -37,25 +38,9 @@ const faqData = [
 ]
 
 export default function LettreResiliationAbonnementMobilePage() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqData.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer,
-      },
-    })),
-  }
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <FaqJsonLd id="schema-faq-lettre-resiliation-abonnement-mobile" data={faqData} />
       <div className="min-h-screen bg-background">
         <Header />
         <main className="relative z-10">
