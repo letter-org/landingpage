@@ -50,11 +50,11 @@ export default function Home() {
         {/* Hero contains the main H1 */}
         <Hero />
         
-        {/* SEO text block - before Comment ça marche */}
-        <SeoHomepageContent />
-        
-        {/* Comment ça marche */}
+        {/* Comment ça marche + article Suisse avec effet whaou */}
         <HowItWorks />
+        
+        {/* Modèles de lettres les plus utilisés */}
+        <SeoHomepageContent />
         
         {/* Comparaison: Courrier standard vs NextLetter */}
         <ComparisonSection />

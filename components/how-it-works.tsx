@@ -81,22 +81,29 @@ export function HowItWorks() {
           </div>
         </div>
 
-        {/* SEO text block - discrete notice style */}
+        {/* SEO text block - notice style with whaou effect */}
         <div 
           className={`mt-14 max-w-2xl mx-auto transition-all duration-700 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="relative bg-secondary/50 border border-border/50 rounded-xl p-5 sm:p-6 group overflow-hidden transition-all duration-300 hover:border-blue-400/30 hover:bg-secondary/70">
-            {/* Subtle glow on hover */}
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="relative bg-card/40 border border-border/30 rounded-lg p-4 sm:p-5 backdrop-blur-sm group overflow-hidden transition-all duration-500 hover:border-blue-400/40">
+            {/* Animated border glow effect - whaou */}
+            <div className="absolute -inset-[1px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              {/* Outer glow */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-blue-500/30 blur-md animate-pulse" />
+              {/* Animated shimmer border */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-blue-400/40 to-transparent animate-shimmer" style={{ animationDuration: '3s' }} />
+              {/* Inner border glow */}
+              <div className="absolute inset-[1px] rounded-lg border border-blue-400/20" />
+            </div>
             
             {/* Content */}
-            <div className="relative z-10 space-y-3">
-              <p className="text-sm text-muted-foreground leading-relaxed">
+            <div className="relative z-10 space-y-2.5">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed text-justify">
                 En Suisse, les lettres recommandées sont souvent nécessaires pour les démarches administratives : résiliations, courriers officiels, notifications légales. Avec NextLetter, vous envoyez vos lettres recommandées en ligne, sans vous rendre au guichet postal.
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed text-justify">
                 Vous rédigez ou importez votre courrier. Nous l'imprimons dans des imprimeries professionnelles et le remettons aux services postaux pour l'acheminement. Le suivi est disponible en temps réel et vous recevez une preuve de distribution. Vos données sont hébergées en Europe/Suisse, conformes LPD et RGPD.
               </p>
             </div>
