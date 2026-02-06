@@ -1,5 +1,11 @@
 import { MetadataRoute } from 'next'
 
+/**
+ * Sitemap for NextLetter landing page
+ * Canonical domain: https://www.nextletter.ch
+ * 
+ * DEV VERIFICATION: curl -I https://www.nextletter.ch/sitemap.xml
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   // Canonical URL: ALWAYS use www.nextletter.ch for SEO consistency
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.nextletter.ch'

@@ -52,19 +52,18 @@ export function StructuredData() {
     ],
   }
 
+  // WebSite schema without SearchAction (no on-site search feature)
   const webSite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "NextLetter",
     "url": baseUrl,
     "description": "Solution d'envoi de lettres recommandées en ligne en Suisse. Envoyez vos courriers officiels sans vous déplacer, avec suivi en temps réel et preuve d'envoi.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
+    "inLanguage": "fr-CH",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NextLetter",
+      "url": baseUrl
     }
   }
 

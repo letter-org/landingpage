@@ -10,11 +10,18 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 // Canonical URL: ALWAYS use www.nextletter.ch for SEO consistency
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.nextletter.ch"
 
+/**
+ * Default metadata for the site
+ * Homepage has its own metadata in app/page.tsx that overrides these
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Résiliation officielle par courrier en Suisse | NextLetter",
+  title: {
+    default: "NextLetter – Lettre recommandée en ligne en Suisse",
+    template: "%s | NextLetter"
+  },
   description:
-    "Générez et envoyez vos lettres de résiliation en Suisse par courrier recommandé. Modèles de lettres de résiliations, modèles de résiliations assurance suisse, modèles de lettres de licenciements, modèles de lettres résiliation de bail suisse. Suivi lettre recommandée suisse, preuve de livraison recommandée, suivi recommandé suisse, preuve de livraison lettre suisse, acheminement recommandé suisse, preuve de signature recommandée suisse. Preuve d'envoi, conformité légale, simple et rapide avec NextLetter.",
+    "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi en temps réel, modèles de lettres prêts à l'emploi. Simple, rapide et conforme.",
   keywords: [
     "modèles de lettres de résiliations",
     "modèles de résiliations assurance suisse",
@@ -58,23 +65,23 @@ export const metadata: Metadata = {
     locale: "fr_CH",
     url: siteUrl,
     siteName: "NextLetter",
-    title: "NextLetter - Lettre recommandée en ligne en Suisse | Alternative La Poste",
+    title: "NextLetter – Lettre recommandée en ligne en Suisse",
     description:
-      "Envoyer des lettres recommandées en ligne en Suisse sans vous déplacer. Solution simple avec suivi en temps réel et preuve d'envoi. Alternative moderne à La Poste suisse.",
+      "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
     images: [
       {
         url: `${siteUrl}/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "NextLetter - Envoyer lettre recommandée en ligne",
+        alt: "NextLetter – Envoyer une lettre recommandée en ligne en Suisse",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NextLetter - Lettre recommandée en ligne en Suisse",
+    title: "NextLetter – Lettre recommandée en ligne en Suisse",
     description:
-      "Envoyer des lettres recommandées en ligne en Suisse sans vous déplacer. Suivi en temps réel et preuve d'envoi.",
+      "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
     images: [`${siteUrl}/images/og-image.png`],
   },
   robots: {

@@ -12,6 +12,32 @@ import { FAQ } from "@/components/faq"
 import { Footer } from "@/components/footer"
 import { BackgroundMountains } from "@/components/background-mountains"
 import { CookieBanner } from "@/components/cookie-banner"
+import { SeoHomepageContent } from "@/components/seo-homepage-content"
+import type { Metadata } from "next"
+
+/**
+ * Homepage-specific metadata to strengthen SEO signals
+ * This overrides the default layout metadata for the homepage only
+ */
+export const metadata: Metadata = {
+  title: "NextLetter – Lettre recommandée en ligne en Suisse",
+  description: "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "NextLetter – Lettre recommandée en ligne en Suisse",
+    description: "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
+    url: "https://www.nextletter.ch",
+  },
+}
+
+/**
+ * DEV VERIFICATION COMMANDS:
+ * curl -I https://www.nextletter.ch
+ * curl -I https://www.nextletter.ch/sitemap.xml
+ * curl -I https://www.nextletter.ch/robots.txt
+ */
 
 export default function Home() {
   return (
@@ -21,7 +47,12 @@ export default function Home() {
       
       <Header />
       <main className="relative z-10">
+        {/* Hero contains the main H1 */}
         <Hero />
+        
+        {/* SEO Content Block - SSR text for crawlers + internal links to /modeles */}
+        <SeoHomepageContent />
+        
         <Features />
         <HowItWorks />
         <ComparisonSection />

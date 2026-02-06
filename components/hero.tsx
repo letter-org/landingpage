@@ -137,7 +137,7 @@ export function Hero() {
 
       <div ref={heroRef} className="relative max-w-7xl mx-auto z-10">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Badge with premium animation - simplified */}
+          {/* Badge with premium animation - simplified + Swiss Made */}
           <div 
             className={`inline-flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm border border-border rounded-full mb-8 shadow-lg transition-all duration-700 hover:shadow-xl hover:border-brand/30 cursor-default ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
@@ -149,22 +149,28 @@ export function Hero() {
             <span className="text-sm font-medium text-foreground">Infrastructure sécurisée</span>
             <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
             <span className="text-sm font-medium text-foreground">Disponible 24/7</span>
+            <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
+            {/* Swiss Made badge for trust */}
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded-full">
+              <span className="text-xs">🇨🇭</span>
+              <span className="text-xs font-semibold text-red-600">Swiss Made</span>
+            </span>
           </div>
 
-          {/* Main headline - simple and clear */}
+          {/* Main headline - SEO optimized H1 */}
           <h1 
             className={`text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight text-balance transition-all duration-700 delay-100 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Envoyez vos lettres recommandées,{" "}
+            Envoyer une lettre recommandée{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent animate-gradient-x">
-                sans vous déplacer
+                en ligne en Suisse
               </span>
               {/* Glow effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent blur-sm opacity-50 animate-pulse" aria-hidden="true">
-                sans vous déplacer
+                en ligne en Suisse
               </span>
             </span>
           </h1>
