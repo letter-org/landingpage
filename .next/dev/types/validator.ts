@@ -74,6 +74,105 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/modeles/lettre-demission-suisse/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-demission-suisse">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-demission-suisse/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-motivation-suisse/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-motivation-suisse">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-motivation-suisse/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-abonnement-fitness/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-abonnement-fitness">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-abonnement-fitness/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-abonnement-mobile/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-abonnement-mobile">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-abonnement-mobile/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-assurance-auto/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-assurance-auto">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-assurance-auto/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-assurance-complementaire/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-assurance-complementaire">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-assurance-complementaire/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-assurance-maladie-suisse/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-assurance-maladie-suisse">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-assurance-maladie-suisse/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-assurance-menage-rc/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-assurance-menage-rc">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-assurance-menage-rc/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-bail-bailleur-suisse/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-bail-bailleur-suisse">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-bail-bailleur-suisse/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-bail-locataire-suisse/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-bail-locataire-suisse">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-bail-locataire-suisse/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/modeles/lettre-resiliation-internet-tv/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/modeles/lettre-resiliation-internet-tv">> = Specific
+  const handler = {} as typeof import("../../../app/modeles/lettre-resiliation-internet-tv/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/">> = Specific

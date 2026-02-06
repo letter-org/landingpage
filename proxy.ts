@@ -1,7 +1,18 @@
 import { updateSession } from "@/lib/supabase/proxy";
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function proxy(request: NextRequest) {
+  const hostname = request.headers.get('host') || ''
+  
+  // SEO: Redirect non-www to www (301 permanent) - Production only
+  if (hostname === 'nextletter.ch') {
+    const url = request.nextUrl.clone()
+    url.host = 'www.nextletter.ch'
+    url.protocol = 'https'
+    return NextResponse.redirect(url, 301)
+  }
+  
+  // Continue with Supabase session handling
   return await updateSession(request);
 }
 
