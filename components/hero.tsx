@@ -148,12 +148,13 @@ export function Hero() {
             <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
             <span className="text-sm font-medium text-foreground">Infrastructure sécurisée</span>
             <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-green-500" />
             <span className="text-sm font-medium text-foreground">Disponible 24/7</span>
             <span className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
-            {/* Swiss Made badge for trust */}
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded-full">
-              <span className="text-xs">🇨🇭</span>
-              <span className="text-xs font-semibold text-red-600">Swiss Made</span>
+            {/* Swiss Made badge - black text, red flag only */}
+            <span className="inline-flex items-center gap-1.5">
+              <span className="text-red-600 text-sm">🇨🇭</span>
+              <span className="text-sm font-semibold text-foreground">Swiss Made</span>
             </span>
           </div>
 

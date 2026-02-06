@@ -50,13 +50,21 @@ export default function Home() {
         {/* Hero contains the main H1 */}
         <Hero />
         
-        {/* SEO Content Block - SSR text for crawlers + internal links to /modeles */}
+        {/* Comment ça marche - with SEO text block */}
+        <HowItWorks />
+        
+        {/* SEO Content: Modèles de lettres les plus utilisés */}
         <SeoHomepageContent />
         
-        <Features />
-        <HowItWorks />
+        {/* Comparaison: Courrier standard vs NextLetter */}
         <ComparisonSection />
+        
+        {/* Fonctionnalités - moved between ComparisonSection and TargetAudience */}
+        <Features />
+        
+        {/* Pour qui */}
         <TargetAudience />
+        
         <ImpactSection />
         <Security />
         <Pricing />
