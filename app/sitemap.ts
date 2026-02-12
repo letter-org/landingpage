@@ -12,36 +12,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
   return [
+    // Page d'accueil — priorité maximale
     {
       url: baseUrl,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1,
     },
-    {
-      url: `${baseUrl}/cgu`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/politique-confidentialite`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/cookies`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/mentions-legales`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
+    // Pages légales — exclues du sitemap car noindex
+    // Google n'a pas besoin de les trouver via le sitemap,
+    // elles restent accessibles via les liens dans le footer
     // Pages de modèles de lettres de résiliation
     {
       url: `${baseUrl}/modeles/lettre-resiliation-bail-locataire-suisse`,

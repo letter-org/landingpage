@@ -1,8 +1,15 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Politique des cookies - NextLetter",
+  title: "Politique des cookies",
   description: "Politique des cookies de NextLetter concernant l'utilisation des cookies et technologies similaires.",
+  alternates: {
+    canonical: "/cookies",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function CookiesPage() {

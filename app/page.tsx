@@ -20,15 +20,29 @@ import type { Metadata } from "next"
  * This overrides the default layout metadata for the homepage only
  */
 export const metadata: Metadata = {
-  title: "NextLetter – Lettre recommandée en ligne en Suisse",
-  description: "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
+  // { absolute } empêche le template "%s | NextLetter" du layout de s'appliquer
+  // Sans ça, le titre devenait "NextLetter – ... | NextLetter" (doublé)
+  title: {
+    absolute: "NextLetter – Lettre recommandée en ligne en Suisse",
+  },
+  description: "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi en temps réel, modèles de lettres prêts à l'emploi. Simple, rapide et conforme.",
   alternates: {
     canonical: "/",
+    languages: {
+      "fr-CH": "/",
+    },
   },
   openGraph: {
+    type: "website",
+    locale: "fr_CH",
     title: "NextLetter – Lettre recommandée en ligne en Suisse",
     description: "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
     url: "https://www.nextletter.ch",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NextLetter – Lettre recommandée en ligne en Suisse",
+    description: "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
   },
 }
 

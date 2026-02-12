@@ -1,8 +1,15 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Conditions d'utilisation - NextLetter",
-  description: "Conditions d'utilisation de NextLetter, plateforme d'envoi de lettres recommandées en ligne.",
+  title: "Conditions d'utilisation",
+  description: "Conditions d'utilisation de NextLetter, plateforme d'envoi de lettres recommandées en ligne en Suisse.",
+  alternates: {
+    canonical: "/cgu",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function CGUPage() {

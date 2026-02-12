@@ -1,8 +1,16 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Informations légales - NextLetter",
-  description: "Informations légales de NextLetter, plateforme d'envoi de lettres recommandées en ligne.",
+  title: "Informations légales",
+  description: "Informations légales de NextLetter, plateforme d'envoi de lettres recommandées en ligne en Suisse.",
+  alternates: {
+    canonical: "/mentions-legales",
+  },
+  // noindex pour éviter que cette page concurrence la homepage sur la requête "nextletter"
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function MentionsLegalesPage() {

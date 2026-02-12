@@ -54,12 +54,10 @@ export const metadata: Metadata = {
   authors: [{ name: "NextLetter" }],
   creator: "NextLetter",
   publisher: "NextLetter",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "fr-CH": "/",
-    },
-  },
+  // IMPORTANT : le canonical est défini dans chaque page individuellement
+  // pour éviter que toutes les pages enfants héritent canonical: "/"
+  // ce qui causait des problèmes d'indexation (mentions-legales, cgu, etc.
+  // pointaient toutes vers "/" au lieu de leur propre URL)
   openGraph: {
     type: "website",
     locale: "fr_CH",

@@ -1,8 +1,15 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité - NextLetter",
+  title: "Politique de confidentialité",
   description: "Politique de confidentialité de NextLetter concernant le traitement des données personnelles.",
+  alternates: {
+    canonical: "/politique-confidentialite",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function PolitiqueConfidentialitePage() {
