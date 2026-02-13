@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/how-it-works"
 import { ComparisonSection } from "@/components/comparison-section"
 import { SwissAdvantage } from "@/components/swiss-advantage"
 import { TargetAudience } from "@/components/target-audience"
+import { CommunesCtaBanner } from "@/components/communes-cta-banner"
 import { ImpactSection } from "@/components/impact-section"
 import { Security } from "@/components/security"
 import { Pricing } from "@/components/pricing"
@@ -78,6 +79,9 @@ export default function Home() {
         
         {/* Pour qui */}
         <TargetAudience />
+
+        {/* CTA collectivités publiques */}
+        <CommunesCtaBanner />
         
         <ImpactSection />
         <Security />

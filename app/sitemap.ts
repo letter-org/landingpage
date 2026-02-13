@@ -19,6 +19,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    // Page collectivités / communes suisses — SEO important
+    {
+      url: `${baseUrl}/communes`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // Pages légales — exclues du sitemap car noindex
     // Google n'a pas besoin de les trouver via le sitemap,
     // elles restent accessibles via les liens dans le footer
