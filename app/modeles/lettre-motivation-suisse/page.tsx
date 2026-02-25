@@ -7,13 +7,13 @@ import Link from "next/link"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
 
 export const metadata: Metadata = {
-  title: "Lettre de motivation Suisse – Candidature + PDF | NextLetter",
+  title: "Lettre de motivation Suisse – Candidature + PDF",
   description: "Créez une lettre de motivation en Suisse, personnalisée selon le poste. Export PDF et envoi simple.",
   alternates: {
     canonical: "/modeles/lettre-motivation-suisse",
   },
   openGraph: {
-    title: "Lettre de motivation Suisse – Candidature + PDF | NextLetter",
+    title: "Lettre de motivation Suisse – Candidature + PDF",
     description: "Créez une lettre de motivation en Suisse, personnalisée selon le poste. Export PDF et envoi simple.",
     url: "/modeles/lettre-motivation-suisse",
   },

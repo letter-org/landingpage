@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: "/modeles/lettre-resiliation-bail-bailleur-suisse",
   },
   openGraph: {
-    title: "Lettre résiliation bail bailleur Suisse – modèle conforme & envoi recommandé | NextLetter",
+    title: "Lettre résiliation bail bailleur Suisse – modèle conforme & envoi recommandé",
     description: "Générez et envoyez votre lettre de résiliation de bail en tant que propriétaire en Suisse. Modèle conforme, envoi recommandé avec preuve.",
     url: "/modeles/lettre-resiliation-bail-bailleur-suisse",
   },

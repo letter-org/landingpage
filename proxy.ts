@@ -9,15 +9,17 @@ import { type NextRequest, NextResponse } from "next/server";
  * Corrige les erreurs "Erreur liée à des redirections" dans Google Search Console
  */
 export async function proxy(request: NextRequest) {
-  const hostname = request.headers.get('host') || ''
+  // Prioritize forwarded host (CDN/proxy), fallback to host.
+  const forwardedHost = request.headers.get("x-forwarded-host")
+  const rawHost = (forwardedHost || request.headers.get("host") || "").split(",")[0].trim().toLowerCase()
   const { pathname, search } = request.nextUrl
 
   // SEO: Redirect non-www to www (301 permanent)
   // Construction explicite de l'URL pour éviter les problèmes avec nextUrl.clone()
   // qui peut contenir des URLs internes Vercel dans certains contextes
   if (
-    hostname === 'nextletter.ch' ||
-    hostname.startsWith('nextletter.ch:')
+    rawHost === "nextletter.ch" ||
+    rawHost.startsWith("nextletter.ch:")
   ) {
     const redirectUrl = new URL(`https://www.nextletter.ch${pathname}${search}`)
     return NextResponse.redirect(redirectUrl, 301)

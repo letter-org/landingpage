@@ -39,12 +39,30 @@ export const metadata: Metadata = {
     description:
       "Digitalisez vos courriers communaux, réduisez votre empreinte carbone et mesurez votre impact RSE avec NextLetter.",
     url: "https://www.nextletter.ch/communes",
+    images: [
+      {
+        url: "https://www.nextletter.ch/brand/nextletter-logo.svg",
+        alt: "NextLetter collectivités publiques",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "NextLetter – Solution collectivités & communes suisses",
     description:
       "Digitalisez vos courriers communaux, réduisez votre empreinte carbone et mesurez votre impact RSE avec NextLetter.",
+    images: ["https://www.nextletter.ch/brand/nextletter-logo.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 }
 

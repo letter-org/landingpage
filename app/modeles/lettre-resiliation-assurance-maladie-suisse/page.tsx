@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: "/modeles/lettre-resiliation-assurance-maladie-suisse",
   },
   openGraph: {
-    title: "Lettre résiliation assurance maladie Suisse – modèle conforme & envoi recommandé | NextLetter",
+    title: "Lettre résiliation assurance maladie Suisse – modèle conforme & envoi recommandé",
     description: "Générez et envoyez votre lettre de résiliation d'assurance maladie en Suisse. Modèle conforme LAMal, envoi recommandé avec preuve.",
     url: "/modeles/lettre-resiliation-assurance-maladie-suisse",
   },

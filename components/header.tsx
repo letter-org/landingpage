@@ -24,6 +24,7 @@ export function Header() {
     { label: 'Fonctionnalites', href: '#features-section' },
     { label: 'Tarifs', href: '#pricing-section' },
     { label: 'FAQ', href: '#faq-section' },
+    { label: 'Collectivites', href: '/communes' },
   ]
 
   return (

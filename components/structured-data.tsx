@@ -13,14 +13,9 @@ export function StructuredData() {
       "price": "0",
       "priceCurrency": "CHF",
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "500",
-    },
     "description": "Solution d'envoi de lettres recommandées en ligne en Suisse pour particuliers, entreprises et institutions. Envoi courrier officiel en ligne avec suivi en temps réel.",
     "url": baseUrl,
-    "screenshot": `${baseUrl}/images/image.png`,
+    "screenshot": `${baseUrl}/brand/nextletter-logo.svg`,
     "featureList": [
       "Envoi de lettres recommandées en ligne en Suisse",
       "Suivi en temps réel",
@@ -67,6 +62,23 @@ export function StructuredData() {
     }
   }
 
+  const webPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "NextLetter – Lettre recommandée en ligne en Suisse",
+    "url": baseUrl,
+    "inLanguage": "fr-CH",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "NextLetter",
+      "url": baseUrl,
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Lettre recommandée en ligne en Suisse",
+    },
+  }
+
   return (
     <>
       <script
@@ -80,6 +92,10 @@ export function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplication) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }}
       />
     </>
   )

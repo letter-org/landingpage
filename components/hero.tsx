@@ -164,7 +164,7 @@ export function Hero() {
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Envoyer une lettre recommandée{" "}
+            Envoyez vos lettres recommandées{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent animate-gradient-x">
                 en ligne en Suisse

@@ -16,7 +16,12 @@ export const appUrls = {
  * Add UTM parameters to a URL
  */
 export const addUtmParams = (url: string, source: string = 'landing', medium: string = 'cta', campaign: string = 'nextletter') => {
-  const separator = url.includes('?') ? '&' : '?'
-  return `${url}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
+  // SEO: avoid linking to app root if it redirects.
+  // When url points to APP_URL root, switch to /signup directly.
+  const normalizedBase = APP_URL.replace(/\/+$/, "")
+  const normalizedInput = url.replace(/\/+$/, "")
+  const finalUrl = normalizedInput === normalizedBase ? `${normalizedBase}/signup` : url
+  const separator = finalUrl.includes("?") ? "&" : "?"
+  return `${finalUrl}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
 }
 

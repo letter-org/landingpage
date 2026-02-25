@@ -9,8 +9,8 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { BackgroundMountains } from "./background-mountains"
 
 const trustLogos = [
-  { src: "/logos/ahgv.png", alt: "AHGV", width: 330, height: 83, sizeClass: "h-6 sm:h-8", extraClass: "saturate-200 brightness-90" },
-  { src: "/logos/svr-vins.png", alt: "SVR Vins", width: 397, height: 127, sizeClass: "h-10 sm:h-12", extraClass: "" },
+  { src: "/logos/ahgv.png", alt: "AHGV", width: 330, height: 83, sizeClass: "h-6 sm:h-8", extraClass: "saturate-200 brightness-90", href: "https://www.ahgv.ch/" },
+  { src: "/logos/svr-vins.png", alt: "SVR Vins", width: 397, height: 127, sizeClass: "h-10 sm:h-12", extraClass: "", href: "https://svrvins.ch/" },
   { src: "/logos/leanza.png", alt: "Leanza MGK Sàrl", width: 776, height: 181, sizeClass: "h-9 sm:h-11", extraClass: "" },
 ]
 
@@ -132,13 +132,25 @@ export function TargetAudience() {
                       key={`${setIdx}-${i}`}
                       className="flex-shrink-0 flex items-end justify-center h-14 sm:h-16 mx-10 sm:mx-16"
                     >
-                      <Image
-                        src={logo.src}
-                        alt={logo.alt}
-                        width={logo.width}
-                        height={logo.height}
-                        className={`object-contain w-auto ${logo.sizeClass} ${logo.extraClass}`}
-                      />
+                      {logo.href ? (
+                        <a href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={logo.alt}>
+                          <Image
+                            src={logo.src}
+                            alt={logo.alt}
+                            width={logo.width}
+                            height={logo.height}
+                            className={`object-contain w-auto ${logo.sizeClass} ${logo.extraClass}`}
+                          />
+                        </a>
+                      ) : (
+                        <Image
+                          src={logo.src}
+                          alt={logo.alt}
+                          width={logo.width}
+                          height={logo.height}
+                          className={`object-contain w-auto ${logo.sizeClass} ${logo.extraClass}`}
+                        />
+                      )}
                     </div>
                   ))
                 )}

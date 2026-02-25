@@ -68,9 +68,7 @@ export const metadata: Metadata = {
       "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
     images: [
       {
-        url: `${siteUrl}/images/og-image.png`,
-        width: 1200,
-        height: 630,
+        url: `${siteUrl}/brand/nextletter-logo.svg`,
         alt: "NextLetter – Envoyer une lettre recommandée en ligne en Suisse",
       },
     ],
@@ -80,7 +78,7 @@ export const metadata: Metadata = {
     title: "NextLetter – Lettre recommandée en ligne en Suisse",
     description:
       "Envoyez vos lettres recommandées en ligne en Suisse, sans déplacement. Preuve d'envoi, suivi, modèles prêts à l'emploi.",
-    images: [`${siteUrl}/images/og-image.png`],
+    images: [`${siteUrl}/brand/nextletter-logo.svg`],
   },
   robots: {
     index: true,
