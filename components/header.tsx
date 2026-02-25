@@ -4,12 +4,22 @@ import { Logo } from "@/components/logo"
 import { useState, useEffect } from "react"
 import { Menu, X, Sparkles, ArrowRight, ExternalLink } from "lucide-react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
+import { usePathname } from "next/navigation"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const pathname = usePathname()
+
+  const getSectionHref = (sectionId: string) => {
+    // Depuis une page interne (ex: /communes), renvoyer vers la homepage + ancre.
+    if (pathname !== "/") {
+      return `/#${sectionId}`
+    }
+    return `#${sectionId}`
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -21,9 +31,9 @@ export function Header() {
   }, [])
 
   const navLinks = [
-    { label: 'Fonctionnalites', href: '#features-section' },
-    { label: 'Tarifs', href: '#pricing-section' },
-    { label: 'FAQ', href: '#faq-section' },
+    { label: 'Fonctionnalites', href: getSectionHref("features-section") },
+    { label: 'Tarifs', href: getSectionHref("pricing-section") },
+    { label: 'FAQ', href: getSectionHref("faq-section") },
     { label: 'Collectivites', href: '/communes' },
   ]
 
