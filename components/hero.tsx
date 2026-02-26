@@ -192,7 +192,7 @@ export function Hero() {
             }`}
           >
             <a
-              href={addUtmParams(appUrls.base, 'landing', 'cta', 'nextletter')}
+              href={addUtmParams(appUrls.login, 'landing', 'cta', 'nextletter')}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative w-full sm:w-auto px-10 py-4 bg-foreground text-background rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2 font-semibold overflow-hidden"
@@ -430,7 +430,7 @@ export function Hero() {
             Vos preuves d'envoi restent accessibles dans votre dashboard sécurisé.
           </p>
           <a
-            href={addUtmParams(appUrls.base, 'landing', 'cta', 'resiliation')}
+            href={addUtmParams(appUrls.login, 'landing', 'cta', 'resiliation')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-opacity duration-300 shadow-lg hover:shadow-xl"
