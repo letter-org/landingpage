@@ -7,7 +7,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.nextletter.ch'
 
 export const appUrls = {
   base: APP_URL,
-  signup: `${APP_URL}/signup`,
+  signup: `${APP_URL}/login`,
   login: `${APP_URL}/login`,
   dashboard: `${APP_URL}/dashboard`,
 } as const
