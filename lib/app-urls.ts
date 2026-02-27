@@ -16,11 +16,14 @@ export const appUrls = {
  * Add UTM parameters to a URL
  */
 export const addUtmParams = (url: string, source: string = 'landing', medium: string = 'cta', campaign: string = 'nextletter') => {
-  // SEO: avoid linking to app root if it redirects.
-  // When url points to APP_URL root, switch to /signup directly.
+  // If CTA points to app root, keep it clean (no /signup, no UTM).
+  // Requested for direct redirection to app.nextletter.ch.
   const normalizedBase = APP_URL.replace(/\/+$/, "")
   const normalizedInput = url.replace(/\/+$/, "")
-  const finalUrl = normalizedInput === normalizedBase ? `${normalizedBase}/signup` : url
+  if (normalizedInput === normalizedBase) {
+    return normalizedBase
+  }
+  const finalUrl = url
   const separator = finalUrl.includes("?") ? "&" : "?"
   return `${finalUrl}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
 }
