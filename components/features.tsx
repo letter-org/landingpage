@@ -64,6 +64,16 @@ const allLetterModels = [
   { title: "Résiliation abonnement fitness", path: "/modeles/lettre-resiliation-abonnement-fitness", category: "Loisirs" },
   { title: "Lettre de démission", path: "/modeles/lettre-demission-suisse", category: "Travail" },
   { title: "Lettre de motivation", path: "/modeles/lettre-motivation-suisse", category: "Travail" },
+  { title: "Lettre motivation étudiant", path: "/modeles/lettre-motivation-etudiant-suisse", category: "Travail" },
+  { title: "Lettre motivation job étudiant", path: "/modeles/lettre-motivation-job-etudiant-suisse", category: "Travail" },
+  { title: "Résiliation assurance", path: "/modeles/lettre-resiliation-assurance-suisse", category: "Assurance" },
+  { title: "Résiliation abonnement", path: "/modeles/lettre-resiliation-abonnement-suisse", category: "Télécom" },
+  { title: "Résiliation bail", path: "/modeles/lettre-resiliation-bail-suisse", category: "Logement" },
+  { title: "Contestation facture", path: "/modeles/lettre-contestation-facture-suisse", category: "Consommateur" },
+  { title: "Demande remboursement", path: "/modeles/lettre-demande-remboursement-suisse", category: "Consommateur" },
+  { title: "Réclamation consommateur", path: "/modeles/lettre-reclamation-consommateur-suisse", category: "Consommateur" },
+  { title: "Changement d'adresse postal", path: "/modeles/lettre-demenagement-postal-suisse", category: "Administratif" },
+  { title: "Opposition prélèvement", path: "/modeles/lettre-opposition-prelevement-suisse", category: "Consommateur" },
 ]
 
 // Liste des modèles de lettres disponibles (sélection réduite pour meilleure lisibilité)

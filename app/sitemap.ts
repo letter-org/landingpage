@@ -96,6 +96,67 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Nouvelles pages SEO (dizaine de lettres)
+    {
+      url: `${baseUrl}/modeles/lettre-motivation-etudiant-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-motivation-job-etudiant-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-resiliation-assurance-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-resiliation-abonnement-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-resiliation-bail-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-contestation-facture-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-demande-remboursement-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-reclamation-consommateur-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-demenagement-postal-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/modeles/lettre-opposition-prelevement-suisse`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ]
 }
 
