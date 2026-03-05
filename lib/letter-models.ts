@@ -1,10 +1,17 @@
 /**
  * Configuration centralisée des pages de modèles de lettres NextLetter
- * Utilisée pour le maillage interne SEO et la page hub /modeles
+ * 100+ pages SEO – Architecture scalable
  *
- * @see components/letter-model-template.tsx - Template de page
- * @see app/modeles/page.tsx - Page hub liste des modèles
+ * @see components/letter-model-template.tsx
+ * @see app/modeles/[slug]/page.tsx
+ * @see lib/seo-config.ts
  */
+
+import {
+  ASSURANCE_SANTE_BRANDS,
+  TELECOM_BRANDS,
+  UTILITY_TYPES,
+} from "./seo-config"
 
 export interface LetterModelLink {
   title: string
@@ -13,7 +20,16 @@ export interface LetterModelLink {
   category: LetterModelCategory
 }
 
-export type LetterModelCategory = "resiliation" | "motivation" | "reclamations" | "administration" | "logement" | "travail"
+export type LetterModelCategory =
+  | "resiliation"
+  | "motivation"
+  | "reclamations"
+  | "administration"
+  | "logement"
+  | "travail"
+  | "assurance-marque"
+  | "telecom-marque"
+  | "utilities"
 
 export interface LetterModelCategoryConfig {
   id: LetterModelCategory
@@ -23,6 +39,9 @@ export interface LetterModelCategoryConfig {
 
 export const LETTER_CATEGORIES: LetterModelCategoryConfig[] = [
   { id: "resiliation", title: "Résiliation", description: "Résiliez vos assurances, abonnements et baux en Suisse" },
+  { id: "assurance-marque", title: "Résiliation par assureur", description: "Résiliez votre assurance maladie chez CSS, Helsana, AXA, etc." },
+  { id: "telecom-marque", title: "Résiliation par opérateur", description: "Résiliez chez Swisscom, Sunrise, Salt, etc." },
+  { id: "utilities", title: "Énergie et utilités", description: "Résiliez électricité, gaz, eau, chauffage" },
   { id: "motivation", title: "Motivation", description: "Lettres de motivation pour candidatures et formations" },
   { id: "logement", title: "Logement", description: "Bail, loyer, voisinage et déménagement" },
   { id: "travail", title: "Travail", description: "Démission, certificat, stage et apprentissage" },
@@ -30,8 +49,8 @@ export const LETTER_CATEGORIES: LetterModelCategoryConfig[] = [
   { id: "administration", title: "Administration", description: "Poursuites, amendes, dettes et délais" },
 ]
 
-/** Tous les modèles disponibles, organisés par catégorie */
-export const ALL_LETTER_MODELS: LetterModelLink[] = [
+/** Modèles de base (existants + utilités) */
+const BASE_MODELS: LetterModelLink[] = [
   // Résiliation
   { title: "Résiliation assurance maladie", path: "/modeles/lettre-resiliation-assurance-maladie-suisse", subtitle: "Modèle conforme LAMal", category: "resiliation" },
   { title: "Résiliation assurance voiture", path: "/modeles/lettre-resiliation-assurance-voiture-suisse", subtitle: "Assurance auto", category: "resiliation" },
@@ -75,7 +94,41 @@ export const ALL_LETTER_MODELS: LetterModelLink[] = [
   { title: "Demande arrangement dette", path: "/modeles/lettre-demande-arrangement-dette-suisse", subtitle: "Plan d'apurement", category: "administration" },
 ]
 
-/** Modèles par catégorie pour la page hub */
+/** Modèles assurance par marque (générés) */
+const ASSURANCE_BRAND_MODELS: LetterModelLink[] = ASSURANCE_SANTE_BRANDS.map(
+  (brand) => ({
+    title: `Résiliation assurance ${brand}`,
+    path: `/modeles/lettre-resiliation-assurance-${brand.toLowerCase()}-suisse`,
+    subtitle: `Modèle pour ${brand}`,
+    category: "assurance-marque" as LetterModelCategory,
+  })
+)
+
+/** Modèles telecom par marque (générés) */
+const TELECOM_BRAND_MODELS: LetterModelLink[] = TELECOM_BRANDS.map((brand) => ({
+  title: `Résiliation ${brand}`,
+  path: `/modeles/lettre-resiliation-${brand.toLowerCase()}-suisse`,
+  subtitle: `Modèle pour ${brand}`,
+  category: "telecom-marque" as LetterModelCategory,
+}))
+
+/** Modèles utilités (électricité, gaz, eau, etc.) */
+const UTILITY_MODELS: LetterModelLink[] = UTILITY_TYPES.map((u) => ({
+  title: `Résiliation ${u.title}`,
+  path: `/modeles/lettre-resiliation-${u.slug}-suisse`,
+  subtitle: `Fournisseur ${u.title}`,
+  category: "utilities" as LetterModelCategory,
+}))
+
+/** Tous les modèles – 100+ pages */
+export const ALL_LETTER_MODELS: LetterModelLink[] = [
+  ...BASE_MODELS,
+  ...ASSURANCE_BRAND_MODELS,
+  ...TELECOM_BRAND_MODELS,
+  ...UTILITY_MODELS,
+]
+
+/** Modèles par catégorie */
 export function getModelsByCategory(): Record<LetterModelCategory, LetterModelLink[]> {
   const byCategory = {} as Record<LetterModelCategory, LetterModelLink[]>
   for (const cat of LETTER_CATEGORIES) {
@@ -84,7 +137,15 @@ export function getModelsByCategory(): Record<LetterModelCategory, LetterModelLi
   return byCategory
 }
 
-/** Retourne les modèles à afficher en excluant le chemin actuel (max 6) */
-export function getOtherModels(currentPath: string, limit = 6): LetterModelLink[] {
-  return ALL_LETTER_MODELS.filter((m) => m.path !== currentPath).slice(0, limit)
+/** Modèles liés (6 max) – priorité à la même catégorie */
+export function getRelatedModels(currentPath: string, limit = 6): LetterModelLink[] {
+  const current = ALL_LETTER_MODELS.find((m) => m.path === currentPath)
+  const others = ALL_LETTER_MODELS.filter((m) => m.path !== currentPath)
+  if (!current) return others.slice(0, limit)
+  const sameCategory = others.filter((m) => m.category === current.category)
+  const otherCategory = others.filter((m) => m.category !== current.category)
+  return [...sameCategory, ...otherCategory].slice(0, limit)
 }
+
+/** @deprecated Utiliser getRelatedModels */
+export const getOtherModels = getRelatedModels

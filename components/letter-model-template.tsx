@@ -22,7 +22,8 @@ import { ArrowRight, FileText, CheckCircle, Clock } from "lucide-react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import Link from "next/link"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
-import { getOtherModels } from "@/lib/letter-models"
+import { getRelatedModels, getOtherModels } from "@/lib/letter-models"
+import { getRelatedGuides } from "@/lib/guides"
 
 export interface FaqItem {
   question: string
@@ -97,7 +98,8 @@ export function LetterModelTemplate({
   canonicalPath,
   excludeFromOtherModels,
 }: LetterModelTemplateProps) {
-  const otherModels = getOtherModels(excludeFromOtherModels || canonicalPath)
+  const relatedModels = getRelatedModels(excludeFromOtherModels || canonicalPath, 6)
+  const relatedGuides = getRelatedGuides(excludeFromOtherModels || canonicalPath, 2)
 
   return (
     <>
@@ -219,7 +221,7 @@ export function LetterModelTemplate({
                     <ArrowRight className="w-5 h-5" />
                   </a>
                   <Link
-                    href={ctaSecondaryHref || otherModels[0]?.path || "/modeles/lettre-demission-suisse"}
+                    href={ctaSecondaryHref || relatedModels[0]?.path || "/modeles"}
                     className="inline-flex items-center gap-2 px-6 py-4 bg-card border border-border text-foreground rounded-xl font-semibold hover:bg-secondary transition-colors duration-300"
                   >
                     Voir d'autres modèles de lettres
@@ -229,11 +231,28 @@ export function LetterModelTemplate({
               </div>
             </section>
 
-            {/* Autres modèles */}
+            {/* Guides utiles + Autres modèles */}
             <section className="mb-12">
+              {relatedGuides.length > 0 && (
+                <>
+                  <h2 className="text-2xl font-semibold text-foreground mb-4">Guides utiles</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    {relatedGuides.map((guide) => (
+                      <Link
+                        key={guide.path}
+                        href={guide.path}
+                        className="bg-card border border-border rounded-lg p-4 hover:border-brand/40 transition-colors"
+                      >
+                        <h3 className="font-semibold text-foreground mb-2">{guide.title}</h3>
+                        <p className="text-sm text-muted-foreground">{guide.description}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
               <h2 className="text-2xl font-semibold text-foreground mb-4">Autres modèles de lettres</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {otherModels.map((model) => (
+                {relatedModels.map((model) => (
                   <Link
                     key={model.path}
                     href={model.path}
@@ -244,6 +263,13 @@ export function LetterModelTemplate({
                   </Link>
                 ))}
               </div>
+              <Link
+                href="/modeles"
+                className="mt-4 inline-flex items-center gap-2 text-brand font-semibold hover:underline"
+              >
+                Voir tous les modèles
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </section>
           </article>
         </main>
