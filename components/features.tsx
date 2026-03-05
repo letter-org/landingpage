@@ -5,6 +5,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useEffect, useRef } from "react"
 import { BackgroundMountains } from "./background-mountains"
 import Link from "next/link"
+import { ALL_LETTER_MODELS, LETTER_CATEGORIES } from "@/lib/letter-models"
 
 const features = [
   {
@@ -51,30 +52,16 @@ const features = [
   },
 ]
 
-// Liste complète de tous les modèles disponibles
-const allLetterModels = [
-  { title: "Résiliation bail locataire", path: "/modeles/lettre-resiliation-bail-locataire-suisse", category: "Logement" },
-  { title: "Résiliation bail bailleur", path: "/modeles/lettre-resiliation-bail-bailleur-suisse", category: "Logement" },
-  { title: "Résiliation assurance maladie", path: "/modeles/lettre-resiliation-assurance-maladie-suisse", category: "Assurance" },
-  { title: "Résiliation assurance complémentaire", path: "/modeles/lettre-resiliation-assurance-complementaire", category: "Assurance" },
-  { title: "Résiliation assurance auto", path: "/modeles/lettre-resiliation-assurance-auto", category: "Assurance" },
-  { title: "Résiliation assurance ménage", path: "/modeles/lettre-resiliation-assurance-menage-rc", category: "Assurance" },
-  { title: "Résiliation abonnement mobile", path: "/modeles/lettre-resiliation-abonnement-mobile", category: "Télécom" },
-  { title: "Résiliation internet/TV", path: "/modeles/lettre-resiliation-internet-tv", category: "Télécom" },
-  { title: "Résiliation abonnement fitness", path: "/modeles/lettre-resiliation-abonnement-fitness", category: "Loisirs" },
-  { title: "Lettre de démission", path: "/modeles/lettre-demission-suisse", category: "Travail" },
-  { title: "Lettre de motivation", path: "/modeles/lettre-motivation-suisse", category: "Travail" },
-  { title: "Lettre motivation étudiant", path: "/modeles/lettre-motivation-etudiant-suisse", category: "Travail" },
-  { title: "Lettre motivation job étudiant", path: "/modeles/lettre-motivation-job-etudiant-suisse", category: "Travail" },
-  { title: "Résiliation assurance", path: "/modeles/lettre-resiliation-assurance-suisse", category: "Assurance" },
-  { title: "Résiliation abonnement", path: "/modeles/lettre-resiliation-abonnement-suisse", category: "Télécom" },
-  { title: "Résiliation bail", path: "/modeles/lettre-resiliation-bail-suisse", category: "Logement" },
-  { title: "Contestation facture", path: "/modeles/lettre-contestation-facture-suisse", category: "Consommateur" },
-  { title: "Demande remboursement", path: "/modeles/lettre-demande-remboursement-suisse", category: "Consommateur" },
-  { title: "Réclamation consommateur", path: "/modeles/lettre-reclamation-consommateur-suisse", category: "Consommateur" },
-  { title: "Changement d'adresse postal", path: "/modeles/lettre-demenagement-postal-suisse", category: "Administratif" },
-  { title: "Opposition prélèvement", path: "/modeles/lettre-opposition-prelevement-suisse", category: "Consommateur" },
-]
+// Liste complète de tous les modèles (synchronisée avec lib/letter-models.ts)
+const categoryLabels: Record<string, string> = Object.fromEntries(
+  LETTER_CATEGORIES.map((c) => [c.id, c.title])
+)
+
+const allLetterModels = ALL_LETTER_MODELS.map((m) => ({
+  title: m.title,
+  path: m.path,
+  category: categoryLabels[m.category] || m.category,
+}))
 
 // Liste des modèles de lettres disponibles (sélection réduite pour meilleure lisibilité)
 const letterModels = [

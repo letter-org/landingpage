@@ -31,6 +31,7 @@ export function Header() {
   }, [])
 
   const navLinks = [
+    { label: 'Modèles', href: '/modeles' },
     { label: 'Fonctionnalites', href: getSectionHref("features-section") },
     { label: 'Tarifs', href: getSectionHref("pricing-section") },
     { label: 'FAQ', href: getSectionHref("faq-section") },
