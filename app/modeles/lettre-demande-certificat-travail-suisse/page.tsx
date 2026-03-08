@@ -42,6 +42,7 @@ export default function Page() {
       canonicalPath="/modeles/lettre-demande-certificat-travail-suisse"
       excludeFromOtherModels="/modeles/lettre-demande-certificat-travail-suisse"
       ctaSecondaryHref="/modeles/lettre-demission-suisse"
+      howToName="Demande certificat de travail en Suisse"
     />
   )
 }

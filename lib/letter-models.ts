@@ -81,6 +81,9 @@ const BASE_MODELS: LetterModelLink[] = [
   { title: "Lettre motivation stage", path: "/modeles/lettre-motivation-stage-suisse", subtitle: "Candidature stage", category: "motivation" },
   { title: "Lettre motivation apprentissage", path: "/modeles/lettre-motivation-apprentissage-suisse", subtitle: "Candidature formation", category: "motivation" },
   { title: "Lettre de démission", path: "/modeles/lettre-demission-suisse", subtitle: "Modèle pour démission", category: "travail" },
+  { title: "Lettre licenciement employeur", path: "/modeles/lettre-licenciement-employeur-suisse", subtitle: "Notification licenciement", category: "travail" },
+  { title: "Demande augmentation salaire", path: "/modeles/lettre-demande-augmentation-salaire-suisse", subtitle: "Demande d'augmentation", category: "travail" },
+  { title: "Demande congé", path: "/modeles/lettre-demande-conge-suisse", subtitle: "Demande de congés", category: "travail" },
   { title: "Demande certificat de travail", path: "/modeles/lettre-demande-certificat-travail-suisse", subtitle: "Attestation employeur", category: "travail" },
   // Réclamations
   { title: "Contestation facture", path: "/modeles/lettre-contestation-facture-suisse", subtitle: "Contester une facture", category: "reclamations" },
@@ -89,6 +92,7 @@ const BASE_MODELS: LetterModelLink[] = [
   { title: "Opposition prélèvement", path: "/modeles/lettre-opposition-prelevement-suisse", subtitle: "Annuler mandat LSV", category: "reclamations" },
   // Administration
   { title: "Opposition poursuite", path: "/modeles/lettre-opposition-poursuite-suisse", subtitle: "Contester une poursuite", category: "administration" },
+  { title: "Mainlevée poursuite", path: "/modeles/lettre-mainlevee-poursuite-suisse", subtitle: "Levée de poursuite", category: "administration" },
   { title: "Contestation amende", path: "/modeles/lettre-contestation-amende-suisse", subtitle: "Contester une amende", category: "administration" },
   { title: "Demande délai de paiement", path: "/modeles/lettre-demande-delai-paiement-suisse", subtitle: "Report d'échéance", category: "administration" },
   { title: "Demande arrangement dette", path: "/modeles/lettre-demande-arrangement-dette-suisse", subtitle: "Plan d'apurement", category: "administration" },
@@ -98,7 +102,7 @@ const BASE_MODELS: LetterModelLink[] = [
 const ASSURANCE_BRAND_MODELS: LetterModelLink[] = ASSURANCE_SANTE_BRANDS.map(
   (brand) => ({
     title: `Résiliation assurance ${brand}`,
-    path: `/modeles/lettre-resiliation-assurance-${brand.toLowerCase()}-suisse`,
+    path: `/modeles/lettre-resiliation-assurance-${brand.toLowerCase().replace(/\s+/g, "-")}-suisse`,
     subtitle: `Modèle pour ${brand}`,
     category: "assurance-marque" as LetterModelCategory,
   })
@@ -107,7 +111,7 @@ const ASSURANCE_BRAND_MODELS: LetterModelLink[] = ASSURANCE_SANTE_BRANDS.map(
 /** Modèles telecom par marque (générés) */
 const TELECOM_BRAND_MODELS: LetterModelLink[] = TELECOM_BRANDS.map((brand) => ({
   title: `Résiliation ${brand}`,
-  path: `/modeles/lettre-resiliation-${brand.toLowerCase()}-suisse`,
+  path: `/modeles/lettre-resiliation-${brand.toLowerCase().replace(/\s+/g, "-")}-suisse`,
   subtitle: `Modèle pour ${brand}`,
   category: "telecom-marque" as LetterModelCategory,
 }))

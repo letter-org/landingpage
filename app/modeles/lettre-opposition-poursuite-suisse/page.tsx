@@ -42,6 +42,7 @@ export default function Page() {
       canonicalPath="/modeles/lettre-opposition-poursuite-suisse"
       excludeFromOtherModels="/modeles/lettre-opposition-poursuite-suisse"
       ctaSecondaryHref="/modeles/lettre-demande-delai-paiement-suisse"
+      howToName="Lettre opposition poursuite en Suisse"
     />
   )
 }

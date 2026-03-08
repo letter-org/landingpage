@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next'
 import { ALL_LETTER_MODELS } from '@/lib/letter-models'
 import { ALL_GUIDES } from '@/lib/guides'
+import { RESILIER_BRANDS } from '@/lib/resilier-config'
+import { ADRESSE_RESILIATION_ENTRIES } from '@/lib/adresse-resiliation-config'
+import { QUAND_RESILIATION_ENTRIES } from '@/lib/quand-resilier-config'
 
 /**
  * Sitemap for NextLetter landing page
@@ -36,18 +39,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   const landingEntries = [
-    {
-      url: `${baseUrl}/envoyer-lettre-en-ligne-suisse`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    },
+    { url: `${baseUrl}/envoyer-lettre-en-ligne-suisse`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.9 },
+    { url: `${baseUrl}/comment-faire-opposition-poursuite`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.88 },
+    { url: `${baseUrl}/delai-opposition-poursuite`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.88 },
+    { url: `${baseUrl}/annuler-poursuite-suisse`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.88 },
   ]
+
+  const resilierEntries = RESILIER_BRANDS.map((b) => ({
+    url: `${baseUrl}/resilier-${b.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+
+  const adresseEntries = ADRESSE_RESILIATION_ENTRIES.map((e) => ({
+    url: `${baseUrl}/adresse-resiliation-${e.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+
+  const quandEntries = QUAND_RESILIATION_ENTRIES.map((e) => ({
+    url: `${baseUrl}/quand-resilier-${e.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+
+  const assuranceMaladieEntries = [
+    { url: `${baseUrl}/resilier-assurance-maladie`, priority: 0.9 },
+    { url: `${baseUrl}/changer-assurance-maladie`, priority: 0.88 },
+    { url: `${baseUrl}/delai-resiliation-assurance-maladie`, priority: 0.88 },
+  ].map((e) => ({
+    url: e.url,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: e.priority,
+  }))
 
   return [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/communes`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     ...landingEntries,
+    ...assuranceMaladieEntries,
+    ...resilierEntries,
+    ...adresseEntries,
+    ...quandEntries,
     ...modelEntries,
     ...guideEntries,
   ]

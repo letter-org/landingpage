@@ -22,8 +22,10 @@ import { ArrowRight, FileText, CheckCircle, Clock } from "lucide-react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import Link from "next/link"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
-import { getRelatedModels, getOtherModels } from "@/lib/letter-models"
+import { HowToJsonLd } from "@/components/seo/howto-jsonld"
+import { getRelatedModels } from "@/lib/letter-models"
 import { getRelatedGuides } from "@/lib/guides"
+import { MaillageSeo } from "@/components/maillage-seo"
 
 export interface FaqItem {
   question: string
@@ -77,6 +79,8 @@ export interface LetterModelTemplateProps {
   canonicalPath: string
   /** Modèles à exclure du maillage (généralement la page actuelle) */
   excludeFromOtherModels?: string
+  /** Nom pour le schema HowTo (ex: "Lettre de démission en Suisse") */
+  howToName?: string
 }
 
 export function LetterModelTemplate({
@@ -97,6 +101,7 @@ export function LetterModelTemplate({
   utmCampaign,
   canonicalPath,
   excludeFromOtherModels,
+  howToName,
 }: LetterModelTemplateProps) {
   const relatedModels = getRelatedModels(excludeFromOtherModels || canonicalPath, 6)
   const relatedGuides = getRelatedGuides(excludeFromOtherModels || canonicalPath, 2)
@@ -104,6 +109,15 @@ export function LetterModelTemplate({
   return (
     <>
       <FaqJsonLd id={faqSchemaId} data={faqData} />
+      {howToName && (
+        <HowToJsonLd
+          id={`${faqSchemaId}-howto`}
+          name={howToName}
+          description={`Comment générer et envoyer votre ${h1Title} ${h1Gradient} par courrier recommandé.`}
+          steps={steps.map((s) => ({ name: s.title, text: s.description }))}
+          url={canonicalPath}
+        />
+      )}
       <div className="min-h-screen bg-background">
         <Header />
         <main className="relative z-10">
@@ -186,6 +200,8 @@ export function LetterModelTemplate({
             </section>
 
             {optionalContent}
+
+            <MaillageSeo />
 
             {/* FAQ */}
             <section className="mb-12">
