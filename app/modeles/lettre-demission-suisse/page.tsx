@@ -5,6 +5,7 @@ import { ArrowRight, FileText, CheckCircle, Clock } from "lucide-react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import Link from "next/link"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
+import { ModelInlineGeo } from "@/components/model-inline-geo"
 
 export const metadata: Metadata = {
   title: "Lettre démission Suisse – modèle conforme & envoi recommandé",
@@ -64,6 +65,13 @@ export default function LettreDemissionPage() {
                 </span>
               </h1>
             </div>
+
+            <ModelInlineGeo
+              canonicalPath="/modeles/lettre-demission-suisse"
+              h1Title="Lettre de démission"
+              h1Gradient="en Suisse"
+              introLine="Démissionnez de votre emploi en Suisse en quelques minutes. Votre lettre est générée, personnalisée et envoyée par courrier recommandé avec preuve d'envoi."
+            />
 
             {/* Introduction */}
             <div className="prose prose-lg max-w-none mb-12">

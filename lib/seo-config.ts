@@ -18,7 +18,7 @@ export const ASSURANCE_SANTE_BRANDS = [
 // Opérateurs télécom Suisse
 export const TELECOM_BRANDS = [
   "Swisscom", "Sunrise", "Salt", "Yallo", "M-Budget", "Lycamobile", "Lebara",
-  "Wingo", "Aldi", "Coop", "Migros", "TalkTalk", "Oppo", "Galaxus", "Digitec",
+  "Wingo", "UPC", "Quickline", "Aldi", "Coop", "Migros", "TalkTalk", "Oppo", "Galaxus", "Digitec",
 ]
 
 // Fournisseurs énergie/utilités (Internet déjà dans résiliation)

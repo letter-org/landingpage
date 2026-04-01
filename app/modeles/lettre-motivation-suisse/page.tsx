@@ -5,6 +5,7 @@ import { ArrowRight, FileText, CheckCircle, Clock, Eye } from "lucide-react"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
 import Link from "next/link"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
+import { ModelInlineGeo } from "@/components/model-inline-geo"
 
 export const metadata: Metadata = {
   title: "Lettre de motivation Suisse – Candidature + PDF",
@@ -69,6 +70,13 @@ export default function LettreMotivationPage() {
                 </span>
               </h1>
             </div>
+
+            <ModelInlineGeo
+              canonicalPath="/modeles/lettre-motivation-suisse"
+              h1Title="Lettre de motivation"
+              h1Gradient="en Suisse"
+              introLine="Créez votre lettre de motivation en Suisse en quelques minutes. Votre lettre est générée, personnalisée selon le poste et exportable en PDF."
+            />
 
             {/* Introduction */}
             <div className="prose prose-lg max-w-none mb-12">

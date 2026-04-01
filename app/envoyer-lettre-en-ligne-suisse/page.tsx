@@ -8,6 +8,8 @@ import { ALL_LETTER_MODELS } from "@/lib/letter-models"
 import { ALL_GUIDES } from "@/lib/guides"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
 import Script from "next/script"
+import { H1Whaou } from "@/components/h1-whaou"
+import { CtaWhaou } from "@/components/cta-whaou"
 
 export const metadata: Metadata = {
   title: "Envoyer une lettre en ligne en Suisse – Courrier recommandé sans déplacement",
@@ -89,9 +91,7 @@ export default function EnvoyerLettreEnLigneSuissePage() {
         <Header />
         <main className="relative z-10">
           <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-            <h1 className="text-3xl sm:text-4xl font-semibold mb-6">
-              Envoyer une lettre en ligne en Suisse
-            </h1>
+            <H1Whaou title="Envoyer une lettre en ligne" gradient="en Suisse" />
             <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
               Envoyer une lettre recommandée en Suisse sans vous déplacer ? C'est possible avec NextLetter. 
               Rédigez, personnalisez et envoyez vos courriers officiels en quelques minutes, avec preuve d'envoi et suivi.
@@ -246,22 +246,13 @@ export default function EnvoyerLettreEnLigneSuissePage() {
               </div>
             </section>
 
-            {/* CTA */}
-            <section className="text-center bg-gradient-to-br from-brand/5 to-cyan-500/5 border border-brand/20 rounded-2xl p-8 sm:p-12">
-              <h2 className="text-2xl font-bold mb-4">Prêt à envoyer votre lettre en ligne ?</h2>
-              <p className="text-muted-foreground mb-6">
-                Générez et envoyez votre lettre recommandée en quelques minutes avec NextLetter.
-              </p>
-              <a
-                href={addUtmParams(appUrls.base, "landing", "cta", "envoyer-lettre-en-ligne")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-all"
-              >
-                Générer et envoyer ma lettre
-                <ArrowRight className="w-5 h-5" />
-              </a>
-            </section>
+            <CtaWhaou
+              title="Prêt à envoyer votre lettre en ligne ?"
+              description="Générez et envoyez votre lettre recommandée en quelques minutes avec NextLetter."
+              buttonText="Générer et envoyer ma lettre"
+              href={addUtmParams(appUrls.base, "landing", "cta", "envoyer-lettre-en-ligne")}
+              secondaryLink={{ href: "/modeles", text: "Voir tous les modèles" }}
+            />
           </article>
         </main>
         <Footer />

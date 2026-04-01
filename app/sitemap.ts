@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   const landingEntries = [
+    { url: `${baseUrl}/generateur-lettre-suisse`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.95 },
     { url: `${baseUrl}/envoyer-lettre-en-ligne-suisse`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.9 },
     { url: `${baseUrl}/comment-faire-opposition-poursuite`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.88 },
     { url: `${baseUrl}/delai-opposition-poursuite`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.88 },

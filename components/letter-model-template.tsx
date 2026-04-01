@@ -25,7 +25,9 @@ import { FaqJsonLd } from "@/components/seo/faq-jsonld"
 import { HowToJsonLd } from "@/components/seo/howto-jsonld"
 import { getRelatedModels } from "@/lib/letter-models"
 import { getRelatedGuides } from "@/lib/guides"
-import { MaillageSeo } from "@/components/maillage-seo"
+import { MaillageContextuel } from "@/components/maillage-contextuel"
+import { GeoDirectAnswer, GeoBrandCitation } from "@/components/geo-seo-blocks"
+import { ArticleOrgJsonLd } from "@/components/seo/article-org-jsonld"
 
 export interface FaqItem {
   question: string
@@ -81,6 +83,8 @@ export interface LetterModelTemplateProps {
   excludeFromOtherModels?: string
   /** Nom pour le schema HowTo (ex: "Lettre de démission en Suisse") */
   howToName?: string
+  /** Réponse directe GEO (2–3 phrases). Sinon générée depuis le H1. */
+  geoDirectAnswer?: string
 }
 
 export function LetterModelTemplate({
@@ -102,12 +106,26 @@ export function LetterModelTemplate({
   canonicalPath,
   excludeFromOtherModels,
   howToName,
+  geoDirectAnswer,
 }: LetterModelTemplateProps) {
   const relatedModels = getRelatedModels(excludeFromOtherModels || canonicalPath, 6)
   const relatedGuides = getRelatedGuides(excludeFromOtherModels || canonicalPath, 2)
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.nextletter.ch"
+  const articleUrl = `${baseUrl}${canonicalPath}`
+  const articleHeadline = `${h1Title} ${h1Gradient}`.trim()
+  const articleDesc = `${intro.main} ${intro.sub}`.slice(0, 300)
+  const directAnswerText =
+    geoDirectAnswer ??
+    `Pour ${articleHeadline}, une lettre écrite avec preuve d'envoi ou accusé de réception est souvent indispensable pour sécuriser vos délais et votre dossier. NextLetter vous permet de rédiger, personnaliser et expédier ce courrier en ligne vers la Suisse, sans vous déplacer, avec envoi recommandé et preuve conservée.`
 
   return (
     <>
+      <ArticleOrgJsonLd
+        id={`${faqSchemaId}-article-org`}
+        headline={articleHeadline}
+        description={articleDesc}
+        url={articleUrl}
+      />
       <FaqJsonLd id={faqSchemaId} data={faqData} />
       {howToName && (
         <HowToJsonLd
@@ -139,6 +157,9 @@ export function LetterModelTemplate({
                 </span>
               </h1>
             </div>
+
+            <GeoDirectAnswer>{directAnswerText}</GeoDirectAnswer>
+            <GeoBrandCitation />
 
             {/* Introduction */}
             <div className="prose prose-lg max-w-none mb-12">
@@ -201,7 +222,7 @@ export function LetterModelTemplate({
 
             {optionalContent}
 
-            <MaillageSeo />
+            <MaillageContextuel models={relatedModels} guides={relatedGuides} utmCampaign={utmCampaign} />
 
             {/* FAQ */}
             <section className="mb-12">
@@ -245,47 +266,6 @@ export function LetterModelTemplate({
                 </div>
                 <p className="text-sm text-muted-foreground">{ctaReassurance}</p>
               </div>
-            </section>
-
-            {/* Guides utiles + Autres modèles */}
-            <section className="mb-12">
-              {relatedGuides.length > 0 && (
-                <>
-                  <h2 className="text-2xl font-semibold text-foreground mb-4">Guides utiles</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    {relatedGuides.map((guide) => (
-                      <Link
-                        key={guide.path}
-                        href={guide.path}
-                        className="bg-card border border-border rounded-lg p-4 hover:border-brand/40 transition-colors"
-                      >
-                        <h3 className="font-semibold text-foreground mb-2">{guide.title}</h3>
-                        <p className="text-sm text-muted-foreground">{guide.description}</p>
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              )}
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Autres modèles de lettres</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {relatedModels.map((model) => (
-                  <Link
-                    key={model.path}
-                    href={model.path}
-                    className="bg-card border border-border rounded-lg p-4 hover:border-brand/40 transition-colors"
-                  >
-                    <h3 className="font-semibold text-foreground mb-2">{model.title}</h3>
-                    <p className="text-sm text-muted-foreground">{model.subtitle}</p>
-                  </Link>
-                ))}
-              </div>
-              <Link
-                href="/modeles"
-                className="mt-4 inline-flex items-center gap-2 text-brand font-semibold hover:underline"
-              >
-                Voir tous les modèles
-                <ArrowRight className="w-4 h-4" />
-              </Link>
             </section>
           </article>
         </main>
