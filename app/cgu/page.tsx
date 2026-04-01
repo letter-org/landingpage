@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/cgu",
   },
-  robots: {
-    index: false,
-    follow: true,
-  },
 }
 
 export default function CGUPage() {
@@ -22,7 +18,12 @@ export default function CGUPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Objet</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Les présentes Conditions Générales régissent l'utilisation de la plateforme NextLetter, permettant aux utilisateurs de :
+              Les présentes Conditions Générales régissent l&apos;utilisation de la plateforme NextLetter, éditée par{" "}
+              <strong>LEANZA MGK Sàrl</strong> (mentions légales :{" "}
+              <a href="https://www.nextletter.ch/mentions-legales" className="text-brand hover:underline">
+                https://www.nextletter.ch/mentions-legales
+              </a>
+              ), permettant aux utilisateurs de :
             </p>
             <ul className="list-disc list-inside text-muted-foreground leading-relaxed space-y-2 ml-4">
               <li>générer des courriers à partir de modèles,</li>
@@ -43,7 +44,7 @@ export default function CGUPage() {
               <li>ne fournit aucun conseil juridique,</li>
               <li>ne garantit pas la validité légale universelle d'un courrier,</li>
               <li>ne détient aucun fonds,</li>
-              <li>ne stocke aucune donnée bancaire.</li>
+              <li>ne conserve pas les données complètes de paiement : celles-ci sont traitées par des prestataires de paiement agréés.</li>
             </ul>
           </section>
 
@@ -66,29 +67,35 @@ export default function CGUPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">4. Transmission des courriers</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              L'impression, l'acheminement et la distribution des courriers sont assurés par des prestataires postaux tiers agréés.
+              L&apos;impression, l&apos;acheminement et la distribution des courriers sont assurés par des prestataires postaux tiers.
+              L&apos;utilisateur accepte que l&apos;envoi soit réalisé par des partenaires externes.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              NextLetter agit en tant qu'intermédiaire technique et ne saurait être tenu responsable d'un incident postal indépendant de sa volonté.
+              LEANZA MGK Sàrl agit en tant qu&apos;intermédiaire technique et ne saurait être tenue responsable des délais de livraison,
+              pertes, erreurs d&apos;acheminement ou incidents imputables à ces prestataires.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">5. Preuves et suivi</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Lorsque disponible, NextLetter met à disposition des preuves d'envoi ou de distribution fournies par les prestataires tiers.
-              Ces preuves sont consultables dans l'espace utilisateur.
+              Lorsque disponible, NextLetter met à disposition des preuves d&apos;envoi ou de distribution fournies par les prestataires tiers,{" "}
+              <strong>à titre indicatif</strong>. Elles sont consultables dans l&apos;espace utilisateur.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-4">6. Prix et paiement</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">6. Prix, crédits et paiement</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Les prix sont indiqués en francs suisses (CHF).
-              Le paiement porte sur un service numérique exécuté à la demande.
+              Les prix sont indiqués en francs suisses (CHF). Le service fonctionne sur un <strong>système de crédits prépayés</strong>.
+              Les crédits peuvent être utilisés pour générer et/ou envoyer des lettres via la plateforme.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Les crédits achetés ne sont pas remboursables, sauf obligation légale contraire.
+              Après exécution d&apos;un envoi ou d&apos;une prestation commandée, aucun remboursement ne peut être exigé hors ces cas.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Une fois le service exécuté, aucun remboursement ne peut être exigé.
+              Le règlement s&apos;effectue via un prestataire de paiement tiers ; les moyens de paiement acceptés sont ceux proposés au moment de la commande.
             </p>
           </section>
 
@@ -105,8 +112,15 @@ export default function CGUPage() {
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">8. Limitation de responsabilité</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Les contenus générés via NextLetter sont fournis <strong>à titre informatif</strong> et ne constituent en aucun cas un conseil juridique.
+              L&apos;utilisateur est seul responsable du contenu des lettres, de leur utilisation et de leur conformité aux lois applicables.
+              LEANZA MGK Sàrl ne garantit pas l&apos;exactitude, la validité juridique ou l&apos;adéquation des documents à une situation particulière ;
+              l&apos;utilisateur vérifie les informations avant tout envoi.
+            </p>
             <p className="text-muted-foreground leading-relaxed">
-              Dans les limites autorisées par le droit suisse, la responsabilité de NextLetter est exclue pour tout dommage indirect, perte financière ou préjudice consécutif.
+              Dans les limites autorisées par le droit suisse, la responsabilité de LEANZA MGK Sàrl est exclue pour tout dommage indirect,
+              perte financière, litige avec un tiers ou préjudice consécutif (y compris en cas de rejet administratif ou de retard).
             </p>
           </section>
 

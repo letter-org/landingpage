@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/politique-confidentialite",
   },
-  robots: {
-    index: false,
-    follow: true,
-  },
 }
 
 export default function PolitiqueConfidentialitePage() {
@@ -19,6 +15,19 @@ export default function PolitiqueConfidentialitePage() {
         <h1 className="text-4xl font-bold text-foreground mb-8">🔐 POLITIQUE DE CONFIDENTIALITÉ</h1>
         
         <div className="prose prose-lg max-w-none">
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Responsable du traitement</h2>
+            <p className="text-muted-foreground leading-relaxed mb-2">
+              <strong>LEANZA MGK Sàrl</strong>, Chemin de la Crésentine 57, 1023 Crissier — IDE CHE-442.966.726.
+              Coordonnées et mentions légales :{" "}
+              <a href="https://www.nextletter.ch/mentions-legales" className="text-brand hover:underline">
+                https://www.nextletter.ch/mentions-legales
+              </a>
+              {" — "}
+              <a href="mailto:info@nextletter.ch" className="text-brand hover:underline">info@nextletter.ch</a>.
+            </p>
+          </section>
+
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Données collectées</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
@@ -49,10 +58,15 @@ export default function PolitiqueConfidentialitePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">3. Prestataires tiers</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Certaines données peuvent être transmises à des prestataires techniques ou postaux tiers uniquement pour l'exécution du service.
+              Certaines données peuvent être transmises à des prestataires tiers, uniquement pour l&apos;exécution du service, notamment :
             </p>
+            <ul className="list-disc list-inside text-muted-foreground leading-relaxed space-y-2 ml-4 mb-4">
+              <li>l&apos;envoi des lettres et l&apos;acheminement postal,</li>
+              <li>le traitement des paiements,</li>
+              <li>l&apos;hébergement et l&apos;infrastructure technique.</li>
+            </ul>
             <p className="text-muted-foreground leading-relaxed">
-              Ces prestataires respectent des standards de sécurité conformes à la législation applicable.
+              Ces prestataires sont soumis à des obligations de confidentialité et à des standards de sécurité conformes à la législation applicable.
             </p>
           </section>
 

@@ -6,11 +6,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/mentions-legales",
   },
-  // noindex pour éviter que cette page concurrence la homepage sur la requête "nextletter"
-  robots: {
-    index: false,
-    follow: true,
-  },
 }
 
 export default function MentionsLegalesPage() {
@@ -22,28 +17,27 @@ export default function MentionsLegalesPage() {
         <div className="prose prose-lg max-w-none">
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">Éditeur du site</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Page officielle :{" "}
+              <a href="https://www.nextletter.ch/mentions-legales" className="text-brand hover:underline">
+                https://www.nextletter.ch/mentions-legales
+              </a>
+            </p>
             <div className="bg-card p-6 rounded-xl border border-border">
               <p className="text-muted-foreground leading-relaxed mb-2">
-                <strong>NextLetter</strong>
+                <strong>NextLetter</strong> — service numérique de génération et d&apos;envoi de courriers
               </p>
               <p className="text-muted-foreground leading-relaxed mb-2">
-                Service numérique de génération et d'envoi de courriers
+                Édité par <strong>LEANZA MGK Sàrl</strong>, société à responsabilité limitée de droit suisse,
+                siège social : Chemin de la Crésentine 57, 1023 Crissier.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Suisse
+              <p className="text-muted-foreground leading-relaxed mb-2">
+                IDE : CHE-442.966.726 — inscrite au Registre du commerce suisse.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 📧 Contact : <a href="mailto:info@nextletter.ch" className="text-brand hover:underline">info@nextletter.ch</a>
               </p>
             </div>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Statut du service</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              NextLetter est un service numérique en phase de lancement.
-              La structure juridique définitive exploitant le service sera communiquée ultérieurement.
-            </p>
           </section>
 
           <section className="mb-8">
@@ -56,11 +50,11 @@ export default function MentionsLegalesPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-4">Responsabilité</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              NextLetter met à disposition une plateforme permettant la génération et la transmission de courriers via des prestataires tiers.
-              NextLetter n'est ni un service postal, ni une autorité publique, ni un cabinet juridique.
+              NextLetter (LEANZA MGK Sàrl) met à disposition une plateforme permettant la génération et la transmission de courriers via des prestataires tiers.
+              NextLetter n&apos;est ni un service postal, ni une autorité publique, ni un cabinet juridique.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-2">
-              NextLetter ne saurait être tenu responsable :
+              LEANZA MGK Sàrl ne saurait être tenue responsable :
             </p>
             <ul className="list-disc list-inside text-muted-foreground leading-relaxed space-y-2 ml-4">
               <li>du refus d'un courrier par un destinataire,</li>
