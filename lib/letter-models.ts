@@ -9,6 +9,12 @@
 
 import {
   ASSURANCE_SANTE_BRANDS,
+  BANK_BRANDS,
+  FITNESS_BRANDS,
+  LEASING_BRANDS,
+  MEDIA_BRANDS,
+  slugifyBrand,
+  STREAMING_BRANDS,
   TELECOM_BRANDS,
   UTILITY_TYPES,
 } from "./seo-config"
@@ -29,6 +35,11 @@ export type LetterModelCategory =
   | "travail"
   | "assurance-marque"
   | "telecom-marque"
+  | "banque-marque"
+  | "leasing-marque"
+  | "streaming-marque"
+  | "fitness-marque"
+  | "media-marque"
   | "utilities"
 
 export interface LetterModelCategoryConfig {
@@ -41,6 +52,11 @@ export const LETTER_CATEGORIES: LetterModelCategoryConfig[] = [
   { id: "resiliation", title: "Résiliation", description: "Résiliez vos assurances, abonnements et baux en Suisse" },
   { id: "assurance-marque", title: "Résiliation par assureur", description: "Résiliez votre assurance maladie chez CSS, Helsana, AXA, etc." },
   { id: "telecom-marque", title: "Résiliation par opérateur", description: "Résiliez chez Swisscom, Sunrise, Salt, etc." },
+  { id: "banque-marque", title: "Résiliation banque et carte", description: "Clôturez un compte bancaire, une carte ou un service financier en Suisse" },
+  { id: "leasing-marque", title: "Résiliation leasing et mobilité", description: "Fin de leasing, car sharing ou contrat de mobilité" },
+  { id: "streaming-marque", title: "Résiliation streaming", description: "Netflix, Spotify, Disney Plus, YouTube Premium et autres abonnements" },
+  { id: "fitness-marque", title: "Résiliation fitness par enseigne", description: "Activ Fitness, PureGym, Update Fitness et autres salles" },
+  { id: "media-marque", title: "Résiliation presse et médias", description: "Journaux, magazines et abonnements médias en Suisse" },
   { id: "utilities", title: "Énergie et utilités", description: "Résiliez électricité, gaz, eau, chauffage" },
   { id: "motivation", title: "Motivation", description: "Lettres de motivation pour candidatures et formations" },
   { id: "logement", title: "Logement", description: "Bail, loyer, voisinage et déménagement" },
@@ -102,7 +118,7 @@ const BASE_MODELS: LetterModelLink[] = [
 const ASSURANCE_BRAND_MODELS: LetterModelLink[] = ASSURANCE_SANTE_BRANDS.map(
   (brand) => ({
     title: `Résiliation assurance ${brand}`,
-    path: `/modeles/lettre-resiliation-assurance-${brand.toLowerCase().replace(/\s+/g, "-")}-suisse`,
+    path: `/modeles/lettre-resiliation-assurance-${slugifyBrand(brand)}-suisse`,
     subtitle: `Modèle pour ${brand}`,
     category: "assurance-marque" as LetterModelCategory,
   })
@@ -111,9 +127,44 @@ const ASSURANCE_BRAND_MODELS: LetterModelLink[] = ASSURANCE_SANTE_BRANDS.map(
 /** Modèles telecom par marque (générés) */
 const TELECOM_BRAND_MODELS: LetterModelLink[] = TELECOM_BRANDS.map((brand) => ({
   title: `Résiliation ${brand}`,
-  path: `/modeles/lettre-resiliation-${brand.toLowerCase().replace(/\s+/g, "-")}-suisse`,
+  path: `/modeles/lettre-resiliation-${slugifyBrand(brand)}-suisse`,
   subtitle: `Modèle pour ${brand}`,
   category: "telecom-marque" as LetterModelCategory,
+}))
+
+const BANK_BRAND_MODELS: LetterModelLink[] = BANK_BRANDS.map((brand) => ({
+  title: `Résiliation compte ${brand}`,
+  path: `/modeles/lettre-resiliation-compte-${slugifyBrand(brand)}-suisse`,
+  subtitle: `Clôture de compte ou carte ${brand}`,
+  category: "banque-marque" as LetterModelCategory,
+}))
+
+const LEASING_BRAND_MODELS: LetterModelLink[] = LEASING_BRANDS.map((brand) => ({
+  title: `Résiliation leasing ${brand}`,
+  path: `/modeles/lettre-resiliation-leasing-${slugifyBrand(brand)}-suisse`,
+  subtitle: `Modèle pour ${brand}`,
+  category: "leasing-marque" as LetterModelCategory,
+}))
+
+const STREAMING_BRAND_MODELS: LetterModelLink[] = STREAMING_BRANDS.map((brand) => ({
+  title: `Résiliation abonnement ${brand}`,
+  path: `/modeles/lettre-resiliation-abonnement-${slugifyBrand(brand)}-suisse`,
+  subtitle: `Modèle pour ${brand}`,
+  category: "streaming-marque" as LetterModelCategory,
+}))
+
+const FITNESS_BRAND_MODELS: LetterModelLink[] = FITNESS_BRANDS.map((brand) => ({
+  title: `Résiliation fitness ${brand}`,
+  path: `/modeles/lettre-resiliation-fitness-${slugifyBrand(brand)}-suisse`,
+  subtitle: `Modèle pour ${brand}`,
+  category: "fitness-marque" as LetterModelCategory,
+}))
+
+const MEDIA_BRAND_MODELS: LetterModelLink[] = MEDIA_BRANDS.map((brand) => ({
+  title: `Résiliation abonnement presse ${brand}`,
+  path: `/modeles/lettre-resiliation-abonnement-presse-${slugifyBrand(brand)}-suisse`,
+  subtitle: `Modèle pour ${brand}`,
+  category: "media-marque" as LetterModelCategory,
 }))
 
 /** Modèles utilités (électricité, gaz, eau, etc.) */
@@ -129,6 +180,11 @@ export const ALL_LETTER_MODELS: LetterModelLink[] = [
   ...BASE_MODELS,
   ...ASSURANCE_BRAND_MODELS,
   ...TELECOM_BRAND_MODELS,
+  ...BANK_BRAND_MODELS,
+  ...LEASING_BRAND_MODELS,
+  ...STREAMING_BRAND_MODELS,
+  ...FITNESS_BRAND_MODELS,
+  ...MEDIA_BRAND_MODELS,
   ...UTILITY_MODELS,
 ]
 

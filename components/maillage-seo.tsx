@@ -48,9 +48,18 @@ export function MaillageSeo() {
         </div>
         <div className="bg-card border border-border rounded-xl p-6">
           <h3 className="font-semibold text-foreground mb-3">Envoi recommandé</h3>
-          <Link href="/envoyer-lettre-en-ligne-suisse" className="text-brand hover:underline text-sm">
-            Envoyer une lettre recommandée en ligne
-          </Link>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/envoyer-lettre-en-ligne-suisse" className="text-brand hover:underline text-sm">
+                Envoyer une lettre recommandée en ligne
+              </Link>
+            </li>
+            <li>
+              <Link href="/preuve-legale-lettre-recommandee-suisse" className="text-brand hover:underline text-sm">
+                Preuve, délais & lettre recommandée
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

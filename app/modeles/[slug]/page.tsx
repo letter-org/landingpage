@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { LetterModelTemplate } from "@/components/letter-model-template"
 import { ALL_LETTER_MODELS } from "@/lib/letter-models"
+import { getEnhancedDynamicModelMetadata } from "@/lib/dynamic-model-metadata"
 import { getDynamicModelProps } from "@/lib/model-page-factory"
 
 interface PageProps {
@@ -37,8 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = ALL_LETTER_MODELS.find((m) => m.path === `/modeles/${slug}`)
   if (!model) return {}
 
-  const title = `${model.title} Suisse – Modèle conforme & envoi recommandé`
-  const description = `${model.subtitle}. Modèle conforme au droit suisse, envoi recommandé avec preuve.`
+  const enhanced = getEnhancedDynamicModelMetadata(slug)
+  const title = enhanced?.title ?? `${model.title} Suisse – Modèle conforme & envoi recommandé`
+  const description =
+    enhanced?.description ??
+    `${model.subtitle}. Modèle conforme au droit suisse, envoi recommandé avec preuve.`
 
   return {
     title,
