@@ -7,41 +7,41 @@ import { useState, useEffect, useRef } from "react"
 const securityFeatures = [
   {
     icon: Shield,
-    title: "Heberge en Europe",
-    description: "Serveurs situes en Suisse, conformes GDPR",
+    title: "Infrastructure sécurisée",
+    description: "Données hébergées en Europe/Suisse conformes RGPD.",
   },
   {
     icon: Lock,
-    title: "Protection des donnees",
-    description: "Chiffrement de bout en bout, SSL/TLS",
-  },
-  {
-    icon: Database,
-    title: "Archivage securise",
-    description: "Conservation certifiee selon normes legales",
+    title: "Accès protégé",
+    description: "Accès contrôlé, protections standards et surveillance.",
   },
   {
     icon: FileCheck,
-    title: "Tracabilite complete",
-    description: "Preuves de depot et historique complet",
+    title: "Historique & traçabilité",
+    description: "Historique des envois et statut de suivi en un coup d'œil.",
+  },
+  {
+    icon: Database,
+    title: "Archivage sécurisé",
+    description: "Vos envois et documents restent accessibles et protégés.",
   },
 ]
 
 const certifications = [
-  { label: "ISO 27001", delay: 0 },
-  { label: "GDPR Compliant", delay: 100 },
-  { label: "SSL/TLS", delay: 200 },
-  { label: "Swiss Hosting", delay: 300 },
+  { label: "Infrastructure sécurisée EU/CH", delay: 0 },
+  { label: "RGPD", delay: 100 },
+  { label: "Accès protégé", delay: 200 },
+  { label: "Historique & traçabilité", delay: 300 },
 ]
 
-// Floating particles for premium effect
+// Floating particles for premium effect - static values to avoid hydration issues
 const particles = Array.from({ length: 25 }, (_, i) => ({
   id: i,
-  size: Math.random() * 4 + 2,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  duration: Math.random() * 10 + 15,
-  delay: Math.random() * 5,
+  size: ((i * 3) % 4) + 2, // Deterministic size
+  x: ((i * 7) % 100), // Deterministic x
+  y: ((i * 13) % 100), // Deterministic y
+  duration: ((i * 5) % 10) + 15, // Deterministic duration
+  delay: ((i * 17) % 5), // Deterministic delay
 }))
 
 // Mouse follower glow component
@@ -199,8 +199,7 @@ export function Security() {
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">Vos donnees sont en securite</h2>
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              NextLetter prend la securite de vos informations au serieux. Nous respectons les normes les plus strictes
-              en matiere de protection des donnees et de conformite legale.
+              NextLetter protège vos informations avec des mesures de sécurité solides. Infrastructure sécurisée Europe/Suisse. Accès contrôlé et protections standards.
             </p>
             <div className="flex flex-wrap gap-3">
               {certifications.map((cert, index) => (

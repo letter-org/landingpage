@@ -16,7 +16,37 @@ export const appUrls = {
  * Add UTM parameters to a URL
  */
 export const addUtmParams = (url: string, source: string = 'landing', medium: string = 'cta', campaign: string = 'nextletter') => {
-  const separator = url.includes('?') ? '&' : '?'
-  return `${url}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
+  // If CTA points to app root, keep it clean (no /signup, no UTM).
+  const normalizedBase = APP_URL.replace(/\/+$/, "")
+  const normalizedInput = url.replace(/\/+$/, "")
+  if (normalizedInput === normalizedBase) {
+    return normalizedBase
+  }
+  const finalUrl = url
+  const separator = finalUrl.includes("?") ? "&" : "?"
+  return `${finalUrl}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
 }
 
+export type TrackedAppPlacement = "hero" | "intermediate" | "final" | "maillage_app"
+
+/**
+ * URL app avec paramètres UTM (y compris sur la racine app) pour le suivi conversion landing → app.
+ * utm_content = emplacement du CTA ; utm_term = slug page modèle (optionnel).
+ */
+export function buildTrackedAppHref(params: {
+  campaign: string
+  placement: TrackedAppPlacement
+  pageSlug?: string
+  source?: string
+  medium?: string
+}) {
+  const base = APP_URL.replace(/\/+$/, "")
+  const search = new URLSearchParams({
+    utm_source: params.source ?? "landing",
+    utm_medium: params.medium ?? "cta",
+    utm_campaign: params.campaign,
+    utm_content: params.placement,
+  })
+  if (params.pageSlug) search.set("utm_term", params.pageSlug)
+  return `${base}?${search.toString()}`
+}

@@ -146,6 +146,21 @@
   }
 }
 
+@keyframes float-letter {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(5px);
+  }
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -155,6 +170,15 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 
@@ -217,6 +241,11 @@
 
 .animate-gradient {
   animation: gradient 3s ease infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 3s ease infinite;
 }
 
 .animate-shimmer {
@@ -341,6 +370,19 @@ html {
   animation: rotate-slow 20s linear infinite;
 }
 
+@keyframes drawBorder {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-border {
+  animation: drawBorder 2s linear infinite;
+}
+
 /* Card hover states */
 .card-hover-glow {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -395,7 +437,53 @@ html {
 }
 
 /* Selection styling */
+@keyframes fadeInVideo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 ::selection {
   background: hsl(var(--brand) / 0.3);
   color: hsl(var(--foreground));
 }
+
+/* Trust logos marquee — infinite horizontal scroll */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* translate by exactly 50% since we duplicate the set 6 times (3 sets visible, 3 offscreen) */
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+

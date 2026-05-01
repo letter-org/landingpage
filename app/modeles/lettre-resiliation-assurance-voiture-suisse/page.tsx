@@ -1,0 +1,46 @@
+import type { Metadata } from "next"
+import { LetterModelTemplate } from "@/components/letter-model-template"
+
+export const metadata: Metadata = {
+  title: "Lettre résiliation assurance voiture Suisse – Modèle conforme & envoi recommandé",
+  description: "Résiliez votre assurance voiture en Suisse. Modèle conforme, envoi recommandé avec preuve. Simple et rapide.",
+  alternates: { canonical: "/modeles/lettre-resiliation-assurance-voiture-suisse" },
+}
+
+const faqData = [
+  { question: "Quand résilier mon assurance voiture en Suisse ?", answer: "L'assurance voiture peut généralement être résiliée une fois par an, avec un préavis de 3 mois. Vérifiez votre contrat." },
+  { question: "Dois-je envoyer par courrier recommandé ?", answer: "Oui, le courrier recommandé est fortement recommandé pour disposer d'une preuve d'envoi et de réception." },
+  { question: "NextLetter fournit-il des conseils juridiques ?", answer: "Non, NextLetter est un service d'assistance à la rédaction et à l'envoi de courriers. Consultez votre assureur pour des questions spécifiques." },
+]
+
+export default function Page() {
+  return (
+    <LetterModelTemplate
+      faqSchemaId="schema-faq-resiliation-assurance-voiture"
+      faqData={faqData}
+      h1Title="Résiliation assurance voiture"
+      h1Gradient="en Suisse"
+      intro={{ main: "Résiliez votre assurance voiture en Suisse en quelques minutes. Votre lettre est générée, personnalisée et envoyée par courrier recommandé avec preuve d'envoi.", sub: "Sans déplacement. Conforme au droit suisse." }}
+      savoirContent={<><p>En Suisse, la résiliation d'assurance voiture doit être effectuée <strong>par écrit</strong>. Le préavis est souvent de 3 mois. L'envoi par <strong>courrier recommandé</strong> est recommandé.</p><p className="text-sm italic pt-4 border-t border-border">⚠️ NextLetter est un service d'assistance à la rédaction et à l'envoi de courriers. Consultez votre assureur pour des questions spécifiques.</p></>}
+      steps={[
+        { title: "Étape 1 – Choisissez le modèle", description: "Sélectionnez le modèle résiliation assurance voiture." },
+        { title: "Étape 2 – Complétez vos informations", description: "Remplissez vos coordonnées, numéro de contrat et plaque." },
+        { title: "Étape 3 – Envoyez par courrier avec preuve", description: "NextLetter imprime et envoie votre lettre par courrier recommandé." },
+      ]}
+      letterContent={[
+        { title: "Vos coordonnées", subtitle: "Nom, adresse, contact" },
+        { title: "Références contrat", subtitle: "Numéro de police, plaque" },
+        { title: "Date de résiliation", subtitle: "Date d'effet" },
+        { title: "Signature", subtitle: "Votre nom et signature" },
+      ]}
+      ctaTitle="Prêt à résilier votre assurance voiture ?"
+      ctaDescription="Générez votre lettre en quelques minutes et envoyez-la par courrier recommandé avec preuve."
+      ctaButtonText="Générer et envoyer ma lettre maintenant"
+      ctaReassurance="Envoi en quelques minutes – preuve conservée dans votre dashboard"
+      utmCampaign="resiliation-assurance-voiture"
+      canonicalPath="/modeles/lettre-resiliation-assurance-voiture-suisse"
+      excludeFromOtherModels="/modeles/lettre-resiliation-assurance-voiture-suisse"
+      ctaSecondaryHref="/modeles/lettre-resiliation-assurance-auto"
+    />
+  )
+}

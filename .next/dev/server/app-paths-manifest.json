@@ -1,0 +1,9 @@
+{
+  "/modeles/lettre-motivation-suisse/page": "app/modeles/lettre-motivation-suisse/page.js",
+  "/modeles/lettre-resiliation-abonnement-fitness/page": "app/modeles/lettre-resiliation-abonnement-fitness/page.js",
+  "/modeles/lettre-resiliation-assurance-complementaire/page": "app/modeles/lettre-resiliation-assurance-complementaire/page.js",
+  "/modeles/lettre-resiliation-assurance-menage-rc/page": "app/modeles/lettre-resiliation-assurance-menage-rc/page.js",
+  "/modeles/lettre-resiliation-bail-bailleur-suisse/page": "app/modeles/lettre-resiliation-bail-bailleur-suisse/page.js",
+  "/modeles/lettre-resiliation-bail-locataire-suisse/page": "app/modeles/lettre-resiliation-bail-locataire-suisse/page.js",
+  "/page": "app/page.js"
+}
