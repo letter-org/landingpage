@@ -101,11 +101,33 @@ export default function ModelesHubPage() {
             </div>
 
             {/* Introduction */}
-            <div className="prose prose-lg max-w-none mb-12">
+            <div className="prose prose-lg max-w-none mb-8">
               <p className="text-lg text-muted-foreground leading-relaxed mb-3">
                 Choisissez votre modèle de lettre parmi notre catalogue. Résiliation, motivation, réclamations, administration – tous nos modèles sont conformes au droit suisse et envoyés par courrier recommandé avec preuve.
               </p>
             </div>
+
+            <section className="mb-12 rounded-2xl border border-border bg-card p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-4">Situations les plus recherchées</h2>
+              <ul className="flex flex-wrap gap-3">
+                {[
+                  { href: "/modeles/opposition-poursuite-suisse", label: "Opposition poursuite" },
+                  { href: "/modeles/commandement-de-payer-suisse", label: "Commandement de payer" },
+                  { href: "/modeles/mise-en-demeure-suisse", label: "Mise en demeure" },
+                  { href: "/modeles/relance-facture-impayee-suisse", label: "Relance facture impayée" },
+                  { href: "/modeles/resiliation-bail-suisse", label: "Résiliation de bail" },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="inline-flex rounded-full border border-brand/25 bg-brand/5 px-4 py-2 text-sm font-medium text-brand hover:bg-brand/10 transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
             {/* Catégories et modèles */}
             <div className="space-y-12">

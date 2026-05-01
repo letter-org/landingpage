@@ -86,6 +86,8 @@ export function Footer() {
                 { label: 'Fonctionnalites', href: '#features-section' },
                 { label: 'Tarifs', href: '#pricing-section' },
                 { label: 'FAQ', href: '#faq-section' },
+                { label: 'Modèles de lettres', href: '/modeles' },
+                { label: 'Opposition poursuite', href: '/modeles/opposition-poursuite-suisse' },
                 { label: 'Collectivités publiques', href: '/communes' },
                 { label: 'Blog', href: '#' },
               ].map((item) => (

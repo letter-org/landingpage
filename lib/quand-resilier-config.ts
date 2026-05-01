@@ -35,7 +35,7 @@ export const QUAND_RESILIATION_ENTRIES: QuandResilierEntry[] = [
     description: "Quand et comment résilier votre bail en Suisse (locataire ou bailleur).",
     delays: "Préavis de 3 mois pour un bail à durée indéterminée. La résiliation doit tomber à une date d'échéance (généralement fin mars, fin juin, fin septembre ou fin décembre).",
     deadlines: "Pour quitter au 30 juin : envoyez votre résiliation avant le 31 mars. Pour le 31 décembre : avant le 30 septembre.",
-    modelPath: "/modeles/lettre-resiliation-bail-suisse",
+    modelPath: "/modeles/resiliation-bail-suisse",
   },
   {
     slug: "fitness",

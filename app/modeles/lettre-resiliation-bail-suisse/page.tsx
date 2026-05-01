@@ -4,11 +4,11 @@ import { LetterModelTemplate } from "@/components/letter-model-template"
 export const metadata: Metadata = {
   title: "Lettre résiliation bail Suisse – Locataire ou bailleur, modèle conforme",
   description: "Résiliez votre bail en Suisse (locataire ou bailleur). Modèle conforme, envoi recommandé avec preuve. Délai 3 mois, dates d'échéance.",
-  alternates: { canonical: "/modeles/lettre-resiliation-bail-suisse" },
+  alternates: { canonical: "/modeles/resiliation-bail-suisse" },
   openGraph: {
-    title: "Lettre résiliation bail Suisse – Locataire ou bailleur, modèle conforme",
-    description: "Résiliez votre bail en Suisse. Modèle conforme, envoi recommandé avec preuve.",
-    url: "/modeles/lettre-resiliation-bail-suisse",
+    title: "Résiliation de bail en Suisse – Modèle de lettre",
+    description: "Résiliez votre bail en Suisse (locataire ou bailleur). Référence SEO consolidée.",
+    url: "/modeles/resiliation-bail-suisse",
   },
 }
 
@@ -103,7 +103,8 @@ export default function LettreResiliationBailPage() {
       ctaReassurance="Envoi en quelques minutes – preuve conservée dans votre dashboard"
       utmCampaign="resiliation-bail"
       canonicalPath="/modeles/lettre-resiliation-bail-suisse"
-      excludeFromOtherModels="/modeles/lettre-resiliation-bail-suisse"
+      structuredDataPath="/modeles/resiliation-bail-suisse"
+      excludeFromOtherModels="/modeles/resiliation-bail-suisse"
       ctaSecondaryHref="/modeles/lettre-resiliation-bail-locataire-suisse"
     />
   )

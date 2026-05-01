@@ -4,7 +4,13 @@ import { LetterModelTemplate } from "@/components/letter-model-template"
 export const metadata: Metadata = {
   title: "Lettre opposition poursuite Suisse – Modèle conforme & envoi recommandé",
   description: "Opposez-vous à une poursuite en Suisse. Modèle conforme, envoi recommandé avec preuve. Contestation commandement de payer.",
-  alternates: { canonical: "/modeles/lettre-opposition-poursuite-suisse" },
+  alternates: { canonical: "/modeles/opposition-poursuite-suisse" },
+  openGraph: {
+    title: "Opposition à une poursuite en Suisse – Modèle de lettre",
+    description:
+      "Modèle d’opposition à une poursuite : délais, commandement de payer, envoi recommandé. Référence SEO consolidée sur NextLetter.",
+    url: "/modeles/opposition-poursuite-suisse",
+  },
 }
 
 const faqData = [
@@ -40,8 +46,9 @@ export default function Page() {
       ctaReassurance="Envoi en quelques minutes – délai 10 jours impératif"
       utmCampaign="opposition-poursuite"
       canonicalPath="/modeles/lettre-opposition-poursuite-suisse"
-      excludeFromOtherModels="/modeles/lettre-opposition-poursuite-suisse"
-      ctaSecondaryHref="/modeles/lettre-demande-delai-paiement-suisse"
+      structuredDataPath="/modeles/opposition-poursuite-suisse"
+      excludeFromOtherModels="/modeles/opposition-poursuite-suisse"
+      ctaSecondaryHref="/modeles/commandement-de-payer-suisse"
       howToName="Lettre opposition poursuite en Suisse"
     />
   )

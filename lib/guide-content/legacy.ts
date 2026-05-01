@@ -153,7 +153,7 @@ Si vous contestez une augmentation pendant la même période, vous pouvez devoir
 
 NextLetter ne tranche pas votre situation juridique : il vous aide à **produire** un courrier propre et à l'**acheminer** avec preuve. C'est particulièrement utile lorsque vous êtes en mobilité ou à l'étranger mais devez notifier un acte en Suisse.
 
-Modèles utiles : [bail locataire](/modeles/lettre-resiliation-bail-locataire-suisse), [bailleur](/modeles/lettre-resiliation-bail-bailleur-suisse), [vue générale bail](/modeles/lettre-resiliation-bail-suisse).
+Modèles utiles : [bail locataire](/modeles/lettre-resiliation-bail-locataire-suisse), [bailleur](/modeles/lettre-resiliation-bail-bailleur-suisse), [vue générale bail](/modeles/resiliation-bail-suisse).
 `.trim(),
   },
   "comment-contester-facture-suisse": {

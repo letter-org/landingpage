@@ -25,6 +25,11 @@ const STATIC_MODEL_SLUGS = new Set([
   "lettre-contestation-amende-suisse", "lettre-demande-delai-paiement-suisse", "lettre-demande-arrangement-dette-suisse",
   "lettre-demande-certificat-travail-suisse", "lettre-licenciement-employeur-suisse", "lettre-demande-augmentation-salaire-suisse",
   "lettre-demande-conge-suisse",
+  "opposition-poursuite-suisse",
+  "mise-en-demeure-suisse",
+  "relance-facture-impayee-suisse",
+  "commandement-de-payer-suisse",
+  "resiliation-bail-suisse",
 ])
 
 export async function generateStaticParams() {

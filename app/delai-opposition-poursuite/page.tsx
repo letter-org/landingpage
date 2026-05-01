@@ -56,7 +56,7 @@ export default function DelaiOppositionPoursuitePage() {
       ctaDescription="Générez votre lettre et envoyez-la dans les délais."
       ctaButtonText="Générer ma lettre d'opposition"
       ctaHref={addUtmParams(appUrls.base, "landing", "cta", "delai-opposition-poursuite")}
-      modelPath="/modeles/lettre-opposition-poursuite-suisse"
+      modelPath="/modeles/opposition-poursuite-suisse"
       schemaId="delai-opposition-poursuite"
       canonicalPath="/delai-opposition-poursuite"
     />

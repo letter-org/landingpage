@@ -35,7 +35,7 @@ const nextConfig = {
   // Redirects: /lettre-xxx -> /modeles/lettre-xxx (URLs courtes vers modèles)
   async redirects() {
     const letterRedirects = [
-      { from: "/lettre-resiliation-bail-suisse", to: "/modeles/lettre-resiliation-bail-suisse" },
+      { from: "/lettre-resiliation-bail-suisse", to: "/modeles/resiliation-bail-suisse" },
       { from: "/lettre-resiliation-assurance-maladie", to: "/modeles/lettre-resiliation-assurance-maladie-suisse" },
       { from: "/lettre-resiliation-assurance-voiture", to: "/modeles/lettre-resiliation-assurance-voiture-suisse" },
       { from: "/lettre-resiliation-fitness", to: "/modeles/lettre-resiliation-salle-sport-suisse" },
@@ -43,7 +43,7 @@ const nextConfig = {
       { from: "/lettre-resiliation-leasing-voiture", to: "/modeles/lettre-resiliation-assurance-auto" },
       { from: "/lettre-resiliation-internet", to: "/modeles/lettre-resiliation-internet-suisse" },
       { from: "/lettre-demission-suisse", to: "/modeles/lettre-demission-suisse" },
-      { from: "/lettre-opposition-poursuite", to: "/modeles/lettre-opposition-poursuite-suisse" },
+      { from: "/lettre-opposition-poursuite", to: "/modeles/opposition-poursuite-suisse" },
       { from: "/lettre-contestation-facture", to: "/modeles/lettre-contestation-facture-suisse" },
       { from: "/lettre-reclamation-assurance", to: "/modeles/lettre-contestation-facture-suisse" },
       { from: "/lettre-resiliation-bail-locataire", to: "/modeles/lettre-resiliation-bail-locataire-suisse" },
@@ -55,9 +55,9 @@ const nextConfig = {
       { from: "/lettre-demande-conge", to: "/modeles/lettre-demande-conge-suisse" },
       { from: "/lettre-certificat-travail", to: "/modeles/lettre-demande-certificat-travail-suisse" },
       { from: "/modele-lettre-demission", to: "/modeles/lettre-demission-suisse" },
-      { from: "/modele-lettre-resiliation-bail", to: "/modeles/lettre-resiliation-bail-suisse" },
+      { from: "/modele-lettre-resiliation-bail", to: "/modeles/resiliation-bail-suisse" },
       { from: "/modele-lettre-contestation-facture", to: "/modeles/lettre-contestation-facture-suisse" },
-      { from: "/modele-lettre-opposition-poursuite", to: "/modeles/lettre-opposition-poursuite-suisse" },
+      { from: "/modele-lettre-opposition-poursuite", to: "/modeles/opposition-poursuite-suisse" },
     ].map((r) => ({ source: r.from, destination: r.to, permanent: true }))
     return letterRedirects
   },

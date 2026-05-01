@@ -7,13 +7,17 @@ import Link from "next/link"
 
 const RESILIATION_LINKS = [
   { href: "/modeles/lettre-resiliation-assurance-maladie-suisse", title: "Résiliation assurance maladie" },
+  { href: "/modeles/resiliation-bail-suisse", title: "Résiliation de bail (pilier)" },
   { href: "/modeles/lettre-resiliation-bail-locataire-suisse", title: "Résiliation bail locataire" },
   { href: "/resilier-swisscom", title: "Résilier Swisscom" },
 ]
 
 const MODELE_LINKS = [
   { href: "/modeles/lettre-demission-suisse", title: "Lettre de démission" },
-  { href: "/modeles/lettre-opposition-poursuite-suisse", title: "Opposition poursuite" },
+  { href: "/modeles/opposition-poursuite-suisse", title: "Opposition poursuite" },
+  { href: "/modeles/commandement-de-payer-suisse", title: "Commandement de payer" },
+  { href: "/modeles/mise-en-demeure-suisse", title: "Mise en demeure" },
+  { href: "/modeles/relance-facture-impayee-suisse", title: "Relance facture impayée" },
   { href: "/modeles/lettre-contestation-facture-suisse", title: "Contestation facture" },
 ]
 

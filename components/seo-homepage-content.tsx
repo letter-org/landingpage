@@ -12,14 +12,17 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 export function SeoHomepageContent() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
-  // Top 6 most popular letter models
+  // Modèles mis en avant (pilier SEO + usages fréquents)
   const popularModels = [
+    { title: "Opposition à une poursuite", href: "/modeles/opposition-poursuite-suisse" },
+    { title: "Résiliation de bail", href: "/modeles/resiliation-bail-suisse" },
+    { title: "Mise en demeure", href: "/modeles/mise-en-demeure-suisse" },
     { title: "Résiliation bail locataire", href: "/modeles/lettre-resiliation-bail-locataire-suisse" },
     { title: "Résiliation assurance maladie", href: "/modeles/lettre-resiliation-assurance-maladie-suisse" },
-    { title: "Résiliation assurance auto", href: "/modeles/lettre-resiliation-assurance-auto" },
     { title: "Résiliation abonnement mobile", href: "/modeles/lettre-resiliation-abonnement-mobile" },
     { title: "Lettre de démission", href: "/modeles/lettre-demission-suisse" },
     { title: "Lettre de motivation", href: "/modeles/lettre-motivation-suisse" },
+    { title: "Relance facture impayée", href: "/modeles/relance-facture-impayee-suisse" },
   ]
 
   return (

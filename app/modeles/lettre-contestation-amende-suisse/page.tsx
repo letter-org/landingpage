@@ -41,7 +41,7 @@ export default function Page() {
       utmCampaign="contestation-amende"
       canonicalPath="/modeles/lettre-contestation-amende-suisse"
       excludeFromOtherModels="/modeles/lettre-contestation-amende-suisse"
-      ctaSecondaryHref="/modeles/lettre-opposition-poursuite-suisse"
+      ctaSecondaryHref="/modeles/opposition-poursuite-suisse"
     />
   )
 }

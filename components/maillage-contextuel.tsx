@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react"
 import type { LetterModelLink } from "@/lib/letter-models"
 import type { GuideLink } from "@/lib/guides"
 import { appUrls, addUtmParams } from "@/lib/app-urls"
+import { TrackedAppCta } from "@/components/tracked-app-cta"
 
 interface MaillageContextuelProps {
   models: LetterModelLink[]
@@ -14,6 +15,8 @@ interface MaillageContextuelProps {
   utmCampaign?: string
   /** Texte du lien vers l'application */
   appLinkLabel?: string
+  /** Suivi conversion (pages pilier SEO) : lien app avec UTM + événement analytics */
+  conversionTracking?: { pageSlug: string }
 }
 
 export function MaillageContextuel({
@@ -21,6 +24,7 @@ export function MaillageContextuel({
   guides,
   utmCampaign = "maillage-modele",
   appLinkLabel = "Ouvrir NextLetter (app)",
+  conversionTracking,
 }: MaillageContextuelProps) {
   const appHref = addUtmParams(appUrls.base, "landing", "cta", utmCampaign)
   const displayModels = models.slice(0, 6)
@@ -73,14 +77,25 @@ export function MaillageContextuel({
                 </Link>
               </li>
               <li>
-                <a
-                  href={appHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand hover:underline font-medium"
-                >
-                  {appLinkLabel}
-                </a>
+                {conversionTracking ? (
+                  <TrackedAppCta
+                    campaign={utmCampaign}
+                    placement="maillage_app"
+                    pageSlug={conversionTracking.pageSlug}
+                    className="text-brand hover:underline font-medium"
+                  >
+                    {appLinkLabel}
+                  </TrackedAppCta>
+                ) : (
+                  <a
+                    href={appHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand hover:underline font-medium"
+                  >
+                    {appLinkLabel}
+                  </a>
+                )}
               </li>
             </ul>
           </div>

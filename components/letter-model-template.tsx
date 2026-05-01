@@ -19,7 +19,8 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ArrowRight, FileText, CheckCircle, Clock } from "lucide-react"
-import { appUrls, addUtmParams } from "@/lib/app-urls"
+import { appUrls, addUtmParams, type TrackedAppPlacement } from "@/lib/app-urls"
+import { TrackedAppCta } from "@/components/tracked-app-cta"
 import Link from "next/link"
 import { FaqJsonLd } from "@/components/seo/faq-jsonld"
 import { HowToJsonLd } from "@/components/seo/howto-jsonld"
@@ -28,6 +29,7 @@ import { getRelatedGuides } from "@/lib/guides"
 import { MaillageContextuel } from "@/components/maillage-contextuel"
 import { GeoDirectAnswer, GeoBrandCitation } from "@/components/geo-seo-blocks"
 import { ArticleOrgJsonLd } from "@/components/seo/article-org-jsonld"
+import type { ReactNode } from "react"
 
 export interface FaqItem {
   question: string
@@ -42,6 +44,43 @@ export interface StepConfig {
 export interface LetterContentItem {
   title: string
   subtitle: string
+}
+
+function AppPrimaryCtaButton({
+  conversionTracking,
+  campaign,
+  placement,
+  className,
+  children,
+}: {
+  conversionTracking?: { pageSlug: string }
+  campaign: string
+  placement: TrackedAppPlacement
+  className?: string
+  children: ReactNode
+}) {
+  if (conversionTracking) {
+    return (
+      <TrackedAppCta
+        campaign={campaign}
+        placement={placement}
+        pageSlug={conversionTracking.pageSlug}
+        className={className}
+      >
+        {children}
+      </TrackedAppCta>
+    )
+  }
+  return (
+    <a
+      href={addUtmParams(appUrls.base, "landing", "cta", campaign)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {children}
+    </a>
+  )
 }
 
 export interface LetterModelTemplateProps {
@@ -85,6 +124,26 @@ export interface LetterModelTemplateProps {
   howToName?: string
   /** Réponse directe GEO (2–3 phrases). Sinon générée depuis le H1. */
   geoDirectAnswer?: string
+  /** Badge court sous le H1 (ex. « Adapté à la Suisse ») */
+  heroBadge?: string
+  /** Affiche le CTA principal + lien secondaire juste après l’introduction */
+  showHeroCta?: boolean
+  /** Bloc CTA après « Ce qu’il faut savoir en Suisse » */
+  intermediateCta?: {
+    title: string
+    description?: string
+    buttonText?: string
+  }
+  /** Puces de réassurance dans le bloc CTA final */
+  reassuranceBullets?: string[]
+  /** Disclaimer légal sous le bloc CTA final */
+  legalDisclaimer?: string
+  /** URL utilisée pour Article / HowTo JSON-LD (ex. page pilier SEO si legacy canonicalisée) */
+  structuredDataPath?: string
+  /** Active UTM complets + événements Vercel Analytics sur les CTA vers l’app */
+  conversionTracking?: { pageSlug: string }
+  /** Libellé du lien app dans le bloc « Pour aller plus loin » */
+  maillageAppLinkLabel?: string
 }
 
 export function LetterModelTemplate({
@@ -107,11 +166,20 @@ export function LetterModelTemplate({
   excludeFromOtherModels,
   howToName,
   geoDirectAnswer,
+  heroBadge,
+  showHeroCta,
+  intermediateCta,
+  reassuranceBullets,
+  legalDisclaimer,
+  structuredDataPath,
+  conversionTracking,
+  maillageAppLinkLabel,
 }: LetterModelTemplateProps) {
   const relatedModels = getRelatedModels(excludeFromOtherModels || canonicalPath, 6)
   const relatedGuides = getRelatedGuides(excludeFromOtherModels || canonicalPath, 2)
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.nextletter.ch"
-  const articleUrl = `${baseUrl}${canonicalPath}`
+  const jsonLdPath = structuredDataPath ?? canonicalPath
+  const articleUrl = `${baseUrl}${jsonLdPath}`
   const articleHeadline = `${h1Title} ${h1Gradient}`.trim()
   const articleDesc = `${intro.main} ${intro.sub}`.slice(0, 300)
   const directAnswerText =
@@ -133,7 +201,7 @@ export function LetterModelTemplate({
           name={howToName}
           description={`Comment générer et envoyer votre ${h1Title} ${h1Gradient} par courrier recommandé.`}
           steps={steps.map((s) => ({ name: s.title, text: s.description }))}
-          url={canonicalPath}
+          url={jsonLdPath}
         />
       )}
       <div className="min-h-screen bg-background">
@@ -156,6 +224,11 @@ export function LetterModelTemplate({
                   </span>
                 </span>
               </h1>
+              {heroBadge ? (
+                <p className="mt-4 inline-flex items-center rounded-full border border-brand/25 bg-brand/5 px-4 py-1.5 text-sm font-medium text-brand">
+                  {heroBadge}
+                </p>
+              ) : null}
             </div>
 
             <GeoDirectAnswer>{directAnswerText}</GeoDirectAnswer>
@@ -167,27 +240,72 @@ export function LetterModelTemplate({
               <p className="text-muted-foreground leading-relaxed">{intro.sub}</p>
             </div>
 
+            {showHeroCta ? (
+              <div className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-center mb-12">
+                <AppPrimaryCtaButton
+                  conversionTracking={conversionTracking}
+                  campaign={utmCampaign}
+                  placement="hero"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                >
+                  {ctaButtonText}
+                  <ArrowRight className="w-5 h-5" />
+                </AppPrimaryCtaButton>
+                <Link
+                  href={ctaSecondaryHref || relatedModels[0]?.path || "/modeles"}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-card border border-border text-foreground rounded-xl font-semibold hover:bg-secondary transition-colors duration-300"
+                >
+                  Voir d&apos;autres modèles de lettres
+                </Link>
+              </div>
+            ) : null}
+
             {/* Ce qu'il faut savoir en Suisse */}
             <section className="mb-12 bg-card border border-border rounded-2xl p-6 sm:p-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">Ce qu'il faut savoir en Suisse</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">{savoirContent}</div>
             </section>
 
+            {intermediateCta ? (
+              <section className="mb-12 text-center bg-gradient-to-br from-brand/5 to-cyan-500/5 border border-brand/20 rounded-2xl p-8 relative overflow-hidden">
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">{intermediateCta.title}</h2>
+                {intermediateCta.description ? (
+                  <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{intermediateCta.description}</p>
+                ) : null}
+                <AppPrimaryCtaButton
+                  conversionTracking={conversionTracking}
+                  campaign={`${utmCampaign}-milieu`}
+                  placement="intermediate"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                >
+                  {intermediateCta.buttonText ?? ctaButtonText}
+                  <ArrowRight className="w-5 h-5" />
+                </AppPrimaryCtaButton>
+              </section>
+            ) : null}
+
             {/* Comment procéder */}
             <section className="mb-12">
               <h2 className="text-2xl font-semibold text-foreground mb-6">Comment procéder</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {steps.map((step, i) => (
+              <div
+                className={
+                  steps.length > 3
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                    : "grid grid-cols-1 md:grid-cols-3 gap-6"
+                }
+              >
+                {steps.map((step, i) => {
+                  const StepIcon = [FileText, CheckCircle, Clock][i % 3]
+                  return (
                   <div key={i} className="bg-card border border-border rounded-xl p-6">
                     <div className="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4">
-                      {i === 0 && <FileText className="w-6 h-6 text-brand" />}
-                      {i === 1 && <CheckCircle className="w-6 h-6 text-brand" />}
-                      {i === 2 && <Clock className="w-6 h-6 text-brand" />}
+                      <StepIcon className="w-6 h-6 text-brand" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
                     <p className="text-muted-foreground text-sm">{step.description}</p>
                   </div>
-                ))}
+                  )
+                })}
               </div>
             </section>
 
@@ -222,7 +340,13 @@ export function LetterModelTemplate({
 
             {optionalContent}
 
-            <MaillageContextuel models={relatedModels} guides={relatedGuides} utmCampaign={utmCampaign} />
+            <MaillageContextuel
+              models={relatedModels}
+              guides={relatedGuides}
+              utmCampaign={utmCampaign}
+              conversionTracking={conversionTracking}
+              appLinkLabel={maillageAppLinkLabel}
+            />
 
             {/* FAQ */}
             <section className="mb-12">
@@ -248,15 +372,15 @@ export function LetterModelTemplate({
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{ctaTitle}</h2>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{ctaDescription}</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-3">
-                  <a
-                    href={addUtmParams(appUrls.base, "landing", "cta", utmCampaign)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <AppPrimaryCtaButton
+                    conversionTracking={conversionTracking}
+                    campaign={utmCampaign}
+                    placement="final"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                   >
                     {ctaButtonText}
                     <ArrowRight className="w-5 h-5" />
-                  </a>
+                  </AppPrimaryCtaButton>
                   <Link
                     href={ctaSecondaryHref || relatedModels[0]?.path || "/modeles"}
                     className="inline-flex items-center gap-2 px-6 py-4 bg-card border border-border text-foreground rounded-xl font-semibold hover:bg-secondary transition-colors duration-300"
@@ -264,7 +388,19 @@ export function LetterModelTemplate({
                     Voir d'autres modèles de lettres
                   </Link>
                 </div>
+                {reassuranceBullets && reassuranceBullets.length > 0 ? (
+                  <ul className="text-sm text-muted-foreground text-left max-w-xl mx-auto mb-4 space-y-2 list-disc pl-5">
+                    {reassuranceBullets.map((line, i) => (
+                      <li key={i}>{line}</li>
+                    ))}
+                  </ul>
+                ) : null}
                 <p className="text-sm text-muted-foreground">{ctaReassurance}</p>
+                {legalDisclaimer ? (
+                  <p className="text-xs text-muted-foreground/90 mt-6 max-w-2xl mx-auto leading-relaxed">
+                    {legalDisclaimer}
+                  </p>
+                ) : null}
               </div>
             </section>
           </article>

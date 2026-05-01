@@ -62,7 +62,7 @@ export default function CommentFaireOppositionPoursuitePage() {
       ctaDescription="Générez votre lettre d'opposition et envoyez-la par courrier recommandé. Agissez dans les 10 jours."
       ctaButtonText="Générer ma lettre d'opposition"
       ctaHref={addUtmParams(appUrls.base, "landing", "cta", "opposition-poursuite")}
-      modelPath="/modeles/lettre-opposition-poursuite-suisse"
+      modelPath="/modeles/opposition-poursuite-suisse"
       schemaId="comment-faire-opposition-poursuite"
       canonicalPath="/comment-faire-opposition-poursuite"
     />

@@ -83,7 +83,7 @@ const BASE_MODELS: LetterModelLink[] = [
   { title: "Résiliation assurance", path: "/modeles/lettre-resiliation-assurance-suisse", subtitle: "Tous types", category: "resiliation" },
   { title: "Résiliation abonnement", path: "/modeles/lettre-resiliation-abonnement-suisse", subtitle: "Tous types", category: "resiliation" },
   // Logement
-  { title: "Résiliation bail", path: "/modeles/lettre-resiliation-bail-suisse", subtitle: "Locataire ou bailleur", category: "logement" },
+  { title: "Résiliation de bail", path: "/modeles/resiliation-bail-suisse", subtitle: "Locataire ou bailleur · URL pilier", category: "logement" },
   { title: "Résiliation bail locataire", path: "/modeles/lettre-resiliation-bail-locataire-suisse", subtitle: "Modèle pour locataire", category: "logement" },
   { title: "Résiliation bail propriétaire", path: "/modeles/lettre-resiliation-bail-proprietaire-suisse", subtitle: "Modèle pour propriétaire", category: "logement" },
   { title: "Résiliation bail bailleur", path: "/modeles/lettre-resiliation-bail-bailleur-suisse", subtitle: "Modèle bailleur", category: "logement" },
@@ -107,11 +107,15 @@ const BASE_MODELS: LetterModelLink[] = [
   { title: "Réclamation consommateur", path: "/modeles/lettre-reclamation-consommateur-suisse", subtitle: "Défense des droits", category: "reclamations" },
   { title: "Opposition prélèvement", path: "/modeles/lettre-opposition-prelevement-suisse", subtitle: "Annuler mandat LSV", category: "reclamations" },
   // Administration
-  { title: "Opposition poursuite", path: "/modeles/lettre-opposition-poursuite-suisse", subtitle: "Contester une poursuite", category: "administration" },
   { title: "Mainlevée poursuite", path: "/modeles/lettre-mainlevee-poursuite-suisse", subtitle: "Levée de poursuite", category: "administration" },
   { title: "Contestation amende", path: "/modeles/lettre-contestation-amende-suisse", subtitle: "Contester une amende", category: "administration" },
   { title: "Demande délai de paiement", path: "/modeles/lettre-demande-delai-paiement-suisse", subtitle: "Report d'échéance", category: "administration" },
   { title: "Demande arrangement dette", path: "/modeles/lettre-demande-arrangement-dette-suisse", subtitle: "Plan d'apurement", category: "administration" },
+  // Pages modèles SEO (URLs courtes)
+  { title: "Opposition à une poursuite", path: "/modeles/opposition-poursuite-suisse", subtitle: "Lettre & guide · URL pilier", category: "administration" },
+  { title: "Commandement de payer", path: "/modeles/commandement-de-payer-suisse", subtitle: "Que faire en Suisse", category: "administration" },
+  { title: "Mise en demeure", path: "/modeles/mise-en-demeure-suisse", subtitle: "Créance & paiement", category: "reclamations" },
+  { title: "Relance facture impayée", path: "/modeles/relance-facture-impayee-suisse", subtitle: "Rappel de paiement", category: "reclamations" },
 ]
 
 /** Modèles assurance par marque (générés) */

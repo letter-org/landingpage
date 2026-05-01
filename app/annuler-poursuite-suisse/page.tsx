@@ -47,7 +47,7 @@ export default function AnnulerPoursuiteSuissePage() {
       ctaDescription="Générez votre lettre et envoyez-la par courrier recommandé."
       ctaButtonText="Générer ma lettre"
       ctaHref={addUtmParams(appUrls.base, "landing", "cta", "annuler-poursuite")}
-      modelPath="/modeles/lettre-opposition-poursuite-suisse"
+      modelPath="/modeles/opposition-poursuite-suisse"
       schemaId="annuler-poursuite-suisse"
       canonicalPath="/annuler-poursuite-suisse"
     />

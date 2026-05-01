@@ -42,7 +42,7 @@ export default function Page() {
       utmCampaign="mainlevee-poursuite"
       canonicalPath="/modeles/lettre-mainlevee-poursuite-suisse"
       excludeFromOtherModels="/modeles/lettre-mainlevee-poursuite-suisse"
-      ctaSecondaryHref="/modeles/lettre-opposition-poursuite-suisse"
+      ctaSecondaryHref="/modeles/opposition-poursuite-suisse"
       howToName="Lettre mainlevée poursuite en Suisse"
     />
   )

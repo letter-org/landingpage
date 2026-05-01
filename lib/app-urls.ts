@@ -28,3 +28,27 @@ export const addUtmParams = (url: string, source: string = 'landing', medium: st
   return `${finalUrl}${separator}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`
 }
 
+export type TrackedAppPlacement = "hero" | "intermediate" | "final" | "maillage_app"
+
+/**
+ * URL app avec paramètres UTM (y compris sur la racine app) pour le suivi conversion landing → app.
+ * utm_content = emplacement du CTA ; utm_term = slug page modèle (optionnel).
+ */
+export function buildTrackedAppHref(params: {
+  campaign: string
+  placement: TrackedAppPlacement
+  pageSlug?: string
+  source?: string
+  medium?: string
+}) {
+  const base = APP_URL.replace(/\/+$/, "")
+  const search = new URLSearchParams({
+    utm_source: params.source ?? "landing",
+    utm_medium: params.medium ?? "cta",
+    utm_campaign: params.campaign,
+    utm_content: params.placement,
+  })
+  if (params.pageSlug) search.set("utm_term", params.pageSlug)
+  return `${base}?${search.toString()}`
+}
+
